@@ -1,0 +1,8 @@
+
+platform :ios, '9.0'
+
+target 'Aishixi_XueSheng’ do
+pod 'AFNetworking'
+pod 'SBJson'
+pod 'SDWebImage'
+end
