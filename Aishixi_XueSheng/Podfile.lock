@@ -14,6 +14,13 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - JCore (1.1.5)
+  - JPush (3.0.6):
+    - JCore (~> 1.1.1)
+  - MBProgressHUD (1.0.0)
   - SBJson (5.0.0)
   - SDWebImage (4.1.0):
     - SDWebImage/Core (= 4.1.0)
@@ -21,14 +28,21 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - FMDB
+  - JPush
+  - MBProgressHUD
   - SBJson
   - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  JCore: 9bd9c770c877c583d98b90a68792b8361974c231
+  JPush: c41be50eb1a574a66aeb68d237f00a4ec6ec3a82
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   SBJson: 73c848dc34be51fda282fab12bda6c426f5ead08
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
 
-PODFILE CHECKSUM: c45093b71d5a5890ee1c9c14e7431d92624de1b7
+PODFILE CHECKSUM: ede180b36e4d98d54d37e9e0511e519a158fd477
 
 COCOAPODS: 1.3.1

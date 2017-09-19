@@ -5,4 +5,7 @@ target 'Aishixi_XueSheng’ do
 pod 'AFNetworking'
 pod 'SBJson'
 pod 'SDWebImage'
+pod 'JPush'
+pod ‘MBProgressHUD’
+pod ‘FMDB’
 end
