@@ -19,6 +19,11 @@
 		5DEA43B41F6FB3A000486956 /* Aishixi_XueShengTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA43B31F6FB3A000486956 /* Aishixi_XueShengTests.m */; };
 		5DEA43BF1F6FB3A000486956 /* Aishixi_XueShengUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA43BE1F6FB3A000486956 /* Aishixi_XueShengUITests.m */; };
 		D71AE8501F70AD0F006F542B /* maincellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71AE84F1F70AD0F006F542B /* maincellTableViewCell.m */; };
+		D71AE8681F70FAE7006F542B /* AttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71AE8671F70FAE7006F542B /* AttendanceViewController.m */; };
+		D71AE86B1F70FB08006F542B /* NoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71AE86A1F70FB08006F542B /* NoticeViewController.m */; };
+		D71AE86E1F70FB24006F542B /* AdvisoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71AE86D1F70FB24006F542B /* AdvisoryViewController.m */; };
+		D71AE8711F70FB63006F542B /* NoticeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71AE8701F70FB63006F542B /* NoticeInfoViewController.m */; };
+		D71AE8761F70FBC5006F542B /* AdvisoryInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71AE8751F70FBC5006F542B /* AdvisoryInfoViewController.m */; };
 		D744AFAA1F6FC27700F701B7 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D744AFA91F6FC27700F701B7 /* MainTableViewController.m */; };
 		E41EB04D14C95547A87DBF1D /* libPods-Aishixi_XueSheng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8EF527B96D308D1924E2E1 /* libPods-Aishixi_XueSheng.a */; };
 /* End PBXBuildFile section */
@@ -68,6 +73,16 @@
 		D53ADF550F0463FFF74C6C0F /* Pods-Aishixi_XueSheng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aishixi_XueSheng.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aishixi_XueSheng/Pods-Aishixi_XueSheng.debug.xcconfig"; sourceTree = "<group>"; };
 		D71AE84E1F70AD0F006F542B /* maincellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maincellTableViewCell.h; sourceTree = "<group>"; };
 		D71AE84F1F70AD0F006F542B /* maincellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = maincellTableViewCell.m; sourceTree = "<group>"; };
+		D71AE8661F70FAE7006F542B /* AttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceViewController.h; sourceTree = "<group>"; };
+		D71AE8671F70FAE7006F542B /* AttendanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceViewController.m; sourceTree = "<group>"; };
+		D71AE8691F70FB08006F542B /* NoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeViewController.h; sourceTree = "<group>"; };
+		D71AE86A1F70FB08006F542B /* NoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeViewController.m; sourceTree = "<group>"; };
+		D71AE86C1F70FB24006F542B /* AdvisoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvisoryViewController.h; sourceTree = "<group>"; };
+		D71AE86D1F70FB24006F542B /* AdvisoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvisoryViewController.m; sourceTree = "<group>"; };
+		D71AE86F1F70FB63006F542B /* NoticeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeInfoViewController.h; sourceTree = "<group>"; };
+		D71AE8701F70FB63006F542B /* NoticeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeInfoViewController.m; sourceTree = "<group>"; };
+		D71AE8741F70FBC5006F542B /* AdvisoryInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvisoryInfoViewController.h; sourceTree = "<group>"; };
+		D71AE8751F70FBC5006F542B /* AdvisoryInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvisoryInfoViewController.m; sourceTree = "<group>"; };
 		D744AFA81F6FC27700F701B7 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
 		D744AFA91F6FC27700F701B7 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,10 +139,13 @@
 		5D5024C51F70E42600924CCD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5DEA439F1F6FB3A000486956 /* DengLu_ViewController.h */,
-				5DEA43A01F6FB3A000486956 /* DengLu_ViewController.m */,
-				D744AFA81F6FC27700F701B7 /* MainTableViewController.h */,
-				D744AFA91F6FC27700F701B7 /* MainTableViewController.m */,
+				D71AE8791F70FBE2006F542B /* 登录 */,
+				D71AE87A1F70FBF1006F542B /* 考勤 */,
+				D71AE87B1F70FBF5006F542B /* 主页 */,
+				D71AE8781F70FBDA006F542B /* 日记 */,
+				D71AE8771F70FBD1006F542B /* 评价 */,
+				D71AE8721F70FB67006F542B /* 公告 */,
+				D71AE8731F70FBA1006F542B /* 咨询 */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -234,6 +252,69 @@
 				2A8EF527B96D308D1924E2E1 /* libPods-Aishixi_XueSheng.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D71AE8721F70FB67006F542B /* 公告 */ = {
+			isa = PBXGroup;
+			children = (
+				D71AE8691F70FB08006F542B /* NoticeViewController.h */,
+				D71AE86A1F70FB08006F542B /* NoticeViewController.m */,
+				D71AE86F1F70FB63006F542B /* NoticeInfoViewController.h */,
+				D71AE8701F70FB63006F542B /* NoticeInfoViewController.m */,
+			);
+			name = "公告";
+			sourceTree = "<group>";
+		};
+		D71AE8731F70FBA1006F542B /* 咨询 */ = {
+			isa = PBXGroup;
+			children = (
+				D71AE86C1F70FB24006F542B /* AdvisoryViewController.h */,
+				D71AE86D1F70FB24006F542B /* AdvisoryViewController.m */,
+				D71AE8741F70FBC5006F542B /* AdvisoryInfoViewController.h */,
+				D71AE8751F70FBC5006F542B /* AdvisoryInfoViewController.m */,
+			);
+			name = "咨询";
+			sourceTree = "<group>";
+		};
+		D71AE8771F70FBD1006F542B /* 评价 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "评价";
+			sourceTree = "<group>";
+		};
+		D71AE8781F70FBDA006F542B /* 日记 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "日记";
+			sourceTree = "<group>";
+		};
+		D71AE8791F70FBE2006F542B /* 登录 */ = {
+			isa = PBXGroup;
+			children = (
+				5DEA439F1F6FB3A000486956 /* DengLu_ViewController.h */,
+				5DEA43A01F6FB3A000486956 /* DengLu_ViewController.m */,
+			);
+			name = "登录";
+			sourceTree = "<group>";
+		};
+		D71AE87A1F70FBF1006F542B /* 考勤 */ = {
+			isa = PBXGroup;
+			children = (
+				D71AE8661F70FAE7006F542B /* AttendanceViewController.h */,
+				D71AE8671F70FAE7006F542B /* AttendanceViewController.m */,
+			);
+			name = "考勤";
+			sourceTree = "<group>";
+		};
+		D71AE87B1F70FBF5006F542B /* 主页 */ = {
+			isa = PBXGroup;
+			children = (
+				D744AFA81F6FC27700F701B7 /* MainTableViewController.h */,
+				D744AFA91F6FC27700F701B7 /* MainTableViewController.m */,
+			);
+			name = "主页";
 			sourceTree = "<group>";
 		};
 		DC5B24E05184C46B8A26067F /* Pods */ = {
@@ -437,11 +518,16 @@
 			files = (
 				D744AFAA1F6FC27700F701B7 /* MainTableViewController.m in Sources */,
 				5DEA43A11F6FB3A000486956 /* DengLu_ViewController.m in Sources */,
+				D71AE86B1F70FB08006F542B /* NoticeViewController.m in Sources */,
+				D71AE8681F70FAE7006F542B /* AttendanceViewController.m in Sources */,
 				5DEA439E1F6FB3A000486956 /* AppDelegate.m in Sources */,
 				5D5024CE1F70E47400924CCD /* WarningBox.m in Sources */,
+				D71AE8711F70FB63006F542B /* NoticeInfoViewController.m in Sources */,
 				5DEA439B1F6FB3A000486956 /* main.m in Sources */,
 				5D5024D11F70E47B00924CCD /* Color+Hex.m in Sources */,
+				D71AE86E1F70FB24006F542B /* AdvisoryViewController.m in Sources */,
 				5D5024CB1F70E46B00924CCD /* XL_FMDB.m in Sources */,
+				D71AE8761F70FBC5006F542B /* AdvisoryInfoViewController.m in Sources */,
 				D71AE8501F70AD0F006F542B /* maincellTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

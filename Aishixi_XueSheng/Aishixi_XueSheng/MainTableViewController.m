@@ -8,6 +8,7 @@
 
 #import "MainTableViewController.h"
 #import "maincellTableViewCell.h"
+#import "NoticeViewController.h"
 @interface MainTableViewController ()
 
 @end
@@ -117,4 +118,9 @@
 }
 */
 
+- (IBAction)Notice:(id)sender {
+    NoticeViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"notice"];
+    [self.navigationController pushViewController:his animated:YES];
+    
+}
 @end
