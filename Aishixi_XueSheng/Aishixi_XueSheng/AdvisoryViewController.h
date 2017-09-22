@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AdvisoryViewController : UIViewController
+@interface AdvisoryViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIImageView *Img;
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end

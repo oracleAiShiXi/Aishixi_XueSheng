@@ -11,5 +11,13 @@
 @interface MainTableViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollview;
 
+- (IBAction)Attendance:(id)sender;
 - (IBAction)Notice:(id)sender;
+- (IBAction)Advisory:(id)sender;
+- (IBAction)Help:(id)sender;
+- (IBAction)Appraise:(id)sender;
+- (IBAction)Diary:(id)sender;
+- (IBAction)Myself:(id)sender;
+- (IBAction)Set:(id)sender;
+
 @end

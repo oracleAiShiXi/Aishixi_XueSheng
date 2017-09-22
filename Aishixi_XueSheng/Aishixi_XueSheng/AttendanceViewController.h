@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AttendanceViewController : UIViewController
+@interface AttendanceViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIImageView *Img;
+- (IBAction)Attendan:(id)sender;
 
 @end

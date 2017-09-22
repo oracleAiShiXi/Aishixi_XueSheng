@@ -122,7 +122,7 @@
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    return 65;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0;
@@ -137,7 +137,7 @@
     //        [suView removeFromSuperview];//移除全部子视图
     //    }
     
-    UIView*backview=[[UIView alloc] initWithFrame:CGRectMake(0,0,width-20,55)];
+    UIView*backview=[[UIView alloc] initWithFrame:CGRectMake(0,10,width-20,55)];
     backview.backgroundColor =[UIColor whiteColor];
     UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(15,10, 30, 30)];
     imageview.image =[UIImage imageNamed:@"01.png"];

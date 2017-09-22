@@ -8,7 +8,12 @@
 
 #import "MainTableViewController.h"
 #import "maincellTableViewCell.h"
+#import "AttendanceViewController.h"
+
 #import "NoticeViewController.h"
+#import "AdvisoryViewController.h"
+#import "EditDiaryViewController.h"
+#import "MySelfTableViewController.h"
 @interface MainTableViewController ()
 
 @end
@@ -118,9 +123,40 @@
 }
 */
 
+- (IBAction)Attendance:(id)sender {
+    AttendanceViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Attendance"];
+    [self.navigationController pushViewController:his animated:YES];
+}
+
 - (IBAction)Notice:(id)sender {
     NoticeViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"notice"];
     [self.navigationController pushViewController:his animated:YES];
     
+}
+
+- (IBAction)Advisory:(id)sender {
+    AdvisoryViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Advisory"];
+    [self.navigationController pushViewController:his animated:YES];
+    
+}
+
+- (IBAction)Help:(id)sender {
+}
+
+- (IBAction)Appraise:(id)sender {
+    
+}
+
+- (IBAction)Diary:(id)sender {
+    EditDiaryViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"EditDiary"];
+    [self.navigationController pushViewController:his animated:YES];
+}
+
+- (IBAction)Myself:(id)sender {
+    MySelfTableViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MySelf"];
+    [self.navigationController pushViewController:his animated:YES];
+}
+
+- (IBAction)Set:(id)sender {
 }
 @end

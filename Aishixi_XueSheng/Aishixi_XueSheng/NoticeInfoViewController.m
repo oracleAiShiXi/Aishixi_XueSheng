@@ -104,7 +104,7 @@
 //        }else{
 //            s =[NSString stringWithFormat:@"%@",[arr objectForKey:@"title"]];
 //        }
-        s =[NSString stringWithFormat:@"新学期暑期实习公告"];
+        s =[NSString stringWithFormat:@"新学期暑期实习公告暑期实习公告暑期实习公告暑期实习公告暑期实习公告"];
         titt=[[UILabel alloc] init];
         UIFont *font = [UIFont fontWithName:@"Arial" size:20];
         titt.textAlignment =NSTextAlignmentLeft;
