@@ -7,7 +7,7 @@
 //
 
 #import "DengLu_ViewController.h"
-
+#import "MainTableViewController.h"
 @interface DengLu_ViewController ()
 
 @end
@@ -23,6 +23,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (IBAction)Login:(id)sender {
+    MainTableViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Main"];
+    [self.navigationController pushViewController:his animated:YES];
 }
 
 

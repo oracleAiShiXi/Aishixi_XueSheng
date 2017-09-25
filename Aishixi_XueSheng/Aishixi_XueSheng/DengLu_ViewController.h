@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface DengLu_ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *username;
+@property (weak, nonatomic) IBOutlet UITextField *password;
+- (IBAction)Login:(id)sender;
+
 
 
 @end
