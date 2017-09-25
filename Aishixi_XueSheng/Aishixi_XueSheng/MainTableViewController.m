@@ -14,6 +14,7 @@
 #import "AdvisoryViewController.h"
 #import "EditDiaryViewController.h"
 #import "MySelfTableViewController.h"
+#import "SetViewController.h"
 @interface MainTableViewController ()
 
 @end
@@ -158,5 +159,7 @@
 }
 
 - (IBAction)Set:(id)sender {
+    SetViewController  *set = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Set"];
+    [self.navigationController pushViewController:set animated:YES];
 }
 @end
