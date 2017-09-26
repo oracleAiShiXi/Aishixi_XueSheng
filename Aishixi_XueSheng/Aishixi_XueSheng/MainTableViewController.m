@@ -11,6 +11,7 @@
 #import "AttendanceViewController.h"
 
 #import "NoticeViewController.h"
+#import "AppraiseViewController.h"
 #import "AdvisoryViewController.h"
 #import "EditDiaryViewController.h"
 #import "MySelfTableViewController.h"
@@ -145,6 +146,8 @@
 }
 
 - (IBAction)Appraise:(id)sender {
+    AppraiseViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Appraise"];
+    [self.navigationController pushViewController:his animated:YES];
     
 }
 

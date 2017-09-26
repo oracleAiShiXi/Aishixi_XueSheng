@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title =@"咨询详情";
     // Do any additional setup after loading the view.
 }
 

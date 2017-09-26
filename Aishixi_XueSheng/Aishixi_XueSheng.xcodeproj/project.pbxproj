@@ -25,6 +25,7 @@
 		D71AE8711F70FB63006F542B /* NoticeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71AE8701F70FB63006F542B /* NoticeInfoViewController.m */; };
 		D71AE8761F70FBC5006F542B /* AdvisoryInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71AE8751F70FBC5006F542B /* AdvisoryInfoViewController.m */; };
 		D71B6F931F7894A800AA91BE /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71B6F921F7894A700AA91BE /* SetViewController.m */; };
+		D71B6F961F78E36B00AA91BE /* AppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71B6F951F78E36B00AA91BE /* AppraiseViewController.m */; };
 		D744AFAA1F6FC27700F701B7 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D744AFA91F6FC27700F701B7 /* MainTableViewController.m */; };
 		D75AB1F91F720FD1005E9BBE /* EditAdvisoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75AB1F81F720FD1005E9BBE /* EditAdvisoryViewController.m */; };
 		D75AB1FC1F725FB6005E9BBE /* DiaryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75AB1FB1F725FB6005E9BBE /* DiaryListViewController.m */; };
@@ -91,6 +92,8 @@
 		D71AE8751F70FBC5006F542B /* AdvisoryInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvisoryInfoViewController.m; sourceTree = "<group>"; };
 		D71B6F911F7894A700AA91BE /* SetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
 		D71B6F921F7894A700AA91BE /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
+		D71B6F941F78E36B00AA91BE /* AppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppraiseViewController.h; sourceTree = "<group>"; };
+		D71B6F951F78E36B00AA91BE /* AppraiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppraiseViewController.m; sourceTree = "<group>"; };
 		D744AFA81F6FC27700F701B7 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
 		D744AFA91F6FC27700F701B7 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
 		D75AB1F71F720FD1005E9BBE /* EditAdvisoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAdvisoryViewController.h; sourceTree = "<group>"; };
@@ -301,6 +304,8 @@
 		D71AE8771F70FBD1006F542B /* 评价 */ = {
 			isa = PBXGroup;
 			children = (
+				D71B6F941F78E36B00AA91BE /* AppraiseViewController.h */,
+				D71B6F951F78E36B00AA91BE /* AppraiseViewController.m */,
 			);
 			name = "评价";
 			sourceTree = "<group>";
@@ -582,6 +587,7 @@
 				D71AE86E1F70FB24006F542B /* AdvisoryViewController.m in Sources */,
 				5D5024CB1F70E46B00924CCD /* XL_FMDB.m in Sources */,
 				D71B6F931F7894A800AA91BE /* SetViewController.m in Sources */,
+				D71B6F961F78E36B00AA91BE /* AppraiseViewController.m in Sources */,
 				D75AB1F91F720FD1005E9BBE /* EditAdvisoryViewController.m in Sources */,
 				D71AE8761F70FBC5006F542B /* AdvisoryInfoViewController.m in Sources */,
 				D71AE8501F70AD0F006F542B /* maincellTableViewCell.m in Sources */,

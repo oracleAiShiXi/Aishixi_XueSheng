@@ -1,14 +1,14 @@
 //
-//  EditAdvisoryViewController.m
+//  AppraiseViewController.m
 //  Aishixi_XueSheng
 //
-//  Created by newmac on 2017/9/20.
+//  Created by newmac on 2017/9/25.
 //  Copyright © 2017年 GuoYun. All rights reserved.
 //
 
-#import "EditAdvisoryViewController.h"
+#import "AppraiseViewController.h"
 
-@interface EditAdvisoryViewController ()
+@interface AppraiseViewController ()<UITextViewDelegate>
 {
     NSString *type;
     CGFloat cha;
@@ -16,21 +16,24 @@
 }
 @end
 
-@implementation EditAdvisoryViewController
+@implementation AppraiseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _gangwei.adjustsImageWhenHighlighted = NO;
-    _qingjia.adjustsImageWhenHighlighted = NO;
-    _qita.adjustsImageWhenHighlighted = NO;
+    _haoping.adjustsImageWhenHighlighted = NO;
+    _zhongping.adjustsImageWhenHighlighted = NO;
+    _chaping.adjustsImageWhenHighlighted = NO;
     
-    type =@"0";
+    
+    self.title =@"评价";
+    
+    
+    
+     type =@"0";
     
     _textview.delegate =self;
-    _textview.text = @"请编辑咨询内容";
+    _textview.text = @"请编辑评价内容";
     _textview.textColor = [UIColor grayColor];
-    
-    
     [self  registerForKeyboardNotifications];
     
     // Do any additional setup after loading the view.
@@ -51,25 +54,26 @@
 }
 */
 
-- (IBAction)Post:(id)sender {
+- (IBAction)Good:(id)sender {
     type=@"1";
-    [_gangwei setImage:[UIImage imageNamed:@"岗位.png"] forState:UIControlStateNormal];
-    [_qingjia setImage:[UIImage imageNamed:@"请假2.png"] forState:UIControlStateNormal];
-    [_qita setImage:[UIImage imageNamed:@"其他2.png"] forState:UIControlStateNormal];
+    [_haoping setImage:[UIImage imageNamed:@"011.png"] forState:UIControlStateNormal];
+    [_zhongping setImage:[UIImage imageNamed:@"012.png"] forState:UIControlStateNormal];
+    [_chaping setImage:[UIImage imageNamed:@"013.png"] forState:UIControlStateNormal];
+    _haoping.adjustsImageWhenHighlighted = NO;
 }
 
-- (IBAction)Leave:(id)sender {
+- (IBAction)Mid:(id)sender {
     type=@"2";
-    [_gangwei setImage:[UIImage imageNamed:@"岗位2.png"] forState:UIControlStateNormal];
-    [_qingjia setImage:[UIImage imageNamed:@"请假.png"] forState:UIControlStateNormal];
-    [_qita setImage:[UIImage imageNamed:@"其他2.png"] forState:UIControlStateNormal];
+    [_haoping setImage:[UIImage imageNamed:@"016.png"] forState:UIControlStateNormal];
+    [_zhongping setImage:[UIImage imageNamed:@"014.png"] forState:UIControlStateNormal];
+    [_chaping setImage:[UIImage imageNamed:@"013.png"] forState:UIControlStateNormal];
 }
 
-- (IBAction)Other:(id)sender {
+- (IBAction)Bad:(id)sender {
     type=@"3";
-    [_gangwei setImage:[UIImage imageNamed:@"岗位2.png"] forState:UIControlStateNormal];
-    [_qingjia setImage:[UIImage imageNamed:@"请假2.png"] forState:UIControlStateNormal];
-    [_qita setImage:[UIImage imageNamed:@"其他.png"] forState:UIControlStateNormal];
+    [_haoping setImage:[UIImage imageNamed:@"016.png"] forState:UIControlStateNormal];
+    [_zhongping setImage:[UIImage imageNamed:@"012.png"] forState:UIControlStateNormal];
+    [_chaping setImage:[UIImage imageNamed:@"015.png"] forState:UIControlStateNormal];
 }
 
 - (IBAction)Edit:(id)sender {
@@ -77,28 +81,17 @@
     _edit.hidden =YES;
 }
 
-- (IBAction)Publish:(id)sender {
+- (IBAction)publist:(id)sender {
     [_textview resignFirstResponder];
-    _edit.hidden =NO;
+     _edit.hidden =NO;
     
-//    if([type isEqualToString:@"0"]){
-//        NSLog(@"%@",type);
-//        NSLog(@"请选择咨询类型");
-//    }else if ([_textview.text isEqualToString:@"请编辑咨询内容"]){
-//       
-//        NSLog(@"请编辑咨询内容");
-//    }else{
-//        NSLog(@"提交中");
-//    }
-    if([type isEqualToString:@"0"]||[_textview.text isEqualToString:@"请编辑咨询内容"]){
-        NSLog(@"请选择咨询类型或编辑咨询内容");
+    if([type isEqualToString:@"0"]||[_textview.text isEqualToString:@"请编辑评价内容"]){
+        NSLog(@"请选择咨询类型或编辑评价内容");
     }else{
-     NSLog(@"提交中");
+        NSLog(@"提交中");
     }
     
-    
 }
-
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
@@ -109,19 +102,19 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
     if(_textview.text.length ==0){
-        _textview.text = @"请编辑咨询内容";
+        _textview.text = @"请编辑评价内容";
         _textview.textColor = [UIColor grayColor];
     }
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    if([_textview.text isEqualToString:@"请编辑咨询内容"]){
+    if([_textview.text isEqualToString:@"请编辑评价内容"]){
         _textview.text=@"";
         _textview.textColor=[UIColor blackColor];
         _edit.hidden =YES;
     }
 }
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-
+    
     _edit.hidden =YES;
     return YES;
 }
@@ -182,6 +175,7 @@
     [UIView commitAnimations];
     
 }
+
 
 
 
