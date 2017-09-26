@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title =@"日记";
     [self initButton:self.btn1];
     [self initButton:self.btn2];
     [self initButton:self.btn3];

@@ -142,7 +142,7 @@
         return messa.frame.size.height+15>40? messa.frame.size.height+55:40;
     }
     else{
-        return 80;
+        return 90;
     }
     
     
@@ -182,15 +182,21 @@
             
         }
         else{
+            UILabel *school= [[UILabel alloc]initWithFrame:CGRectMake(width-250, 10,230, 20)];
+            school.textColor =[UIColor colorWithHexString:@"fd8f30"];
+            school.font= [UIFont systemFontOfSize:14];
+            school.textAlignment = NSTextAlignmentRight;
+            
             UILabel *time= [[UILabel alloc]initWithFrame:CGRectMake(width-250, 40,230, 20)];
             time.textColor =[UIColor colorWithHexString:@"fd8f30"];
             time.font= [UIFont systemFontOfSize:14];
             time.textAlignment = NSTextAlignmentRight;
             
-            UILabel *school= [[UILabel alloc]initWithFrame:CGRectMake(width-250, 10,230, 20)];
-            school.textColor =[UIColor colorWithHexString:@"fd8f30"];
-            school.font= [UIFont systemFontOfSize:14];
-            school.textAlignment = NSTextAlignmentRight;
+            
+            UILabel *name= [[UILabel alloc]initWithFrame:CGRectMake(width-250, 70,230, 20)];
+            name.textColor =[UIColor colorWithHexString:@"fd8f30"];
+            name.font= [UIFont systemFontOfSize:14];
+            name.textAlignment = NSTextAlignmentRight;
             
 //            if(nil==[arr objectForKey:@"pushTime"]){
 //                time.text =@"";
@@ -201,9 +207,11 @@
 //            }
             school.text =@"黑龙江八一农垦大学";
             time.text =@"2017.06.21 17:54:20";
+            name.text =@"发布人:管理员";
             
             [cell.contentView addSubview:school];
             [cell.contentView addSubview:time];
+            [cell.contentView addSubview:name];
         }
         
     }
