@@ -7,7 +7,7 @@
 //
 
 #import "DengLu_ViewController.h"
-#import "MainTableViewController.h"
+#import "NavagationViewController.h"
 @interface DengLu_ViewController ()
 
 @end
@@ -27,8 +27,9 @@
 
 
 - (IBAction)Login:(id)sender {
-    MainTableViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Main"];
-    [self.navigationController pushViewController:his animated:YES];
+    NavagationViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Navagation"];
+    [self presentViewController:his animated:YES completion:^{
+    }];
 }
 
 
