@@ -55,6 +55,10 @@
 
 /* Begin PBXFileReference section */
 		2A8EF527B96D308D1924E2E1 /* libPods-Aishixi_XueSheng.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aishixi_XueSheng.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D261E0D1F7B6C9A00724B6B /* XL_WangLuo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XL_WangLuo.h; sourceTree = "<group>"; };
+		5D261E0E1F7B6C9A00724B6B /* XL_TouWenJian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XL_TouWenJian.h; sourceTree = "<group>"; };
+		5D261E0F1F7B6C9B00724B6B /* XL_WangLuo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XL_WangLuo.m; sourceTree = "<group>"; };
+		5D261E101F7B6C9B00724B6B /* XL_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XL_Header.h; sourceTree = "<group>"; };
 		5D5024C91F70E46B00924CCD /* XL_FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XL_FMDB.h; sourceTree = "<group>"; };
 		5D5024CA1F70E46B00924CCD /* XL_FMDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XL_FMDB.m; sourceTree = "<group>"; };
 		5D5024CC1F70E47400924CCD /* WarningBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningBox.h; sourceTree = "<group>"; };
@@ -137,9 +141,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D261E0C1F7B6C7F00724B6B /* XL_FengZhuang */ = {
+			isa = PBXGroup;
+			children = (
+				5D261E0E1F7B6C9A00724B6B /* XL_TouWenJian.h */,
+				5D261E101F7B6C9B00724B6B /* XL_Header.h */,
+				5D261E0D1F7B6C9A00724B6B /* XL_WangLuo.h */,
+				5D261E0F1F7B6C9B00724B6B /* XL_WangLuo.m */,
+			);
+			name = XL_FengZhuang;
+			sourceTree = "<group>";
+		};
 		5D5024C31F70E40B00924CCD /* 手动封装 */ = {
 			isa = PBXGroup;
 			children = (
+				5D261E0C1F7B6C7F00724B6B /* XL_FengZhuang */,
 				5D5024C81F70E45900924CCD /* XL_Color */,
 				5D5024C71F70E45000924CCD /* XL_HUD */,
 				5D5024C61F70E44300924CCD /* XL_FMDB */,
