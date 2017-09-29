@@ -9,5 +9,29 @@
 #import <UIKit/UIKit.h>
 
 @interface MySelfTableViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UITextField *phone;
+@property (weak, nonatomic) IBOutlet UITextField *qq;
+@property (weak, nonatomic) IBOutlet UITextField *weixin;
+@property (weak, nonatomic) IBOutlet UITextField *xinzi;
+@property (weak, nonatomic) IBOutlet UITextField *hangye;
+@property (weak, nonatomic) IBOutlet UITextField *mingcheng;
+@property (weak, nonatomic) IBOutlet UITextField *dianhua;
+@property (weak, nonatomic) IBOutlet UITextField *zhiwei;
+@property (weak, nonatomic) IBOutlet UITextField *diqu;
+@property (weak, nonatomic) IBOutlet UITextField *dizhi;
+@property (weak, nonatomic) IBOutlet UITextField *xingming;
+@property (weak, nonatomic) IBOutlet UITextField *lxdianhua;
+@property (weak, nonatomic) IBOutlet UITextField *lxdiqu;
+@property (weak, nonatomic) IBOutlet UITextField *lxdizhi;
+
+
+
+
+
+@property (weak, nonatomic) IBOutlet UIButton *shi;
+@property (weak, nonatomic) IBOutlet UIButton *fou;
+- (IBAction)Yes:(id)sender;
+- (IBAction)No:(id)sender;
+
 
 @end

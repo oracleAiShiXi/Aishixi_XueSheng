@@ -9,13 +9,26 @@
 #import "MySelfTableViewController.h"
 
 @interface MySelfTableViewController ()
-
+{
+    NSString *type;
+    NSMutableDictionary *buyaoFuyong;
+}
 @end
 
 @implementation MySelfTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    buyaoFuyong=[[NSMutableDictionary alloc] init];
+    [buyaoFuyong setObject:@"10" forKey:@"ii"];
+    for (NSString *ss in [buyaoFuyong allKeys]){
+        NSLog(@"%@",ss);
+    }
+    
+    
+    
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -95,4 +108,13 @@
 }
 */
 
+- (IBAction)Yes:(id)sender {
+    type =@"1";
+    
+}
+
+- (IBAction)No:(id)sender {
+    type =@"2";
+    
+}
 @end
