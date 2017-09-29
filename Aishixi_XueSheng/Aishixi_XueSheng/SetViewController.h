@@ -10,4 +10,7 @@
 
 @interface SetViewController : UIViewController
 
+- (IBAction)ChangePass:(id)sender;
+- (IBAction)Exit:(id)sender;
+
 @end

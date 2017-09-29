@@ -7,7 +7,7 @@
 //
 
 #import "SetViewController.h"
-
+#import "ChangePassViewController.h"
 @interface SetViewController ()
 
 @end
@@ -34,4 +34,12 @@
 }
 */
 
+- (IBAction)ChangePass:(id)sender {
+    ChangePassViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ChangePass"];
+    [self.navigationController pushViewController:his animated:YES];
+    
+}
+
+- (IBAction)Exit:(id)sender {
+}
 @end

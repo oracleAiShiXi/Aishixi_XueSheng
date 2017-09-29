@@ -20,13 +20,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    buyaoFuyong=[[NSMutableDictionary alloc] init];
-    [buyaoFuyong setObject:@"10" forKey:@"ii"];
-    for (NSString *ss in [buyaoFuyong allKeys]){
-        NSLog(@"%@",ss);
-    }
+    type=@"1";
     
-    
+     CGFloat imageWidth = _shi.imageView.bounds.size.width;
+     CGFloat labelWidth = _shi.titleLabel.bounds.size.width;
+     _shi.imageEdgeInsets = UIEdgeInsetsMake(0, labelWidth, 0, -labelWidth);
+     _shi.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth);
+     _fou.imageEdgeInsets = UIEdgeInsetsMake(0, labelWidth, 0, -labelWidth);
+     _fou.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth);
+  
     
     
     
@@ -110,11 +112,14 @@
 
 - (IBAction)Yes:(id)sender {
     type =@"1";
-    
+    [_shi setImage:[UIImage imageNamed:@"是.png"] forState:UIControlStateNormal];
+    [_fou setImage:[UIImage imageNamed:@"否.png"] forState:UIControlStateNormal];
 }
 
 - (IBAction)No:(id)sender {
     type =@"2";
+    [_shi setImage:[UIImage imageNamed:@"否.png"] forState:UIControlStateNormal];
+    [_fou setImage:[UIImage imageNamed:@"是.png"] forState:UIControlStateNormal];
     
 }
 @end

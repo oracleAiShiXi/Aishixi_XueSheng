@@ -33,6 +33,7 @@
 		D75AB1FF1F725FC9005E9BBE /* EditDiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75AB1FE1F725FC9005E9BBE /* EditDiaryViewController.m */; };
 		D75AB2021F725FD8005E9BBE /* DiaryInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75AB2011F725FD8005E9BBE /* DiaryInfoViewController.m */; };
 		D75F0AA71F74ABBA007A81C2 /* MySelfTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75F0AA61F74ABBA007A81C2 /* MySelfTableViewController.m */; };
+		D777FD4D1F7DE7690083860A /* ChangePassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D777FD4C1F7DE7690083860A /* ChangePassViewController.m */; };
 		E41EB04D14C95547A87DBF1D /* libPods-Aishixi_XueSheng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8EF527B96D308D1924E2E1 /* libPods-Aishixi_XueSheng.a */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,8 @@
 		D75AB2011F725FD8005E9BBE /* DiaryInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryInfoViewController.m; sourceTree = "<group>"; };
 		D75F0AA51F74ABBA007A81C2 /* MySelfTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySelfTableViewController.h; sourceTree = "<group>"; };
 		D75F0AA61F74ABBA007A81C2 /* MySelfTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySelfTableViewController.m; sourceTree = "<group>"; };
+		D777FD4B1F7DE7690083860A /* ChangePassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePassViewController.h; sourceTree = "<group>"; };
+		D777FD4C1F7DE7690083860A /* ChangePassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePassViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,8 +388,18 @@
 			children = (
 				D71B6F911F7894A700AA91BE /* SetViewController.h */,
 				D71B6F921F7894A700AA91BE /* SetViewController.m */,
+				D777FD461F7DE69D0083860A /* 修改密码 */,
 			);
 			name = "设置";
+			sourceTree = "<group>";
+		};
+		D777FD461F7DE69D0083860A /* 修改密码 */ = {
+			isa = PBXGroup;
+			children = (
+				D777FD4B1F7DE7690083860A /* ChangePassViewController.h */,
+				D777FD4C1F7DE7690083860A /* ChangePassViewController.m */,
+			);
+			name = "修改密码";
 			sourceTree = "<group>";
 		};
 		DC5B24E05184C46B8A26067F /* Pods */ = {
@@ -598,6 +611,7 @@
 				D75F0AA71F74ABBA007A81C2 /* MySelfTableViewController.m in Sources */,
 				5DEA43A11F6FB3A000486956 /* DengLu_ViewController.m in Sources */,
 				D75AB1FF1F725FC9005E9BBE /* EditDiaryViewController.m in Sources */,
+				D777FD4D1F7DE7690083860A /* ChangePassViewController.m in Sources */,
 				D71AE86B1F70FB08006F542B /* NoticeViewController.m in Sources */,
 				D75AB1FC1F725FB6005E9BBE /* DiaryListViewController.m in Sources */,
 				D71AE8681F70FAE7006F542B /* AttendanceViewController.m in Sources */,
