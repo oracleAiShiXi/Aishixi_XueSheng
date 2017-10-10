@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 @property (weak, nonatomic) IBOutlet UIButton *btn3;
 @property (weak, nonatomic) IBOutlet UISwitch *Swith;
+@property (weak, nonatomic) IBOutlet UILabel *kaiguan;
 
 
 

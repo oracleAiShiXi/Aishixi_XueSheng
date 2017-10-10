@@ -1381,13 +1381,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pj3-yq-CqL">
-                                        <rect key="frame" x="285" y="10.5" width="40" height="60"/>
+                                        <rect key="frame" x="295" y="20.5" width="30" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="05U-4Q-B0L"/>
-                                            <constraint firstAttribute="width" constant="40" id="t93-NB-drv"/>
+                                            <constraint firstAttribute="height" constant="40" id="05U-4Q-B0L"/>
+                                            <constraint firstAttribute="width" constant="30" id="t93-NB-drv"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                                        <state key="normal" title="不好" image="表情(3)">
+                                        <state key="normal" image="nanguo_dark">
                                             <color key="titleColor" red="0.98086756467819214" green="0.54511719942092896" blue="0.34556633234024048" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -1395,13 +1395,13 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wfg-DZ-D2H">
-                                        <rect key="frame" x="235" y="10" width="40" height="60"/>
+                                        <rect key="frame" x="245" y="20" width="30" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="4pL-pF-9gM"/>
-                                            <constraint firstAttribute="height" constant="60" id="WPA-9C-6Sf"/>
+                                            <constraint firstAttribute="width" constant="30" id="4pL-pF-9gM"/>
+                                            <constraint firstAttribute="height" constant="40" id="WPA-9C-6Sf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                                        <state key="normal" title="一般" image="表情(2)">
+                                        <state key="normal" image="yiban_dark">
                                             <color key="titleColor" red="1" green="0.77393490076065063" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -1409,13 +1409,13 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tuo-De-ZSP">
-                                        <rect key="frame" x="185" y="10" width="40" height="60"/>
+                                        <rect key="frame" x="195" y="20" width="30" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="IP6-eg-kiO"/>
-                                            <constraint firstAttribute="width" constant="40" id="sCa-dn-r2X"/>
+                                            <constraint firstAttribute="height" constant="40" id="IP6-eg-kiO"/>
+                                            <constraint firstAttribute="width" constant="30" id="sCa-dn-r2X"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                                        <state key="normal" title="高兴" image="表情(1)">
+                                        <state key="normal" image="kaixin_dark">
                                             <color key="titleColor" red="0.077397100627422333" green="0.89751845598220825" blue="0.78870469331741333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -1428,12 +1428,12 @@
                                     <constraint firstAttribute="trailing" secondItem="Pj3-yq-CqL" secondAttribute="trailing" constant="30" id="6GV-h7-cm8"/>
                                     <constraint firstAttribute="height" constant="80" id="DPj-Y9-dDm"/>
                                     <constraint firstItem="5M2-4f-byK" firstAttribute="centerY" secondItem="78x-WR-W7e" secondAttribute="centerY" id="ESt-gN-L8Z"/>
-                                    <constraint firstItem="Wfg-DZ-D2H" firstAttribute="leading" secondItem="Tuo-De-ZSP" secondAttribute="trailing" constant="10" id="FvB-1D-gKG"/>
+                                    <constraint firstItem="Wfg-DZ-D2H" firstAttribute="leading" secondItem="Tuo-De-ZSP" secondAttribute="trailing" constant="20" id="FvB-1D-gKG"/>
                                     <constraint firstItem="5M2-4f-byK" firstAttribute="leading" secondItem="78x-WR-W7e" secondAttribute="leading" constant="15" id="K4O-A0-zwd"/>
                                     <constraint firstItem="Wfg-DZ-D2H" firstAttribute="centerY" secondItem="78x-WR-W7e" secondAttribute="centerY" id="beD-WN-hOJ"/>
                                     <constraint firstItem="Tuo-De-ZSP" firstAttribute="centerY" secondItem="78x-WR-W7e" secondAttribute="centerY" id="oBj-X1-vTW"/>
                                     <constraint firstItem="Pj3-yq-CqL" firstAttribute="centerY" secondItem="78x-WR-W7e" secondAttribute="centerY" id="oem-Wq-bvo"/>
-                                    <constraint firstItem="Pj3-yq-CqL" firstAttribute="leading" secondItem="Wfg-DZ-D2H" secondAttribute="trailing" constant="10" id="vBL-zt-apL"/>
+                                    <constraint firstItem="Pj3-yq-CqL" firstAttribute="leading" secondItem="Wfg-DZ-D2H" secondAttribute="trailing" constant="20" id="vBL-zt-apL"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxe-x1-qA4">
@@ -1445,8 +1445,9 @@
                                         <color key="textColor" red="0.49033486840000001" green="0.48227953909999999" blue="0.48628163340000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zzc-C8-Q9x">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Zzc-C8-Q9x">
                                         <rect key="frame" x="276" y="24.5" width="51" height="31"/>
+                                        <color key="onTintColor" red="0.54117647059999996" green="0.35686274509999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="Switcn:" destination="hEj-de-n4t" eventType="valueChanged" id="Eoy-21-n3f"/>
                                         </connections>
@@ -1463,7 +1464,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HT5-fK-xgu">
                                 <rect key="frame" x="10" y="549" width="355" height="50"/>
-                                <color key="backgroundColor" red="0.54227417710000003" green="0.35679233069999999" blue="0.96693271400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.54117647058823526" green="0.35686274509803922" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Bxl-hb-ERD"/>
                                 </constraints>
@@ -1537,6 +1538,7 @@
                         <outlet property="btn1" destination="Tuo-De-ZSP" id="UkF-D4-CKt"/>
                         <outlet property="btn2" destination="Wfg-DZ-D2H" id="78M-T2-Lug"/>
                         <outlet property="btn3" destination="Pj3-yq-CqL" id="q5u-bs-BEU"/>
+                        <outlet property="kaiguan" destination="3jt-Ri-xen" id="QyE-fs-uKu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8nT-wo-Sln" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2749,7 +2751,10 @@
         <image name="06" width="83" height="83"/>
         <image name="07" width="83" height="83"/>
         <image name="08" width="83" height="83"/>
+        <image name="kaixin_dark" width="44" height="66"/>
+        <image name="nanguo_dark" width="43" height="66"/>
         <image name="shezhi" width="32" height="48"/>
+        <image name="yiban_dark" width="45" height="66"/>
         <image name="其他2" width="143" height="138"/>
         <image name="发布" width="23" height="31"/>
         <image name="否" width="16" height="16"/>
@@ -2760,9 +2765,6 @@
         <image name="添加" width="110" height="108"/>
         <image name="编辑" width="31" height="31"/>
         <image name="考勤" width="29" height="29"/>
-        <image name="表情(1)" width="30" height="30"/>
-        <image name="表情(2)" width="30" height="30"/>
-        <image name="表情(3)" width="30" height="30"/>
         <image name="请假2" width="144" height="138"/>
     </resources>
 </document>
