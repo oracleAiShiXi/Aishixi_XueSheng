@@ -33,5 +33,6 @@
 - (IBAction)Yes:(id)sender;
 - (IBAction)No:(id)sender;
 
-
+@property (nonatomic,strong) NSArray *selections; //!< 选择的三个下标
+@property (nonatomic,copy) NSString *pushAddress; //!< 展示的地址
 @end

@@ -7,20 +7,31 @@
 //
 
 #import "MySelfTableViewController.h"
-
-@interface MySelfTableViewController ()<UIActionSheetDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+#import "ActionSheetCustomPicker.h"
+#import "MJExtension.h"
+@interface MySelfTableViewController ()<UIActionSheetDelegate,UITextFieldDelegate,ActionSheetCustomPickerDelegate>
 {
     NSString *type;
     NSMutableDictionary *buyaoFuyong;
    
-    UIPickerView *mypicker;
-    UIView *popview;
-    float width,heigth;
-    NSArray  *provines,*cities,*areas;//省 市 区
-        
+//    UIPickerView *mypicker;
+//    UIView *popview;
+//    float width,heigth;
+//    NSArray  *provines,*cities,*areas;//省 市 区
+    int a;
         
    
 }
+@property (nonatomic,strong) NSArray *addressArr; // 解析出来的最外层数组
+@property (nonatomic,strong) NSArray *provinceArr; // 省
+@property (nonatomic,strong) NSArray *countryArr; // 市
+@property (nonatomic,strong) NSArray *districtArr; // 区
+@property (nonatomic,assign) NSInteger index1; // 省下标
+@property (nonatomic,assign) NSInteger index2; // 市下标
+@property (nonatomic,assign) NSInteger index3; // 区下标
+@property (nonatomic,strong) ActionSheetCustomPicker *picker; // 选择器
+
+
 @end
 
 @implementation MySelfTableViewController
@@ -37,34 +48,46 @@
      _fou.imageEdgeInsets = UIEdgeInsetsMake(0, labelWidth, 0, -labelWidth);
      _fou.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth);
   
+    _phone.delegate = self;
+    _qq.delegate = self;
+    _weixin.delegate = self;
+    _xinzi.delegate = self;
+    _hangye.delegate = self;
+    _mingcheng.delegate = self;
+    _dianhua.delegate = self;
+    _zhiwei.delegate = self;
     _diqu.delegate = self;
-    width = [[UIScreen mainScreen]bounds].size.width;
-    heigth = [[UIScreen mainScreen]bounds].size.height;
-    //self.view.backgroundColor = [UIColor orangeColor];
-    
-    //获取省
-    provines = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"area" ofType:@"plist" ]];
-    //获取市
-    cities = [provines[0] objectForKey:@"cities"];
-    //获取地区
-    areas = [cities[0] objectForKey:@"areas"];
-    
-    
-    
-    
-    //薪资
-//   NSString *ss =@" 1000元以下 1000-2000元 2001-4000元 4001-6000元 6001-8000元 8001-10000元 10000元以上";
-//    
-//    //职位
-//    NSString*sss =@"销售|客服|市场   财务|人力资源|行政  项目|质量|高级管理  IT|互联网|通信   房产|建筑|物业管理   金融   采购|贸易|交通|物流   生产|制造   传媒|印刷|艺术|设计    咨询|法律|教育|翻译   服务业     能源|环保|农业|科研   兼职|实习|社工|其他  ";
-//    //行业
-//    NSString *Ssss =@"IT|通信|电子|互联网   金融业  房地产|建筑业  商业服务  贸易|批发|零售|租赁业  文体教育|工艺美术  生产|加工|制造   交通|运输|物流|仓储    服务业     文化|传媒|娱乐|体育     能源|矿产|环保   政府|非盈利机构   农|林|牧|渔|其他  ";
+    _dizhi.delegate = self;
+    _xingming.delegate = self;
+    _lxdianhua.delegate = self;
+    _lxdiqu.delegate = self;
+    _lxdizhi.delegate = self;
    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+    
+    if (self.pushAddress) {
+        _diqu.text = self.pushAddress;
+    }
+    if (self.selections.count) {
+        self.index1 = [self.selections[0] integerValue];
+        self.index2 = [self.selections[1] integerValue];
+        self.index3 = [self.selections[2] integerValue];
+    }
+    // 一定要先加载出这三个数组，不然就蹦了
+    [self calculateFirstData];
+
+    
+    
+    
+    
+    
+    
 }
 #pragma mark----薪资
 -(NSArray*)Xinzi{
@@ -209,139 +232,329 @@
     
 }
 
-//几个分组
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+
+#pragma mark-----textfield
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    if(textField==_xinzi){
+        
+        [self tan];
+        return NO;
+    }else if (textField==_hangye){
+        [self tan2];
+        return NO;
+    }else if (textField==_zhiwei){
+        [self tan1];
+        return NO;
+    }else if (textField==_diqu){
+        a=1;
+        [self addresssss];
+        return NO;
+    }else if (textField==_lxdiqu){
+        a=2;
+        [self addresssss];
+        return NO;
+    }else{
+    
+        return YES;
+    }
+    
+    
+    
+   
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+   
+    
+        if(textField==_phone){
+            [_qq becomeFirstResponder];
+        }else if (textField==_qq){
+            [_weixin becomeFirstResponder];
+        }else if (textField==_weixin){
+            [_xinzi becomeFirstResponder];
+            //[self tan];
+        }else if (textField==_xinzi){
+            [_hangye becomeFirstResponder];
+            //[self tan2];
+        }else if (textField==_hangye){
+            [_mingcheng becomeFirstResponder];
+        }else if (textField==_mingcheng){
+            [_dianhua becomeFirstResponder];
+        }else if (textField==_dianhua){
+            [_zhiwei becomeFirstResponder];
+            //[self tan1];
+        }else if (textField==_zhiwei){
+           // a=1;
+            [_diqu becomeFirstResponder];
+            //[self addresssss];
+        }else if (textField==_diqu){
+            [_dizhi becomeFirstResponder];
+        }else if (textField==_dizhi){
+            [_xingming becomeFirstResponder];
+        }else if (textField==_xingming){
+            [_lxdianhua becomeFirstResponder];
+        }else if (textField==_lxdianhua){
+           // a=2;
+            [_lxdiqu becomeFirstResponder];
+             //[self addresssss];
+        }else if (textField==_lxdiqu){
+            [_lxdizhi becomeFirstResponder];
+        }else if (textField==_lxdizhi){
+           [textField resignFirstResponder];
+        }
+        return YES;
+}
+
+#pragma mark-----三级连动
+
+- (void)loadFirstData
+{
+    // 注意JSON后缀的东西和Plist不同，Plist可以直接通过contentOfFile抓取，Json要先打成字符串，然后用工具转换
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"address" ofType:@"json"];
+    NSLog(@"%@",path);
+    NSString *jsonStr = [NSString stringWithContentsOfFile:path usedEncoding:nil error:nil];
+    self.addressArr = [jsonStr mj_JSONObject];
+    
+    NSMutableArray *firstName = [[NSMutableArray alloc] init];
+    for (NSDictionary *dict in self.addressArr)
+    {
+        NSString *name = dict.allKeys.firstObject;
+        [firstName addObject:name];
+    }
+    // 第一层是省份 分解出整个省份数组
+    self.provinceArr = firstName;
+}
+- (void)addresssss{
+    //    NSArray *initialSelection = @[@(self.index1), @(self.index2),@(self.index3)];
+    // 点击的时候传三个index进去
+    self.picker = [[ActionSheetCustomPicker alloc]initWithTitle:@"选择地区" delegate:self showCancelButton:YES origin:self.view initialSelections:@[@(self.index1),@(self.index2),@(self.index3)]];
+    self.picker.tapDismissAction  = TapActionSuccess;
+    // 可以自定义左边和右边的按钮
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, 44, 44);
+    [button setTitle:@"取消" forState:UIControlStateNormal];
+    
+    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button1 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    button1.frame = CGRectMake(0, 0, 44, 44);
+    [button1 setTitle:@"确定" forState:UIControlStateNormal];
+    [self.picker setCancelButton:[[UIBarButtonItem alloc] initWithCustomView:button]];
+    [self.picker setDoneButton:[[UIBarButtonItem alloc] initWithCustomView:button1]];
+    
+    //[self.picker addCustomButtonWithTitle:@"再来一次" value:@(1)];
+    [self.picker showActionSheetPicker];
+}
+
+// 根据传进来的下标数组计算对应的三个数组
+- (void)calculateFirstData
+{
+    // 拿出省的数组
+    [self loadFirstData];
+    
+    NSMutableArray *cityNameArr = [[NSMutableArray alloc] init];
+    // 根据省的index1，默认是0，拿出对应省下面的市
+    for (NSDictionary *cityName in [self.addressArr[self.index1] allValues].firstObject) {
+        
+        NSString *name1 = cityName.allKeys.firstObject;
+        [cityNameArr addObject:name1];
+    }
+    // 组装对应省下面的市
+    self.countryArr = cityNameArr;
+    //                             index1对应省的字典         市的数组 index2市的字典   对应市的数组
+    // 这里的allValue是取出来的大数组，取第0个就是需要的内容
+    self.districtArr = [[self.addressArr[self.index1] allValues][0][self.index2] allValues][0];
+}
+
+#pragma mark - UIPickerViewDataSource Implementation
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
     return 3;
 }
-//每个分组返回几行
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    if (component==0) {
-        return [provines count];
-    }else if (component==1) {
-        return [cities count];
-    }else {
-        return [areas count];
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    // Returns
+    switch (component)
+    {
+        case 0: return self.provinceArr.count;
+        case 1: return self.countryArr.count;
+        case 2:return self.districtArr.count;
+        default:break;
     }
+    return 0;
 }
+#pragma mark UIPickerViewDelegate Implementation
 
-//每个分组的信息
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if (component==0) {
-        return [provines[row]  objectForKey:@"state"];
+// returns width of column and height of row for each component.
+//- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+//{
+//    switch (component)
+//    {
+//        case 0: return SCREEN_WIDTH /4;
+//        case 1: return SCREEN_WIDTH *3/8;
+//        case 2: return SCREEN_WIDTH *3/8;
+//        default:break;
+//    }
+//
+//    return 0;
+//}
+
+/*- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+ {
+ return
+ }
+ */
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    switch (component)
+    {
+        case 0: return self.provinceArr[row];break;
+        case 1: return self.countryArr[row];break;
+        case 2:return self.districtArr[row];break;
+        default:break;
     }
-    else if (component==1)
-        return [cities[row] objectForKey:@"city"];
-    else
-        return areas[row] ;
+    return nil;
 }
-
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    //弹出选择器
-    
-    if (popview ) {
-        [popview  removeFromSuperview];
-        popview=nil;
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UILabel* label = (UILabel*)view;
+    if (!label)
+    {
+        label = [[UILabel alloc] init];
+        [label setFont:[UIFont systemFontOfSize:14]];
     }
     
-    popview = nil;
-    cities = nil;
-    areas = nil;
-    
-    
-    provines = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"area" ofType:@"plist" ]];
-    //获取市
-    cities = [provines[0] objectForKey:@"cities"];
-    //获取地区
-    areas = [cities[0] objectForKey:@"areas"];
-    
-    
-    popview = [[UIView alloc]initWithFrame:CGRectMake(0, heigth, width, 260)];
-    popview.backgroundColor = [UIColor  orangeColor];
-    
-    mypicker = [[UIPickerView  alloc]initWithFrame:CGRectMake(0, 60, width, 200)];
-    mypicker.backgroundColor = [UIColor redColor];
-    mypicker.dataSource = self;
-    mypicker.delegate = self;
-    [popview addSubview:mypicker];
-    [self.view addSubview:popview];
-    
-    
-    UIToolbar *tool = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, width, 60)];
-    
-    UIBarButtonItem *bb1 = [[UIBarButtonItem alloc]initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(queding)];
-    
-    UIBarButtonItem *fiex = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    UIBarButtonItem *bb2 = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(quxiao)];
-    
-    NSArray *arr = [NSArray arrayWithObjects:bb1,fiex,bb2, nil];
-    tool.items = arr;
-    
-    
-    [popview addSubview:tool];
-    
-    
-    [UIView animateWithDuration:0.3 animations:^ {
-        popview.frame = CGRectMake(0, heigth-260, width, 260);
-    }];
-    
-    return NO;
+    NSString * title = @"";
+    switch (component)
+    {
+        case 0: title =   self.provinceArr[row];break;
+        case 1: title =   self.countryArr[row];break;
+        case 2: title =   self.districtArr[row];break;
+        default:break;
+    }
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text=title;
+    return label;
 }
 
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:YES];
-}
-
-
--(void)queding {
-    [popview  removeFromSuperview];
-    
-    NSDictionary *dic = provines[[mypicker selectedRowInComponent:0]];
-    NSString *sheng =[dic objectForKey:@"state"];
-    
-    NSDictionary *dic1 =cities[[mypicker selectedRowInComponent:1]];
-    
-    int rorr = (int)[mypicker selectedRowInComponent:2];
-    
-    NSString *str = [NSString stringWithFormat:@"%@ %@ %@",sheng,[dic1 objectForKey:@"city"],([areas count]==0)?@"":areas[rorr]];
-    _diqu.text =str;
-}
-
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    
-    if (component==0) {
-        cities = [provines[row] objectForKey:@"cities"];
-        [pickerView reloadComponent:1];
-        areas = [cities[0] objectForKey:@"areas"];
-        [pickerView reloadComponent:2];
-        
-        [pickerView selectRow:0 inComponent:1 animated:NO];
-        
-        if ([areas count]>0) {
-            [pickerView selectRow:0 inComponent:2 animated:NO];
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    switch (component)
+    {
+        case 0:
+        {
+            self.index1 = row;
+            self.index2 = 0;
+            self.index3 = 0;
+            //            [self calculateData];
+            // 滚动的时候都要进行一次数组的刷新
+            [self calculateFirstData];
+            [pickerView reloadComponent:1];
+            [pickerView reloadComponent:2];
+            [pickerView selectRow:0 inComponent:1 animated:YES];
+            [pickerView selectRow:0 inComponent:2 animated:YES];
         }
-        
-    }
-    
-    else if (component==1) {
-        
-        areas = [cities[row] objectForKey:@"areas"];
-        [pickerView reloadComponent:2];
-        if ([areas count]>0) {
-            [pickerView selectRow:0 inComponent:2 animated:NO];
+            break;
+            
+        case 1:
+        {
+            self.index2 = row;
+            self.index3 = 0;
+            //            [self calculateData];
+            [self calculateFirstData];
+            [pickerView selectRow:0 inComponent:2 animated:YES];
+            [pickerView reloadComponent:2];
         }
+            break;
+        case 2:
+            self.index3 = row;
+            break;
+        default:break;
     }
-    
-    
+}
+//
+//- (void)calculateData
+//{
+//    [self loadFirstData];
+//    NSDictionary *provincesDict = self.addressArr[self.index1];
+//    NSMutableArray *countryArr1 = [[NSMutableArray alloc] init];
+//    for (NSDictionary *contryDict in provincesDict.allValues.firstObject) {
+//        NSString *name = contryDict.allKeys.firstObject;
+//        [countryArr1 addObject:name];
+//    }
+//    self.countryArr = countryArr1;
+//
+//    self.districtArr = [provincesDict.allValues.firstObject[self.index2] allValues].firstObject;
+//
+//}
+
+- (void)configurePickerView:(UIPickerView *)pickerView
+{
+    pickerView.showsSelectionIndicator = NO;
+}
+// 点击done的时候回调
+- (void)actionSheetPickerDidSucceed:(ActionSheetCustomPicker *)actionSheetPicker origin:(id)origin
+{
+    NSMutableString *detailAddress = [[NSMutableString alloc] init];
+    if (self.index1 < self.provinceArr.count) {
+        NSString *firstAddress = self.provinceArr[self.index1];
+        [detailAddress appendString:firstAddress];
+    }
+    if (self.index2 < self.countryArr.count) {
+        NSString *secondAddress = self.countryArr[self.index2];
+        [detailAddress appendString:secondAddress];
+    }
+    if (self.index3 < self.districtArr.count) {
+        NSString *thirfAddress = self.districtArr[self.index3];
+        [detailAddress appendString:thirfAddress];
+    }
+    // 此界面显示
+    if(a==1){
+    _diqu.text = detailAddress;
+    }else{
+    _lxdiqu.text = detailAddress;
+    }
+    a=0;
+   
 }
 
 
--(void)quxiao {
-    
-    
-    
-    
+- (NSArray *)provinceArr
+{
+    if (_provinceArr == nil) {
+        _provinceArr = [[NSArray alloc] init];
+    }
+    return _provinceArr;
 }
+-(NSArray *)countryArr
+{
+    if(_countryArr == nil)
+    {
+        _countryArr = [[NSArray alloc] init];
+    }
+    return _countryArr;
+}
+
+- (NSArray *)districtArr
+{
+    if (_districtArr == nil) {
+        _districtArr = [[NSArray alloc] init];
+    }
+    return _districtArr;
+}
+
+-(NSArray *)addressArr
+{
+    if (_addressArr == nil) {
+        _addressArr = [[NSArray alloc] init];
+    }
+    return _addressArr;
+}
+
+
+
+
+
 
 @end
