@@ -127,6 +127,10 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0;
 }
+
+
+
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *aa=@"heheda";
     UITableViewCell *cell=[self.tableview dequeueReusableCellWithIdentifier:aa];
@@ -139,7 +143,7 @@
     
     UIView*backview=[[UIView alloc] initWithFrame:CGRectMake(0,10,width-20,55)];
     backview.backgroundColor =[UIColor whiteColor];
-    UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(15,10, 30, 30)];
+    UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(15,15, 30, 30)];
     imageview.image =[UIImage imageNamed:@"01.png"];
     
     UILabel *titles = [[UILabel alloc]initWithFrame:CGRectMake(55,10,width-175,20)];
@@ -155,10 +159,14 @@
 //    ss=[ss substringToIndex:10];
 //    pushtime.text =ss;
     
-    UILabel *ll =[[UILabel alloc]initWithFrame:CGRectMake(width-90,10,50,30)];
-    ll.layer.borderWidth =1;
-    ll.layer.cornerRadius =5;
-    ll.text =@"最新";
+//    UILabel *ll =[[UILabel alloc]initWithFrame:CGRectMake(width-90,10,50,30)];
+//    ll.layer.borderWidth =1;
+//    ll.layer.cornerRadius =5;
+//    ll.text =@"最新";
+    UIImageView*imageview1=[[UIImageView alloc] initWithFrame:CGRectMake(width-90,10,40,30)];
+    imageview1.image =[UIImage imageNamed:@"important.png"];
+    UIImageView*imageview2=[[UIImageView alloc] initWithFrame:CGRectMake(width-50,0,30,30)];
+    imageview2.image =[UIImage imageNamed:@"weidu.png"];
     //    UIImageView*imageview1=[[UIImageView alloc] initWithFrame:CGRectMake(width-50,35,20,20)];
     //    if([[arr[indexPath.section]objectForKey:@"state"] intValue]==1){
     //      imageview1.image =[UIImage imageNamed:@"新消息提示-2.png"];
@@ -172,7 +180,8 @@
     [backview addSubview:imageview];
     [backview addSubview:titles];
     [backview addSubview:pushtime];
-    [backview addSubview:ll];
+    [backview addSubview:imageview1];
+    [backview addSubview:imageview2];
     [cell addSubview:backview];
   
     

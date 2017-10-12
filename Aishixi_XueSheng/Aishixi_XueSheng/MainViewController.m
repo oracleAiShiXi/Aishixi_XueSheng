@@ -14,7 +14,9 @@
 #import "EditDiaryViewController.h"
 #import "MySelfTableViewController.h"
 #import "SetViewController.h"
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "UIImageView+WebCache.h"
+#import "SDCycleScrollView.h"
+@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
 @end
 
@@ -26,6 +28,10 @@
     self.automaticallyAdjustsScrollViewInsets = false;
     _table.delegate =self;
     _table.dataSource =self;
+    
+    
+   
+    
     // Do any additional setup after loading the view.
 }
 
@@ -48,8 +54,13 @@
     return 4;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
+    if(section==3){
+        return 5;
+    }else{
+    
+   
     return 1;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -64,6 +75,22 @@
     }
 
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if(section==3){
+        return 10;
+    }else{
+        return 0;
+    }
+    
+ }
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if(section==1){
+        return 5;
+    }else{
+        return 0;
+    }
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if(indexPath.section==0){
@@ -73,7 +100,45 @@
             cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell1];
         }
         UIScrollView *scroll =(UIScrollView*)[cell viewWithTag:100];
-        UIPageControl*page =(UIPageControl*)[cell viewWithTag:101];
+        //UIPageControl*page =(UIPageControl*)[cell viewWithTag:101];
+        scroll.contentSize =CGSizeMake(self.view.frame.size.width, 150);
+        
+        
+        // 情景二：采用网络图片实现
+        NSArray *imagesURLStrings = @[
+                                      @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg",
+                                      @"https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
+                                      @"http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg"
+                                      ];
+        
+        // 情景三：图片配文字
+        NSArray *titles = @[@"新建交流QQ群：185534916 ",
+                            @"disableScrollGesture可以设置禁止拖动",
+                            @"感谢您的支持，如果下载的",
+                            @"如果代码在使用过程中出现问题",
+                            @"您可以发邮件到gsdios@126.com"
+                            ];
+        
+        
+        // 网络加载 --- 创建带标题的图片轮播器
+        
+        CGFloat w = self.view.bounds.size.width;
+        SDCycleScrollView *cycleScrollView2 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0,0, w, 150) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        
+        cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+        cycleScrollView2.titlesGroup = titles;
+        cycleScrollView2.currentPageDotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
+        [scroll addSubview:cycleScrollView2];
+        
+        //         --- 模拟加载延迟
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            cycleScrollView2.imageURLStringsGroup = imagesURLStrings;
+        });
+        
+        
+        
+        
+        
         return cell;
     }else if (indexPath.section==1){
         static NSString*cell1 =@"cell2";
@@ -116,7 +181,7 @@
         if(cell==nil){
             cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell1];
         }
-       
+        UIView *view =(UIView*)[cell viewWithTag:405];
         UILabel*title =(UILabel*)[cell viewWithTag:400];
         UILabel*time =(UILabel*)[cell viewWithTag:401];
         UIImageView*img1= (UIImageView*)[cell viewWithTag:402];
@@ -170,7 +235,14 @@
     [self.navigationController pushViewController:set animated:YES];
 }
 
+#pragma mark - SDCycleScrollViewDelegate
 
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    NSLog(@"---点击了第%ld张图片", (long)index);
+    
+    
+}
 
 
 @end

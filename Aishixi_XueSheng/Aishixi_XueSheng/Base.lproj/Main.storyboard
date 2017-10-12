@@ -1017,7 +1017,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QjK-S6-lbp">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QjK-S6-lbp">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.93725490199999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1032,16 +1032,11 @@
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBb-EJ-Mvw">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                                 </scrollView>
-                                                <pageControl opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="7IG-aB-DtV">
-                                                    <rect key="frame" x="168" y="102.5" width="39" height="37"/>
-                                                </pageControl>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="tBb-EJ-Mvw" secondAttribute="bottom" id="6La-HW-e8Y"/>
                                                 <constraint firstAttribute="trailing" secondItem="tBb-EJ-Mvw" secondAttribute="trailing" id="82z-iL-5Bj"/>
                                                 <constraint firstItem="tBb-EJ-Mvw" firstAttribute="leading" secondItem="3Ih-hd-dMb" secondAttribute="leading" id="AFf-df-8lM"/>
-                                                <constraint firstItem="7IG-aB-DtV" firstAttribute="centerX" secondItem="3Ih-hd-dMb" secondAttribute="centerX" id="adm-C6-5A0"/>
-                                                <constraint firstAttribute="bottom" secondItem="7IG-aB-DtV" secondAttribute="bottom" constant="10" id="nyz-J2-zYc"/>
                                                 <constraint firstItem="tBb-EJ-Mvw" firstAttribute="top" secondItem="3Ih-hd-dMb" secondAttribute="top" id="qhG-Gi-8gc"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1420,7 +1415,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSN-PH-xbb">
+                                                <view tag="406" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSN-PH-xbb">
                                                     <rect key="frame" x="10" y="0.0" width="355" height="59.5"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="发布" translatesAutoresizingMaskIntoConstraints="NO" id="Xwa-2Z-ZHR">
@@ -1472,6 +1467,11 @@
                                                         <constraint firstItem="m1H-2e-tOw" firstAttribute="leading" secondItem="Xwa-2Z-ZHR" secondAttribute="trailing" constant="10" id="vGh-y8-xTh"/>
                                                         <constraint firstItem="mmQ-4f-grC" firstAttribute="leading" secondItem="s60-Ha-bCP" secondAttribute="trailing" constant="50" id="zpd-za-PYI"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -2002,6 +2002,9 @@
                                             <constraint firstAttribute="width" constant="20" id="F4I-UW-jjW"/>
                                         </constraints>
                                         <state key="normal" image="编辑"/>
+                                        <connections>
+                                            <action selector="EditBtn:" destination="hEj-de-n4t" eventType="touchUpInside" id="REi-IZ-5hH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2044,7 +2047,9 @@
                         <outlet property="btn1" destination="Tuo-De-ZSP" id="UkF-D4-CKt"/>
                         <outlet property="btn2" destination="Wfg-DZ-D2H" id="78M-T2-Lug"/>
                         <outlet property="btn3" destination="Pj3-yq-CqL" id="q5u-bs-BEU"/>
+                        <outlet property="editbtn" destination="CgH-0P-yag" id="rRI-1d-nQh"/>
                         <outlet property="kaiguan" destination="3jt-Ri-xen" id="QyE-fs-uKu"/>
+                        <outlet property="textview" destination="xaQ-mG-gy5" id="ZUm-s1-SmN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8nT-wo-Sln" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3156,6 +3161,11 @@
                                     <constraint firstAttribute="height" constant="50" id="F9T-a9-UgL"/>
                                     <constraint firstItem="Diu-gz-pTb" firstAttribute="centerY" secondItem="tyq-jP-woo" secondAttribute="centerY" id="Ptt-D4-NIX"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wk4-mj-FU7">
                                 <rect key="frame" x="20" y="140" width="335" height="50"/>
@@ -3176,6 +3186,11 @@
                                     <constraint firstItem="C8u-Ip-vrE" firstAttribute="centerY" secondItem="wk4-mj-FU7" secondAttribute="centerY" id="Oa4-3J-1dL"/>
                                     <constraint firstAttribute="trailing" secondItem="C8u-Ip-vrE" secondAttribute="trailing" constant="50" id="aKa-9h-Vac"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTI-Of-YJj">
                                 <rect key="frame" x="20" y="210" width="335" height="50"/>
@@ -3196,6 +3211,11 @@
                                     <constraint firstItem="ggz-BK-QsY" firstAttribute="centerY" secondItem="GTI-Of-YJj" secondAttribute="centerY" id="Plk-RV-wLI"/>
                                     <constraint firstAttribute="trailing" secondItem="ggz-BK-QsY" secondAttribute="trailing" constant="50" id="cT8-Vu-Iim"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sW-Uq-lXU">
                                 <rect key="frame" x="20" y="310" width="335" height="50"/>

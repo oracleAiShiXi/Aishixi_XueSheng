@@ -101,20 +101,26 @@
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if([actionSheet.title isEqualToString:@"薪资范围："]){
+        if(buttonIndex<7){
         NSArray *xinzi = [self Xinzi];
         _xinzi.text=[NSString stringWithFormat:@"%@",xinzi[buttonIndex]];
       NSString * chuannima=[NSString stringWithFormat:@"%ld",(long)buttonIndex+1];
         NSLog(@"%@",chuannima);
+        }
     }else if ([actionSheet.title isEqualToString:@"职位："]){
+        if(buttonIndex<13){
         NSArray *zhiwei = [self Zhiwei];
         _zhiwei.text=[NSString stringWithFormat:@"%@",zhiwei[buttonIndex]];
         NSString * chuannima=[NSString stringWithFormat:@"%ld",(long)buttonIndex+1];
         NSLog(@"%@",chuannima);
+        }
     }else{
+        if(buttonIndex<13){
         NSArray *hangye = [self Hangye];
         _hangye.text=[NSString stringWithFormat:@"%@",hangye[buttonIndex]];
         NSString * chuannima=[NSString stringWithFormat:@"%ld",(long)buttonIndex+1];
         NSLog(@"%@",chuannima);
+        }
     }
     
 }

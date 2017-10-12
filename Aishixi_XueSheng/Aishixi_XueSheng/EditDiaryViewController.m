@@ -91,6 +91,7 @@
     if(_textview.text.length ==0){
         _textview.text = @"请编辑评价内容";
         _textview.textColor = [UIColor grayColor];
+        _editbtn.hidden =NO;
     }
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView {
