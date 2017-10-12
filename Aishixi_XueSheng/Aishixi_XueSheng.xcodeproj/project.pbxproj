@@ -27,6 +27,7 @@
 		D71B6F931F7894A800AA91BE /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71B6F921F7894A700AA91BE /* SetViewController.m */; };
 		D71B6F961F78E36B00AA91BE /* AppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71B6F951F78E36B00AA91BE /* AppraiseViewController.m */; };
 		D72E12EF1F7A320C0081DB1B /* NavagationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72E12EE1F7A320C0081DB1B /* NavagationViewController.m */; };
+		D7368F1E1F8EF6A900514742 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7368F1D1F8EF6A900514742 /* MainViewController.m */; };
 		D73E18DD1F8DC053005A0456 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D73E18AD1F8DC053005A0456 /* LICENSE */; };
 		D73E18DE1F8DC053005A0456 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D73E18B01F8DC053005A0456 /* AbstractActionSheetPicker.m */; };
 		D73E18DF1F8DC053005A0456 /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D73E18B21F8DC053005A0456 /* ActionSheetCustomPicker.m */; };
@@ -126,6 +127,8 @@
 		D71B6F951F78E36B00AA91BE /* AppraiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppraiseViewController.m; sourceTree = "<group>"; };
 		D72E12ED1F7A320C0081DB1B /* NavagationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavagationViewController.h; sourceTree = "<group>"; };
 		D72E12EE1F7A320C0081DB1B /* NavagationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavagationViewController.m; sourceTree = "<group>"; };
+		D7368F1C1F8EF6A900514742 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		D7368F1D1F8EF6A900514742 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		D73E18AD1F8DC053005A0456 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		D73E18AF1F8DC053005A0456 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractActionSheetPicker.h; sourceTree = "<group>"; };
 		D73E18B01F8DC053005A0456 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
@@ -442,6 +445,8 @@
 			children = (
 				D744AFA81F6FC27700F701B7 /* MainTableViewController.h */,
 				D744AFA91F6FC27700F701B7 /* MainTableViewController.m */,
+				D7368F1C1F8EF6A900514742 /* MainViewController.h */,
+				D7368F1D1F8EF6A900514742 /* MainViewController.m */,
 			);
 			name = "主页";
 			sourceTree = "<group>";
@@ -768,6 +773,7 @@
 				D73E18F01F8DC053005A0456 /* NSObject+MJKeyValue.m in Sources */,
 				D777FD4D1F7DE7690083860A /* ChangePassViewController.m in Sources */,
 				D71AE86B1F70FB08006F542B /* NoticeViewController.m in Sources */,
+				D7368F1E1F8EF6A900514742 /* MainViewController.m in Sources */,
 				D75AB1FC1F725FB6005E9BBE /* DiaryListViewController.m in Sources */,
 				D71AE8681F70FAE7006F542B /* AttendanceViewController.m in Sources */,
 				5DEA439E1F6FB3A000486956 /* AppDelegate.m in Sources */,
