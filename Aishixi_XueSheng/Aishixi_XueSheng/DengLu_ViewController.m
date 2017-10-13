@@ -8,7 +8,8 @@
 
 #import "DengLu_ViewController.h"
 #import "NavagationViewController.h"
-@interface DengLu_ViewController ()
+#import "XL_TouWenJian.h"
+@interface DengLu_ViewController ()<UITextFieldDelegate>
 
 @end
 
@@ -16,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self delegate];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -24,12 +26,56 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)delegate{
+    _username.delegate = self;
+    _password.delegate = self;
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField == _username) {
+        [_password becomeFirstResponder];
+    }else{
+        [textField resignFirstResponder];
+        [self Login:nil];
+    }
+    return YES;
+}
+
+-(void)jiekou{
+    NSDictionary * did =[NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"userName",_password.text,@"passWord",@"1",@"userType",nil];
+    [WarningBox warningBoxModeIndeterminate:@"登陆中..." andView:self.view];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/user/logined" Rucan:did type:Post success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+        [WarningBox warningBoxHide:YES andView:self.view];
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+            /*数据处理*/
+            NSDictionary * data =[responseObject objectForKey:@"data"];
+            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            //用户Id
+            [user setObject:[data objectForKey:@"userId"] forKey:@"userId"];
+            //用户电话
+            [user setObject:[data objectForKey:@"tel"] forKey:@"tel"];
+            
+            NavagationViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Navagation"];
+            [self presentViewController:his animated:YES completion:^{
+            }];
+        }else{
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
+        }
+        
+    } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        NSLog(@"%@",error);
+    }];
+}
 
 
 - (IBAction)Login:(id)sender {
-    NavagationViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Navagation"];
-    [self presentViewController:his animated:YES completion:^{
-    }];
+   [self jiekou];
 }
 
 

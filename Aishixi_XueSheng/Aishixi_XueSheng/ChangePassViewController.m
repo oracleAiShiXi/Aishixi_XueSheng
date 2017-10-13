@@ -151,39 +151,7 @@
             }
            else
            {
-//                [WarningBox warningBoxModeIndeterminate:@"正在修改密码...." andView:self.view];
-////                NSString *fangshi=@"/sys/modpass";
-////                NSString * name=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"Name"]];
-////                NSDictionary*rucan=[NSDictionary dictionaryWithObjectsAndKeys:name,@"loginName",_oldPass.text,@"oldpassword", _mewPass.text,@"newspassword",nil];
-////                //自己写的网络请求    请求外网地址
-////                [XL_WangLuo JuYuwangQingqiuwithBizMethod:fangshi Rucan:rucan type:Get success:^(id responseObject) {
-////                    [WarningBox warningBoxHide:YES andView:self.view];
-////                    @try {
-////                        [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.navigationController.view];
-////                        if ([[responseObject objectForKey:@"code"]isEqualToString:@"0000"]) {
-////                            if ([panduan isEqual:@"1"]) {
-////                                [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"password"];
-////                                ViewController*view=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"llogin"];
-////                                [view setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-////                                [self presentViewController:view animated:YES completion:nil];
-////                            }else{
-////                                [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"Password"];
-////                                
-////                                XLLogin_ViewController *xln=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"login"];
-////                                for (UIViewController *controller in self.navigationController.viewControllers) {
-////                                    if ([controller isKindOfClass:[xln class]]) {
-////                                        [self.navigationController popToViewController:controller animated:YES];
-////                                    }
-////                                }
-////                            }
-////                        }
-////                    } @catch (NSException *exception) {
-////                        [WarningBox warningBoxModeText:@"请仔细检查您的网络" andView:self.view];
-////                    }
-////                } failure:^(NSError *error) {
-////                    [WarningBox warningBoxHide:YES andView:self.view];
-////                    [WarningBox warningBoxModeText:@"网络请求失败" andView:self.view];
-////                }];
+              //接口
             }
         }
         else{
