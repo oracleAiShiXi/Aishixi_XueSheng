@@ -13,7 +13,7 @@
 {
     float width;
     NSMutableArray *arr;
-    
+     int  pageNo,pageSize,count;
 }
 
 @end
@@ -26,8 +26,16 @@
   
     //[self comeback];
     [self delegate];
-    //[self wlrequest];
-    //[self refrish];
+    count = 0;
+    pageSize = 5;
+    pageNo = 1;
+    arr = [[NSMutableArray alloc] init];
+    self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    
+    [self wlrequest];
+   
     width =[UIScreen mainScreen].bounds.size.width;
     
     // Do any additional setup after loading the view.
@@ -37,7 +45,22 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)loadNewData{
+    arr = [[NSMutableArray alloc] init];
+    pageNo = 1;
+    [self wlrequest];
+    [_tableview.mj_header endRefreshing];
+    self.tableview.mj_footer.hidden = NO;
+}
+-(void)loadMoreData{
+    if (pageNo * pageSize >= count) {
+        self.tableview.mj_footer.hidden = YES;
+    }else{
+        pageNo += 1;
+        [self wlrequest];
+        [_tableview.mj_footer endRefreshing];
+    }
+}
 
 -(void)comeback{
     self.title =@"日记列表";
@@ -102,23 +125,7 @@
     
     
 }
--(void)refrish{
-    //NSLog(@"setupRefresh -- 下拉刷新");
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
-    [self.tableview addSubview:refreshControl];
-    
-}
-- (void)refreshClick:(UIRefreshControl *)refreshControl {
-    
-    [refreshControl beginRefreshing];
-    
-    // NSLog(@"refreshClick: -- 刷新触发");
-    // 此处添加刷新tableView数据的代码
-    [self wlrequest];
-    [refreshControl endRefreshing];
-    //[self.table reloadData];// 刷新tableView即可
-}
+
 -(void)delegate{
     _tableview.delegate=self;
     _tableview.dataSource=self;

@@ -15,6 +15,7 @@
     float width;
     float height;
     NSMutableArray *arr;
+    int  pageNo,pageSize,count;
 }
 @end
 
@@ -24,13 +25,37 @@
     [super viewDidLoad];
     
     [self delegate];
-    // [self wangluo];
     self.title =@"咨询";
     //[self comeback];
     [self navagat];
+    
+    
+    count = 0;
+    pageSize = 5;
+    pageNo = 1;
+    arr = [[NSMutableArray alloc] init];
+    self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
     [self jiekou];
     
     // Do any additional setup after loading the view.
+}
+-(void)loadNewData{
+    arr = [[NSMutableArray alloc] init];
+    pageNo = 1;
+    [self jiekou];
+    [_tableview.mj_header endRefreshing];
+    self.tableview.mj_footer.hidden = NO;
+}
+-(void)loadMoreData{
+    if (pageNo * pageSize >= count) {
+        self.tableview.mj_footer.hidden = YES;
+    }else{
+        pageNo += 1;
+        [self jiekou];
+        [_tableview.mj_footer endRefreshing];
+    }
 }
 
 -(void)navagat{
@@ -121,25 +146,7 @@
 //    
 //    
 //}
-//-(void)refrish{
-//    //NSLog(@"setupRefresh -- 下拉刷新");
-//    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-//    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
-//    [self.tableview addSubview:refreshControl];
-//    
-//}
-//- (void)refreshClick:(UIRefreshControl *)refreshControl {
-//    
-//    [refreshControl beginRefreshing];
-//    
-//    // NSLog(@"refreshClick: -- 刷新触发");
-//    // 此处添加刷新tableView数据的代码
-//    [self wangluo];
-//    [refreshControl endRefreshing];
-//    //[self.table reloadData];// 刷新tableView即可
-//}
-//
-//
+
 -(void)delegate{
     _tableview.delegate=self;
     _tableview.dataSource=self;
@@ -149,7 +156,7 @@
     _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     width =[UIScreen mainScreen].bounds.size.width;
     height =[UIScreen mainScreen].bounds.size.height;
-    _tableview.bounces =NO;
+   
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     //return arr.count;

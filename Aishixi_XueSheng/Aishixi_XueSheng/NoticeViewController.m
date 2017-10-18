@@ -14,6 +14,7 @@
     float width;
     float height;
     NSMutableArray *arr;
+    int  pageNo,pageSize,count;
 }
 @end
 
@@ -24,9 +25,33 @@
     [self delegate];
    // [self wangluo];
     [self comeback];
+    count = 0;
+    pageSize = 5;
+    pageNo = 1;
+    arr = [[NSMutableArray alloc] init];
+    self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
     
     // Do any additional setup after loading the view.
 }
+-(void)loadNewData{
+    arr = [[NSMutableArray alloc] init];
+    pageNo = 1;
+    [self wangluo];
+    [_tableview.mj_header endRefreshing];
+    self.tableview.mj_footer.hidden = NO;
+}
+-(void)loadMoreData{
+    if (pageNo * pageSize >= count) {
+        self.tableview.mj_footer.hidden = YES;
+    }else{
+        pageNo += 1;
+        [self wangluo];
+        [_tableview.mj_footer endRefreshing];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -94,23 +119,7 @@
     
     
 }
--(void)refrish{
-    //NSLog(@"setupRefresh -- 下拉刷新");
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
-    [self.tableview addSubview:refreshControl];
-    
-}
-- (void)refreshClick:(UIRefreshControl *)refreshControl {
-    
-    [refreshControl beginRefreshing];
-    
-    // NSLog(@"refreshClick: -- 刷新触发");
-    // 此处添加刷新tableView数据的代码
-    [self wangluo];
-    [refreshControl endRefreshing];
-    //[self.table reloadData];// 刷新tableView即可
-}
+
 
 
 -(void)delegate{
@@ -122,8 +131,7 @@
     _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     width =[UIScreen mainScreen].bounds.size.width;
     height =[UIScreen mainScreen].bounds.size.height;
-    _tableview.bounces =NO;
-}
+   }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     //return arr.count;
     return 10;
@@ -203,12 +211,7 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-//    self.hidesBottomBarWhenPushed=YES;
-//    NoticeInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]
-//                                   instantiateViewControllerWithIdentifier:@"noteinfo"];
-//    his.pushId =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
-//    [self.navigationController pushViewController:his animated:YES];
+
     NoticeInfoViewController *info = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"noticeinfo"];
     
      info.NoticeId =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"classId"]];
