@@ -12,4 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *Img;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
+
+@property (strong, nonatomic) NSString *NoticeId;
+
 @end

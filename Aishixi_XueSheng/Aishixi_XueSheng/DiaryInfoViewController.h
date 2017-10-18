@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DiaryInfoViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet UITableView *table;
+@property (strong, nonatomic) NSString *InternshipId;
 @end

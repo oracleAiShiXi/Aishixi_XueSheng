@@ -32,15 +32,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title =@"签到";
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    
+   
+    [self navagatio];
     [self phone];//调取相机
     [self  initializeLocationService];//开启定位
     
     
     // Do any additional setup after loading the view.
 }
+-(void)navagatio{
+    self.title =@"签到";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    
+    //    UIButton *btnn =[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    //    [btnn setImage:[UIImage imageNamed:@"首页.png"] forState:UIControlStateNormal];
+    //    [btnn addTarget:self action:@selector(Home:) forControlEvents:UIControlEventTouchUpInside];
+    //    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithCustomView:btnn];
+    //    self.navigationItem.leftBarButtonItem =left;
+    
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

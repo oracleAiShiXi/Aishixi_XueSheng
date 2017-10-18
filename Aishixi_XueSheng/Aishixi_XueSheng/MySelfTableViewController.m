@@ -49,7 +49,7 @@
      _fou.imageEdgeInsets = UIEdgeInsetsMake(0, labelWidth, 0, -labelWidth);
      _fou.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth);
   
-    self.title =@"个人信息";
+   
     _phone.delegate = self;
     _qq.delegate = self;
     _weixin.delegate = self;
@@ -87,6 +87,26 @@
   
 }
 
+-(void)navagatio{
+    self.title =@"个人信息";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    
+    UIButton *btn =[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [btn setTitle:@"保存" forState:UIControlStateNormal];
+//    [btn setImage:[UIImage imageNamed:@"通讯录.png"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(Saves) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = right;
+    
+    
+    
+}
+
+
+-(void)Saves{
+    NSLog(@"baocun");
+}
 -(void)gerenxinxi{
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/attend/getUserInfo";

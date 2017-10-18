@@ -26,6 +26,7 @@
 		D71AE8761F70FBC5006F542B /* AdvisoryInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71AE8751F70FBC5006F542B /* AdvisoryInfoViewController.m */; };
 		D71B6F931F7894A800AA91BE /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71B6F921F7894A700AA91BE /* SetViewController.m */; };
 		D71B6F961F78E36B00AA91BE /* AppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71B6F951F78E36B00AA91BE /* AppraiseViewController.m */; };
+		D71D7CEF1F96EE4B000C432F /* ImgInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71D7CEE1F96EE4B000C432F /* ImgInfoViewController.m */; };
 		D72E12EF1F7A320C0081DB1B /* NavagationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72E12EE1F7A320C0081DB1B /* NavagationViewController.m */; };
 		D73235EC1F95DE75000DAC9F /* PhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73235EB1F95DE75000DAC9F /* PhoneViewController.m */; };
 		D7368F1E1F8EF6A900514742 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7368F1D1F8EF6A900514742 /* MainViewController.m */; };
@@ -134,6 +135,8 @@
 		D71B6F921F7894A700AA91BE /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
 		D71B6F941F78E36B00AA91BE /* AppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppraiseViewController.h; sourceTree = "<group>"; };
 		D71B6F951F78E36B00AA91BE /* AppraiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppraiseViewController.m; sourceTree = "<group>"; };
+		D71D7CED1F96EE4B000C432F /* ImgInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgInfoViewController.h; sourceTree = "<group>"; };
+		D71D7CEE1F96EE4B000C432F /* ImgInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgInfoViewController.m; sourceTree = "<group>"; };
 		D72E12ED1F7A320C0081DB1B /* NavagationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavagationViewController.h; sourceTree = "<group>"; };
 		D72E12EE1F7A320C0081DB1B /* NavagationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavagationViewController.m; sourceTree = "<group>"; };
 		D73235EA1F95DE75000DAC9F /* PhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneViewController.h; sourceTree = "<group>"; };
@@ -474,6 +477,8 @@
 				D744AFA91F6FC27700F701B7 /* MainTableViewController.m */,
 				D7368F1C1F8EF6A900514742 /* MainViewController.h */,
 				D7368F1D1F8EF6A900514742 /* MainViewController.m */,
+				D71D7CED1F96EE4B000C432F /* ImgInfoViewController.h */,
+				D71D7CEE1F96EE4B000C432F /* ImgInfoViewController.m */,
 			);
 			name = "主页";
 			sourceTree = "<group>";
@@ -841,6 +846,7 @@
 				D777FD4D1F7DE7690083860A /* ChangePassViewController.m in Sources */,
 				D71AE86B1F70FB08006F542B /* NoticeViewController.m in Sources */,
 				D7368F1E1F8EF6A900514742 /* MainViewController.m in Sources */,
+				D71D7CEF1F96EE4B000C432F /* ImgInfoViewController.m in Sources */,
 				D75AB1FC1F725FB6005E9BBE /* DiaryListViewController.m in Sources */,
 				D71AE8681F70FAE7006F542B /* AttendanceViewController.m in Sources */,
 				5DEA439E1F6FB3A000486956 /* AppDelegate.m in Sources */,

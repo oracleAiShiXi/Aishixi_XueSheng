@@ -23,8 +23,7 @@
     [super viewDidLoad];
     [self delegate];
    // [self wangluo];
-    self.title =@"公告";
-    //[self comeback];
+    [self comeback];
     
     // Do any additional setup after loading the view.
 }
@@ -33,7 +32,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 -(void)comeback{
+    self.title =@"公告";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back@2x"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     [self.navigationItem setLeftBarButtonItem:left];
@@ -207,8 +209,11 @@
 //                                   instantiateViewControllerWithIdentifier:@"noteinfo"];
 //    his.pushId =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
 //    [self.navigationController pushViewController:his animated:YES];
-    NoticeInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"noticeinfo"];
-    [self.navigationController pushViewController:his animated:YES];
+    NoticeInfoViewController *info = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"noticeinfo"];
+    
+     info.NoticeId =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"classId"]];
+    
+    [self.navigationController pushViewController:info animated:YES];
     
 }
 

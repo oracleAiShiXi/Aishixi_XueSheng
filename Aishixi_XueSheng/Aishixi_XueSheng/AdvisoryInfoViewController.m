@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title =@"咨询详情";
+    [self navagatio];
     // Do any additional setup after loading the view.
 }
 
@@ -25,13 +25,26 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)navagatio{
+    self.title =@"咨询详情";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    
+    //    UIButton *btnn =[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    //    [btnn setImage:[UIImage imageNamed:@"首页.png"] forState:UIControlStateNormal];
+    //    [btnn addTarget:self action:@selector(Home:) forControlEvents:UIControlEventTouchUpInside];
+    //    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithCustomView:btnn];
+    //    self.navigationItem.leftBarButtonItem =left;
+    
+    
+    
+}
 
 -(void)jiekou{
     //写上个页面写传值
 
     NSString * Method = @"/consult/consulInfo";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"consulId", nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_ConsulId,@"consulId", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"13 学生咨询详情\n%@",responseObject);
     } failure:^(NSError *error) {

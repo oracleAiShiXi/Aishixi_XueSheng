@@ -29,9 +29,20 @@
     //[self comeback];
     [self navagat];
     [self jiekou];
+    
     // Do any additional setup after loading the view.
 }
+
 -(void)navagat{
+    self.title =@"咨询";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    
+    //    UIButton *btnn =[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    //    [btnn setImage:[UIImage imageNamed:@"首页.png"] forState:UIControlStateNormal];
+    //    [btnn addTarget:self action:@selector(Home:) forControlEvents:UIControlEventTouchUpInside];
+    //    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithCustomView:btnn];
+    //    self.navigationItem.leftBarButtonItem =left;
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"写咨询" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
     [self.navigationItem setRightBarButtonItem:right];
@@ -185,6 +196,7 @@
     //    his.pushId =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
     //    [self.navigationController pushViewController:his animated:YES];
     AdvisoryInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AdvisoryInfo"];
+    his.ConsulId =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
     [self.navigationController pushViewController:his animated:YES];
     
 }

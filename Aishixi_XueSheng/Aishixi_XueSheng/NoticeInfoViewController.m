@@ -26,12 +26,14 @@
     [self delegate];
     //[self wangluo];
     //[self comeback];
-    self.title =@"公告详情";
+  
     
    
     // Do any additional setup after loading the view.
 }
 -(void)comeback{
+    self.title =@"公告详情";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back@2x"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     [self.navigationItem setLeftBarButtonItem:left];

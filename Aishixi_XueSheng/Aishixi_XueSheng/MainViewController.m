@@ -15,6 +15,7 @@
 #import "MySelfTableViewController.h"
 #import "SetViewController.h"
 #import "PhoneViewController.h"
+#import "ImgInfoViewController.h"
 #import "UIImageView+WebCache.h"
 #import "SDCycleScrollView.h"
 #import "XL_TouWenJian.h"
@@ -82,16 +83,7 @@
     }];
 
 }
-#pragma mark---轮播详情接口页面没有
--(void)jiekou6{
-    NSString * Method = @"/homePageStu/carouselInfo";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"carouselId",nil];
-    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"7、轮播详情\n%@",responseObject);
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
-}
+
 
 -(void)SOSjiekou{
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
@@ -318,6 +310,12 @@
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
+    
+    ImgInfoViewController  *imginfo = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Imginfo"];
+    imginfo.CarouselId =@"";
+    
+    [self.navigationController pushViewController:imginfo animated:YES];
+    
     NSLog(@"---点击了第%ld张图片", (long)index);
     
     

@@ -16,11 +16,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+  
     
+    [self navagatio];
+    //[self jiekou];
     [self delegate];
     // Do any additional setup after loading the view.
 }
+
+-(void)navagatio{
+    self.title =@"通讯录";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    
+    //    UIButton *btnn =[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    //    [btnn setImage:[UIImage imageNamed:@"首页.png"] forState:UIControlStateNormal];
+    //    [btnn addTarget:self action:@selector(Home:) forControlEvents:UIControlEventTouchUpInside];
+    //    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithCustomView:btnn];
+    //    self.navigationItem.leftBarButtonItem =left;
+    
+    
+    
+}
+
+
 -(void)jiekou{
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/attend/mailList";

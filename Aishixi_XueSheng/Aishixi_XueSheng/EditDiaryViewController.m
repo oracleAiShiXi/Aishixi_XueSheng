@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title =@"日记";
+  
 //    [self initButton:self.btn1];
 //    [self initButton:self.btn2];
 //    [self initButton:self.btn3];
@@ -39,6 +39,16 @@
 }
 
 -(void)navagat{
+    self.title =@"写日记";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    
+    //    UIButton *btnn =[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    //    [btnn setImage:[UIImage imageNamed:@"首页.png"] forState:UIControlStateNormal];
+    //    [btnn addTarget:self action:@selector(Home:) forControlEvents:UIControlEventTouchUpInside];
+    //    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithCustomView:btnn];
+    //    self.navigationItem.leftBarButtonItem =left;
+    
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"我的日记" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
     [self.navigationItem setRightBarButtonItem:right];

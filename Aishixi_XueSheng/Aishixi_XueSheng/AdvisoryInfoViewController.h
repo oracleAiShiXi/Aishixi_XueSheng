@@ -10,4 +10,7 @@
 
 @interface AdvisoryInfoViewController : UIViewController
 
+
+
+@property (strong, nonatomic) NSString *ConsulId;
 @end

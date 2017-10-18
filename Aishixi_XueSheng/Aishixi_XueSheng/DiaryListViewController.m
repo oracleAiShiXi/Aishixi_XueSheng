@@ -7,6 +7,7 @@
 //
 
 #import "DiaryListViewController.h"
+#import "DiaryInfoViewController.h"
 #import "XL_TouWenJian.h"
 @interface DiaryListViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -22,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title =@"日记";
+  
     //[self comeback];
     [self delegate];
     //[self wlrequest];
@@ -39,6 +40,10 @@
 
 
 -(void)comeback{
+    self.title =@"日记列表";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back@2x"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
     [self.navigationItem setLeftBarButtonItem:left];
@@ -215,11 +220,11 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    self.hidesBottomBarWhenPushed=YES;
-//    AttHisInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"atthisinfo"];
-//    his.claassID =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"classId"]];
-//    
-//    [self.navigationController pushViewController:his animated:YES];
+//
+    DiaryInfoViewController *info = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"atthisinfo"];
+    info.InternshipId =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"classId"]];
+    
+    [self.navigationController pushViewController:info animated:YES];
     
 }
 
