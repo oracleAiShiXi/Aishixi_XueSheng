@@ -7,7 +7,7 @@
 //
 
 #import "AdvisoryInfoViewController.h"
-
+#import "XL_TouWenJian.h"
 @interface AdvisoryInfoViewController ()
 
 @end
@@ -26,6 +26,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)jiekou{
+    //写上个页面写传值
+
+    NSString * Method = @"/consult/consulInfo";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"consulId", nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"13 学生咨询详情\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
 /*
 #pragma mark - Navigation
 

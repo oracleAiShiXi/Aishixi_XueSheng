@@ -8,7 +8,7 @@
 
 #import "EditDiaryViewController.h"
 #import "DiaryListViewController.h"
-#import "Color+Hex.h"
+#import "XL_TouWenJian.h"
 @interface EditDiaryViewController ()<UITextViewDelegate>{
 
     NSString *type;
@@ -166,7 +166,17 @@
     if([type isEqualToString:@"0"]||[_textview.text isEqualToString:@"请编辑评价内容"]){
         NSLog(@"请选择咨询类型或编辑评价内容");
     }else{
-        NSLog(@"提交中");
+        //心情什么的没写那
+        NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+        NSString * Method = @"/diary/internshipPublic";
+        NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"quesionChapter",@"1",@"mood",_textview.text,@"content", nil];
+        UIImage *image = [UIImage imageNamed:@"对号2"];
+        NSArray *arr = [NSArray arrayWithObjects:image,image, nil];
+        [XL_WangLuo ShangChuanTuPianwithBizMethod:Method Rucan:Rucan type:Post image:arr key:@"imageUrl" success:^(id responseObject) {
+            NSLog(@"15 学生日记发布\n%@",responseObject);
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
     }
     
 }

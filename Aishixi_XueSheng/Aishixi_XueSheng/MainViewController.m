@@ -14,8 +14,10 @@
 #import "EditDiaryViewController.h"
 #import "MySelfTableViewController.h"
 #import "SetViewController.h"
+#import "PhoneViewController.h"
 #import "UIImageView+WebCache.h"
 #import "SDCycleScrollView.h"
+#import "XL_TouWenJian.h"
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
 @end
@@ -30,10 +32,81 @@
     _table.dataSource =self;
     
     
-   
+
+    
+    [self navagatio];
+    [self jiekou];
+    
     
     // Do any additional setup after loading the view.
 }
+-(void)navagatio{
+    self.title =@"爱实习";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+ 
+    UIButton *btnn =[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [btnn setImage:[UIImage imageNamed:@"首页.png"] forState:UIControlStateNormal];
+    [btnn addTarget:self action:@selector(Home:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithCustomView:btnn];
+    self.navigationItem.leftBarButtonItem =left;
+    
+    UIButton *btn =[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [btn setImage:[UIImage imageNamed:@"通讯录.png"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(Phonenum:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = right;
+
+}
+
+-(void)Home:(UIButton *)button{
+   
+}
+
+
+-(void)Phonenum:(UIButton *)button{
+    PhoneViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"phone"];
+    [self.navigationController pushViewController:his animated:YES];
+}
+
+
+
+-(void)jiekou{
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSString * Method = @"/homePageStu/homePage";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId", nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"6、学生首页\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+
+}
+#pragma mark---轮播详情接口页面没有
+-(void)jiekou6{
+    NSString * Method = @"/homePageStu/carouselInfo";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"carouselId",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"7、轮播详情\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+-(void)SOSjiekou{
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    
+    NSString * Method = @"/classManagement/sos/seekHelp";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"123°43′45",@"longitude",@"45°03′38",@"latitude",@"哈尔滨工业大学",@"address",@"哈哈哈哈",@"context", nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"14 学生sos\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -212,6 +285,12 @@
 }
 
 - (void)Help:(UIButton*)sender {
+    
+    
+    
+    
+    
+    
 }
 
 - (void)Appraise:(UIButton*)sender {

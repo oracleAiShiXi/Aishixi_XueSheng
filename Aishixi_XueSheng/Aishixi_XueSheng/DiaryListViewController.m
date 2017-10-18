@@ -7,7 +7,7 @@
 //
 
 #import "DiaryListViewController.h"
-#import "Color+Hex.h"
+#import "XL_TouWenJian.h"
 @interface DiaryListViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     float width;
@@ -49,6 +49,15 @@
 }
 
 -(void)wlrequest{
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSString * Method = @"/diary/internshipList";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"pageNo",@"10",@"pageSize",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"16 学生日记列表\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
 //    [WarningBox warningBoxModeIndeterminate:@"正在加载,请稍后" andView:self.view];
 //    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
 //    NSString *fangshi =@"/attend/attendanceHistoryList";

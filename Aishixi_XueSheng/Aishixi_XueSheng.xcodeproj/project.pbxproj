@@ -27,6 +27,7 @@
 		D71B6F931F7894A800AA91BE /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71B6F921F7894A700AA91BE /* SetViewController.m */; };
 		D71B6F961F78E36B00AA91BE /* AppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71B6F951F78E36B00AA91BE /* AppraiseViewController.m */; };
 		D72E12EF1F7A320C0081DB1B /* NavagationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72E12EE1F7A320C0081DB1B /* NavagationViewController.m */; };
+		D73235EC1F95DE75000DAC9F /* PhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73235EB1F95DE75000DAC9F /* PhoneViewController.m */; };
 		D7368F1E1F8EF6A900514742 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7368F1D1F8EF6A900514742 /* MainViewController.m */; };
 		D7368F2F1F8F3D6600514742 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7368F221F8F3D6600514742 /* TAAbstractDotView.m */; };
 		D7368F301F8F3D6600514742 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7368F241F8F3D6600514742 /* TAAnimatedDotView.m */; };
@@ -135,6 +136,8 @@
 		D71B6F951F78E36B00AA91BE /* AppraiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppraiseViewController.m; sourceTree = "<group>"; };
 		D72E12ED1F7A320C0081DB1B /* NavagationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavagationViewController.h; sourceTree = "<group>"; };
 		D72E12EE1F7A320C0081DB1B /* NavagationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavagationViewController.m; sourceTree = "<group>"; };
+		D73235EA1F95DE75000DAC9F /* PhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneViewController.h; sourceTree = "<group>"; };
+		D73235EB1F95DE75000DAC9F /* PhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneViewController.m; sourceTree = "<group>"; };
 		D7368F1C1F8EF6A900514742 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		D7368F1D1F8EF6A900514742 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		D7368F211F8F3D6600514742 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
@@ -277,6 +280,7 @@
 		5D5024C51F70E42600924CCD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D73235E91F95DE3D000DAC9F /* 通讯录 */,
 				D75F0AA11F74AB4D007A81C2 /* 设置 */,
 				D75F0AA01F74AB48007A81C2 /* 我的 */,
 				D71AE8791F70FBE2006F542B /* 登录 */,
@@ -472,6 +476,15 @@
 				D7368F1D1F8EF6A900514742 /* MainViewController.m */,
 			);
 			name = "主页";
+			sourceTree = "<group>";
+		};
+		D73235E91F95DE3D000DAC9F /* 通讯录 */ = {
+			isa = PBXGroup;
+			children = (
+				D73235EA1F95DE75000DAC9F /* PhoneViewController.h */,
+				D73235EB1F95DE75000DAC9F /* PhoneViewController.m */,
+			);
+			name = "通讯录";
 			sourceTree = "<group>";
 		};
 		D7368F1F1F8F3D6600514742 /* SDCycleScrollView */ = {
@@ -835,6 +848,7 @@
 				D7368F331F8F3D6600514742 /* SDCollectionViewCell.m in Sources */,
 				D71AE8711F70FB63006F542B /* NoticeInfoViewController.m in Sources */,
 				D73E18ED1F8DC053005A0456 /* MJPropertyType.m in Sources */,
+				D73235EC1F95DE75000DAC9F /* PhoneViewController.m in Sources */,
 				D7368F311F8F3D6600514742 /* TADotView.m in Sources */,
 				D7368F301F8F3D6600514742 /* TAAnimatedDotView.m in Sources */,
 				5DEA439B1F6FB3A000486956 /* main.m in Sources */,

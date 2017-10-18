@@ -8,6 +8,7 @@
 
 #import "NoticeViewController.h"
 #import "NoticeInfoViewController.h"
+#import "XL_TouWenJian.h"
 @interface NoticeViewController ()
 {
     float width;
@@ -44,6 +45,15 @@
 
 
 -(void)wangluo{
+     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSString * Method = @"/homePageStu/noticeList";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"pageNo",@"5",@"pageSize", nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"9 学生公告列表\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
 //    [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
 //    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
 //    NSString *fangshi =@"/userInfo/pushList";

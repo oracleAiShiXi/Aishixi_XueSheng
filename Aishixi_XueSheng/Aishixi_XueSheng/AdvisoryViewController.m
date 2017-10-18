@@ -9,6 +9,7 @@
 #import "AdvisoryViewController.h"
 #import "AdvisoryInfoViewController.h"
 #import "EditAdvisoryViewController.h"
+#import "XL_TouWenJian.h"
 @interface AdvisoryViewController ()
 {
     float width;
@@ -27,7 +28,7 @@
     self.title =@"咨询";
     //[self comeback];
     [self navagat];
-    
+    [self jiekou];
     // Do any additional setup after loading the view.
 }
 -(void)navagat{
@@ -41,7 +42,16 @@
     [self.navigationController pushViewController:his animated:YES];
     
 }
-
+-(void)jiekou{
+     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSString * Method = @"/consult/consulList";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"pageNo",@"10",@"pageSize", nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"12 学生咨询列表\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
 
 
 

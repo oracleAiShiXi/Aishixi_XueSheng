@@ -9,6 +9,7 @@
 #import "MySelfTableViewController.h"
 #import "ActionSheetCustomPicker.h"
 #import "MJExtension.h"
+#import "XL_TouWenJian.h"
 @interface MySelfTableViewController ()<UIActionSheetDelegate,UITextFieldDelegate,ActionSheetCustomPickerDelegate>
 {
     NSString *type;
@@ -39,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    type=@"1";
+
     
      CGFloat imageWidth = _shi.imageView.bounds.size.width;
      CGFloat labelWidth = _shi.titleLabel.bounds.size.width;
@@ -48,6 +49,7 @@
      _fou.imageEdgeInsets = UIEdgeInsetsMake(0, labelWidth, 0, -labelWidth);
      _fou.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth);
   
+    self.title =@"个人信息";
     _phone.delegate = self;
     _qq.delegate = self;
     _weixin.delegate = self;
@@ -82,13 +84,38 @@
     // 一定要先加载出这三个数组，不然就蹦了
     [self calculateFirstData];
 
-    
-    
-    
-    
-    
+  
+}
+
+-(void)gerenxinxi{
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSString * Method = @"/attend/getUserInfo";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"18 学生个人信息查询\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    //根据返回确定是否在岗
+//    [_shi setImage:[UIImage imageNamed:@"是.png"] forState:UIControlStateNormal];
+//    [_fou setImage:[UIImage imageNamed:@"否.png"] forState:UIControlStateNormal];
     
 }
+
+-(void)xiugaixinxi{
+  
+    //所在职位ID
+    
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSString * Method = @"/attend/userInfoSet";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_phone.text,@"mobilePhone",_qq.text,@"qqCode",_weixin.text,@"wxCode",type,@"isInPost",_xinzi.text,@"money",_hangye.text,@"companyIndustry",_mingcheng.text,@"companyName",_dianhua.text,@"companyTelephone",@"1",@"postId",_zhiwei.text,@"postName",_diqu.text,@"location",_dizhi.text,@"address",_xingming.text,@"urgentName",_lxdianhua.text,@"urgentTel",_lxdiqu.text,@"locationAll",_lxdizhi.text,@"addressAll",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
 #pragma mark----薪资
 -(NSArray*)Xinzi{
     NSArray*arr=[NSArray arrayWithObjects:@"1000元以下",@"1000-2000元",@"2001-4000元",@"4001-6000元",@"6001-8000元",@"8001-10000元",@"10000元以上", nil];

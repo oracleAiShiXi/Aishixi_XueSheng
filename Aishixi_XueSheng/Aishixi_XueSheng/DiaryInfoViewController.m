@@ -7,7 +7,7 @@
 //
 
 #import "DiaryInfoViewController.h"
-
+#import "XL_TouWenJian.h"
 @interface DiaryInfoViewController ()
 
 @end
@@ -23,7 +23,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)jiekou{
+    
+    NSString * Method = @"/diary/internshipInfo";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"19",@"internshipId",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"17 学生日记详情\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 
+}
 /*
 #pragma mark - Navigation
 

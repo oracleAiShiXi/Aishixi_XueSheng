@@ -7,7 +7,7 @@
 //
 
 #import "EditAdvisoryViewController.h"
-
+#import "XL_TouWenJian.h"
 @interface EditAdvisoryViewController ()
 {
     NSString *type;
@@ -93,6 +93,20 @@
     if([type isEqualToString:@"0"]||[_textview.text isEqualToString:@"请编辑咨询内容"]){
         NSLog(@"请选择咨询类型或编辑咨询内容");
     }else{
+        
+      NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+        NSString * Method = @"/consult/consul";
+        NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",type,@"consultType",_textview.text,@"consultContent", nil];
+        [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+            NSLog(@"11 学生咨询\n%@",responseObject);
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+        
+        
+        
+        
+        
      NSLog(@"提交中");
     }
     

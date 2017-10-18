@@ -151,7 +151,15 @@
             }
            else
            {
-              //接口
+               
+               NSString * Method = @"/user/setPassword";
+               NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_oldPass.text,@"oldPassword",@"1",@"userType",_mewPass.text,@"newPassword", nil];
+
+               [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+                   NSLog(@"3、修改密码\n%@",responseObject);
+               } failure:^(NSError *error) {
+                   NSLog(@"%@",error);
+               }];
             }
         }
         else{

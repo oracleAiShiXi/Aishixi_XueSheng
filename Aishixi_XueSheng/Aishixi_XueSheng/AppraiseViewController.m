@@ -7,7 +7,7 @@
 //
 
 #import "AppraiseViewController.h"
-
+#import "XL_TouWenJian.h"
 @interface AppraiseViewController ()<UITextViewDelegate>
 {
     NSString *type;
@@ -88,6 +88,23 @@
     if([type isEqualToString:@"0"]||[_textview.text isEqualToString:@"请编辑评价内容"]){
         NSLog(@"请选择咨询类型或编辑评价内容");
     }else{
+        NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+        
+        NSString * Method = @"/homePageStu/evaluate";
+        /*edUserId 被评人ID
+         content 评价内容
+         evaluateType 1 好评 2 中评 3 差评
+         evaluatEdType 受评类型 1 企业 2 老师 3 学生
+         */
+        //被评价人和被评人ID没写那
+        NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"14",@"edUserId",_textview.text,@"content",type,@"evaluateType",@"3",@"evaluatEdType", nil];
+        [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+            NSLog(@"4、评价\n%@",responseObject);
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+        
+        
         NSLog(@"提交中");
     }
     

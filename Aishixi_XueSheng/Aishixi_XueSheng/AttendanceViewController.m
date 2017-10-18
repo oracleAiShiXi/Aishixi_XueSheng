@@ -8,20 +8,21 @@
 
 #import "AttendanceViewController.h"
 #import <CoreLocation/CoreLocation.h>
-
+#import "XL_TouWenJian.h"
 @interface AttendanceViewController ()<CLLocationManagerDelegate>
 {
     UIImagePickerController  *Imgpicker;
     CLLocationManager*_locationManager;
     NSString *filepath;
     
-    NSString*sheng;
-    NSString*shi;
-    NSString*qu;
-    NSString*street;
+//    NSString*sheng;
+//    NSString*shi;
+//    NSString*qu;
+//    NSString*street;
     NSString*jing;
     NSString*wei;
-    NSString*jied;
+    NSString*address;
+//    NSString*jied;
     
 }
 
@@ -64,6 +65,26 @@
 
 
 - (IBAction)Attendan:(id)sender {
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSString * Method = @"/homePageStu/attendance";
+    
+    
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",jing,@"longitude",wei,@"latitude",address,@"address",nil];
+    //UIImage *image = [UIImage imageNamed:@"对号2"];
+    UIImage *image = [[UIImage alloc]initWithContentsOfFile:filepath];
+    NSLog(@"%@",image);
+    //NSArray * arr = [NSArray arrayWithObjects:image, nil];
+    [XL_WangLuo ShangChuanTuPianwithBizMethod:Method Rucan:Rucan type:Post image:image key:@"url" success:^(id responseObject) {
+        NSLog(@"8 学生考勤\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
+    
+    
+    
+    
 }
 //相机
 -(void)phone {
@@ -177,36 +198,41 @@ int nicaicai=0;
             
             CLPlacemark *placemark = [array objectAtIndex:0];
             NSLog(@"%@",placemark);
+           
+            address=[placemark.addressDictionary objectForKey:@"FormattedAddressLines"][0];
             
-            sheng=[NSString stringWithFormat:@"%@",[placemark.addressDictionary objectForKey:@"State"]];
+            NSLog(@"--------%@",address);
             
+           // sheng=[NSString stringWithFormat:@"%@",[placemark.addressDictionary objectForKey:@"State"]];
             
             //获取城市
-            NSString *city = placemark.locality;
-            
-            if (city) {
-                //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
-                city = placemark.administrativeArea;
-                
-                //市
-                
-                shi=[NSString stringWithFormat:@"%@",placemark.locality];
-                //区
-                qu=[NSString stringWithFormat:@"%@",placemark.subLocality];
-            }
-            if (sheng==nil||shi==nil||qu==nil) {
-                
-            }else{
-                if(nicaicai==0){
-                    nicaicai=1;
-                    @try {
-                       
-                    } @catch (NSException *exception) {
-                        NSLog(@"崩了崩了崩了");
-                    }
-                    
-                }
-            }
+//            NSString *city = placemark.locality;
+//            
+//            if (city) {
+//                //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
+//                city = placemark.administrativeArea;
+//                
+//                //市
+//                
+//                shi=[NSString stringWithFormat:@"%@",placemark.locality];
+//                //区
+//                qu=[NSString stringWithFormat:@"%@",placemark.subLocality];
+//                //街道
+//                jied =[NSString stringWithFormat:@"%@",placemark.thoroughfare];
+//            }
+//            if (sheng==nil||shi==nil||qu==nil) {
+//                
+//            }else{
+//                if(nicaicai==0){
+//                    nicaicai=1;
+//                    @try {
+//                       
+//                    } @catch (NSException *exception) {
+//                        NSLog(@"崩了崩了崩了");
+//                    }
+//                    
+//                }
+//            }
         }
         else if (error == nil && [array count] == 0)
         {

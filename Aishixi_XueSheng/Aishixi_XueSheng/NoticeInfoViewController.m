@@ -7,7 +7,7 @@
 //
 
 #import "NoticeInfoViewController.h"
-#import "Color+Hex.h"
+#import "XL_TouWenJian.h"
 @interface NoticeInfoViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     float width;
@@ -45,6 +45,17 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)wangluo{
+    //noticeId上个页面传值
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSString * Method = @"/homePageStu/noticeInfo";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"37",@"noticeId",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"10 学生公告详情\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
 //    [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
 //    //通知的状态还不知道有几个
 //    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
