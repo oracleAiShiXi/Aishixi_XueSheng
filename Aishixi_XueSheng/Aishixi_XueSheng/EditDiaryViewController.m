@@ -9,12 +9,13 @@
 #import "EditDiaryViewController.h"
 #import "DiaryListViewController.h"
 #import "XL_TouWenJian.h"
-@interface EditDiaryViewController ()<UITextViewDelegate>{
+@interface EditDiaryViewController ()<UITextViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate>{
 
     NSString *type;
     NSString*switchtype;
+    int po;
 }
-
+@property (strong,nonatomic)UIImage *image;
 @end
 
 @implementation EditDiaryViewController
@@ -25,12 +26,15 @@
 //    [self initButton:self.btn1];
 //    [self initButton:self.btn2];
 //    [self initButton:self.btn3];
+    po=0;
+    type =@"1";
     [self navagat];
     [self swifda];
+    [self Imagedel];
     _btn1.adjustsImageWhenHighlighted = NO;
     _btn2.adjustsImageWhenHighlighted = NO;
     _btn3.adjustsImageWhenHighlighted = NO;
-    
+   
     _textview.delegate =self;
     _textview.text = @"请编辑评价内容";
     _textview.textColor = [UIColor grayColor];
@@ -59,6 +63,151 @@
     [self.navigationController pushViewController:his animated:YES];
     
 }
+
+-(void)Imagedel{
+    NSFileManager *fm=[NSFileManager defaultManager];
+    //完整的图片路径，如果图片是放在文件夹中的话，还要在中间加上文件夹的路径
+    NSString *imagepath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/images"];
+    
+    //可以打印路径看看是什么情况
+    if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/1.jpg",imagepath]]) {
+        UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/1.jpg",imagepath]];
+        [_one setBackgroundImage:image forState:UIControlStateNormal];
+    }
+    if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/2.jpg",imagepath]]) {
+        UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/2.jpg",imagepath]];
+        [_two setBackgroundImage:image forState:UIControlStateNormal];
+    }
+    if ([fm fileExistsAtPath:[NSString stringWithFormat:@"%@/3.jpg",imagepath]]) {
+        UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/3.jpg",imagepath]];
+        [_three setBackgroundImage:image forState:UIControlStateNormal];
+    }
+ 
+
+}
+
+
+-(void)phone{
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"拍照",@"从相册选择", nil];
+    actionSheet.tag = 255;
+    [actionSheet showInView:self.view];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    
+    
+    if (actionSheet.tag == 255) {
+        
+        NSUInteger sourceType = 0;
+        
+        // 判断是否支持相机
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            
+            switch (buttonIndex) {
+                case 0:
+                    // 取消
+                    return;
+                case 1:
+                    // 相机
+                    sourceType = UIImagePickerControllerSourceTypeCamera;
+                    break;
+                    
+                case 2:
+                    // 相册
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+            }
+        }
+        else {
+            if (buttonIndex == 0) {
+                
+                return;
+            } else {
+                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            }
+        }
+        // 跳转到相机或相册页面
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        
+        imagePickerController.delegate = self;
+        
+        imagePickerController.allowsEditing = YES;
+        
+        imagePickerController.sourceType = sourceType;
+        
+        [self presentViewController:imagePickerController animated:NO completion:^{}];
+        
+        //        [imagePickerController release];
+    }
+}
+
+//当选择一张图片后进入这里
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+
+{
+    
+    [picker dismissViewControllerAnimated:NO completion:^{}];
+    
+    _image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    // 保存图片至本地，方法见下文
+    
+    //按时间为图片命名
+    NSDateFormatter *forr=[[NSDateFormatter alloc] init];
+    
+    [forr setDateFormat:@"yyyyMMddHHmmss"];
+    
+    NSString *name=[NSString stringWithFormat:@"%d.jpg",po/*[forr stringFromDate:[NSDate date]]*/];
+    
+    [self saveImage:_image withName:name];
+    
+}
+- (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
+{
+    NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
+    // 获取沙盒目录
+    NSFileManager *fm=[NSFileManager defaultManager];
+    NSString *dicpath=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/images"];
+    
+    [fm createDirectoryAtPath:dicpath withIntermediateDirectories:NO attributes:nil error:nil];
+    
+    NSString *picpath=[NSString stringWithFormat:@"%@/%@",dicpath,imageName];
+    [fm createFileAtPath:picpath contents:imageData attributes:nil];
+    if (po==1) {
+        
+        [_one setBackgroundImage:[UIImage imageWithData:imageData] forState:UIControlStateNormal];
+    }else if(po==2){
+        [_two setBackgroundImage:[UIImage imageWithData:imageData] forState:UIControlStateNormal];
+    }else if (po==3){
+        [_three setBackgroundImage:[UIImage imageWithData:imageData] forState:UIControlStateNormal];
+    }else{
+        
+    }
+}
+
+//照片1
+- (IBAction)one:(id)sender {
+    [self.view endEditing:YES];
+    po=1;
+    [self phone];
+}
+//照片2
+- (IBAction)two:(id)sender {
+    [self.view endEditing:YES];
+    po=2;
+    [self phone];
+}
+//照片3
+- (IBAction)three:(id)sender {
+    [self.view endEditing:YES];
+    po=3;
+    [self phone];
+}
+
+
+
+
 -(void)swifda{
     switchtype =@"1";
     NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:@"公开/私密"];
@@ -160,9 +309,9 @@
     
     if(_Swith.isOn ){
        [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"8A5BF7"] range:range2];
-        switchtype =@"1";
+        switchtype =@"2";
     }else{
-       switchtype =@"2";
+       switchtype =@"1";
        [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"8A5BF7"] range:range1];
     }
     _kaiguan.attributedText=hintString;
@@ -173,17 +322,46 @@
     [_textview resignFirstResponder];
     _editbtn.hidden =NO;
     
+    
+    
+    
+    
+    
     if([type isEqualToString:@"0"]||[_textview.text isEqualToString:@"请编辑评价内容"]){
         NSLog(@"请选择咨询类型或编辑评价内容");
     }else{
-        //心情什么的没写那
+        
+        
+        //拿图片
+        NSMutableArray * heheda=[[NSMutableArray alloc] init];
+        NSFileManager *fm1=[NSFileManager defaultManager];
+        NSString *dicpath=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/images"];
+        NSString *picpath=[NSString stringWithFormat:@"%@/1.jpg",dicpath];
+        NSString *picpath1=[NSString stringWithFormat:@"%@/2.jpg",dicpath];
+        NSString *picpath2=[NSString stringWithFormat:@"%@/3.jpg",dicpath];
+        NSArray*apq=[NSArray arrayWithObjects:picpath,picpath1,picpath2, nil];
+        for (int i=0; i<apq.count; i++) {
+            if ([fm1 fileExistsAtPath: apq[i]]) {
+                [heheda addObject:apq[i]];
+            }
+        }
+        
+    
         NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
         NSString * Method = @"/diary/internshipPublic";
-        NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"quesionChapter",@"1",@"mood",_textview.text,@"content", nil];
+        NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",switchtype,@"quesionChapter",type,@"mood",_textview.text,@"content", nil];
         UIImage *image = [UIImage imageNamed:@"对号2"];
         NSArray *arr = [NSArray arrayWithObjects:image,image, nil];
-        [XL_WangLuo ShangChuanTuPianwithBizMethod:Method Rucan:Rucan type:Post image:arr key:@"imageUrl" success:^(id responseObject) {
+        [XL_WangLuo ShangChuanTuPianwithBizMethod:Method Rucan:Rucan type:Post image:heheda key:@"imageUrl" success:^(id responseObject) {
             NSLog(@"15 学生日记发布\n%@",responseObject);
+            
+            NSFileManager *defaultManager;
+            defaultManager = [NSFileManager defaultManager];
+            NSString*path=[NSString stringWithFormat:@"%@/Documents/images",NSHomeDirectory()];
+            [defaultManager removeItemAtPath:path error:NULL];
+            
+            
+            
         } failure:^(NSError *error) {
             NSLog(@"%@",error);
         }];

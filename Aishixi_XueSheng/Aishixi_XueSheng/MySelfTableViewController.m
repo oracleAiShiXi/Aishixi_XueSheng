@@ -13,8 +13,12 @@
 @interface MySelfTableViewController ()<UIActionSheetDelegate,UITextFieldDelegate,ActionSheetCustomPickerDelegate>
 {
     NSString *type;
-    NSMutableDictionary *buyaoFuyong;
+    NSMutableDictionary *Infodic;
    
+    NSString *moneyAves;
+    NSString *companyIndustry;
+    NSString *post;
+    NSString *moneyAve;
 //    UIPickerView *mypicker;
 //    UIView *popview;
 //    float width,heigth;
@@ -83,8 +87,8 @@
     }
     // 一定要先加载出这三个数组，不然就蹦了
     [self calculateFirstData];
-
-  
+    [self navagatio];
+    [self gerenxinxi];
 }
 
 -(void)navagatio{
@@ -105,14 +109,56 @@
 
 
 -(void)Saves{
-    NSLog(@"baocun");
+    
+    [self xiugaixinxi];
 }
+//获取个人信息
 -(void)gerenxinxi{
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/attend/getUserInfo";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",nil];
+    NSLog(@"-----------------%@",Rucan);
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"18 学生个人信息查询\n%@",responseObject);
+        
+        Infodic =[[NSMutableDictionary alloc]init];
+        Infodic =[[responseObject objectForKey:@"data"]objectForKey:@"object"];
+        /*
+         行业  职位
+         
+         */
+    _phone.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"mobilePhone"]];//电话
+    _qq.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"qqCode"]];//QQ
+    _weixin.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"wxCode"]];//微信
+        
+        if([[Infodic objectForKey:@"isInPost"]intValue]==1){//是否在岗
+            type=@"1";
+            [_shi setImage:[UIImage imageNamed:@"是.png"] forState:UIControlStateNormal];
+            [_fou setImage:[UIImage imageNamed:@"否.png"] forState:UIControlStateNormal];
+        }else{
+            type=@"2";
+            [_shi setImage:[UIImage imageNamed:@"否.png"] forState:UIControlStateNormal];
+            [_fou setImage:[UIImage imageNamed:@"是.png"] forState:UIControlStateNormal];
+        }
+        
+     
+        
+    _xinzi.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"moneyName"]];//月薪
+    _hangye.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"companyIndustryName"]];//所属行业
+    _mingcheng.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"companyName"]];//单位名称
+    _dianhua.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"companyTelephone"]];//单位电话
+    _zhiwei.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"postName"]];//所在职位
+    _diqu.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"location"]];//所在地区
+    _dizhi.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"address"]];//详细地址
+        
+        
+    _xingming.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"urgentName"]];//紧急联系人
+    _lxdianhua.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"urgentTel"]];//联系电话
+    _lxdiqu.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"locationAll"]];//所在地区
+    _lxdizhi.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"addressAll"]];//联系地址
+     moneyAve =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"money"]];//所在地区
+        
+        
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -122,13 +168,25 @@
     
 }
 
+//修改个人信息
 -(void)xiugaixinxi{
   
     //所在职位ID
+   // moneyAve;//平均月薪
+    //companyIndustry;//所属行业
+    //post;//所在职位
+    
+    
+    
+    
+    
     
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_phone.text,@"mobilePhone",_qq.text,@"qqCode",_weixin.text,@"wxCode",type,@"isInPost",_xinzi.text,@"money",_hangye.text,@"companyIndustry",_mingcheng.text,@"companyName",_dianhua.text,@"companyTelephone",@"1",@"postId",_zhiwei.text,@"postName",_diqu.text,@"location",_dizhi.text,@"address",_xingming.text,@"urgentName",_lxdianhua.text,@"urgentTel",_lxdiqu.text,@"locationAll",_lxdizhi.text,@"addressAll",nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_phone.text,@"mobilePhone",_qq.text,@"qqCode",_weixin.text,@"wxCode",_xinzi.text,@"money",_hangye.text,@"companyIndustryName",_mingcheng.text,@"companyName",_dianhua.text,@"companyTelephone",_zhiwei.text,@"postName",_diqu.text,@"location",_dizhi.text,@"address",_xingming.text,@"urgentName",_lxdianhua.text,@"urgentTel",_lxdiqu.text,@"locationAll",_lxdizhi.text,@"addressAll",companyIndustry,@"companyIndustry",post,@"post",moneyAve,@"moneyAve",type,@"isInPost",nil];
+    
+    NSLog(@"---------%@",Rucan);
+    NSLog(@"dsadsdasdasdasd");
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"19 学生个人信息保存\n%@",responseObject);
     } failure:^(NSError *error) {
@@ -151,22 +209,41 @@
         if(buttonIndex<7){
         NSArray *xinzi = [self Xinzi];
         _xinzi.text=[NSString stringWithFormat:@"%@",xinzi[buttonIndex]];
-      NSString * chuannima=[NSString stringWithFormat:@"%ld",(long)buttonIndex+1];
-        NSLog(@"%@",chuannima);
+        moneyAves=[NSString stringWithFormat:@"%ld",(long)buttonIndex+1];
+            if ([moneyAves intValue]==1) {
+                moneyAve =@"1000";
+            }else if ([moneyAves intValue]==2){
+                moneyAve =@"1500";
+            }else if ([moneyAves intValue]==3){
+                moneyAve =@"3000";
+            }else if ([moneyAves intValue]==4){
+                moneyAve =@"5000";
+            }else if ([moneyAves intValue]==5){
+                moneyAve =@"7000";
+            }else if ([moneyAves intValue]==6){
+                moneyAve =@"9000";
+            }else if ([moneyAves intValue]==7){
+                moneyAve =@"10000";
+            }else{
+                moneyAve =@"0";
+            }
+            
+            
+            
         }
     }else if ([actionSheet.title isEqualToString:@"职位："]){
         if(buttonIndex<13){
         NSArray *zhiwei = [self Zhiwei];
         _zhiwei.text=[NSString stringWithFormat:@"%@",zhiwei[buttonIndex]];
-        NSString * chuannima=[NSString stringWithFormat:@"%ld",(long)buttonIndex+1];
-        NSLog(@"%@",chuannima);
+        post=[NSString stringWithFormat:@"%ld",(long)buttonIndex+1];
+       
         }
     }else{
         if(buttonIndex<13){
         NSArray *hangye = [self Hangye];
         _hangye.text=[NSString stringWithFormat:@"%@",hangye[buttonIndex]];
-        NSString * chuannima=[NSString stringWithFormat:@"%ld",(long)buttonIndex+1];
-        NSLog(@"%@",chuannima);
+        companyIndustry=[NSString stringWithFormat:@"%ld",(long)buttonIndex+1];
+        
         }
     }
     

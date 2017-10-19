@@ -112,6 +112,8 @@
       NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
         NSString * Method = @"/consult/consul";
         NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",type,@"consultType",_textview.text,@"consultContent", nil];
+        NSLog(@"%@",Rucan);
+
         [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
             NSLog(@"11 学生咨询\n%@",responseObject);
         } failure:^(NSError *error) {

@@ -20,7 +20,13 @@
 #import "SDCycleScrollView.h"
 #import "XL_TouWenJian.h"
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
-
+{
+    NSMutableArray *notelist;//公告arr
+    NSMutableArray *carolist;//轮播arr
+    NSString *attendanceinfo;//考勤时间
+    NSMutableArray*titles;//图片title
+    NSMutableArray*imagesURLStrings;//图片路径
+}
 @end
 
 @implementation MainViewController
@@ -32,7 +38,7 @@
     _table.delegate =self;
     _table.dataSource =self;
     
-    
+   
 
     
     [self navagatio];
@@ -73,11 +79,26 @@
 
 
 -(void)jiekou{
+    notelist =[[NSMutableArray alloc]init];
+    carolist =[[NSMutableArray alloc]init];
+    titles =[[NSMutableArray alloc]init];
+    imagesURLStrings =[[NSMutableArray alloc]init];
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/homePageStu/homePage";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"6、学生首页\n%@",responseObject);
+        carolist =[[responseObject objectForKey:@"data"] objectForKey:@"carouselList"];
+        notelist =[[responseObject objectForKey:@"data"] objectForKey:@"noticeList"];
+        attendanceinfo =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"attendanceInfo"]];
+        
+        for (int i=0; i<carolist.count; i++) {
+            [notelist addObject:[carolist[i]objectForKey:@"title"]];
+            [imagesURLStrings addObject:[carolist[i]objectForKey:@"carouselUrl"]];
+        }
+        
+        
+        [_table reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -120,10 +141,9 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(section==3){
-        return 5;
+        return notelist.count;
     }else{
-    
-   
+
     return 1;
     }
 }
@@ -170,19 +190,19 @@
         
         
         // 情景二：采用网络图片实现
-        NSArray *imagesURLStrings = @[
-                                      @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg",
-                                      @"https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
-                                      @"http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg"
-                                      ];
-        
-        // 情景三：图片配文字
-        NSArray *titles = @[@"新建交流QQ群：185534916 ",
-                            @"disableScrollGesture可以设置禁止拖动",
-                            @"感谢您的支持，如果下载的",
-                            @"如果代码在使用过程中出现问题",
-                            @"您可以发邮件到gsdios@126.com"
-                            ];
+//        NSArray *imagesURLStrings = @[
+//                                      @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg",
+//                                      @"https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
+//                                      @"http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg"
+//                                      ];
+//        
+//        // 情景三：图片配文字
+//        NSArray *titles = @[@"新建交流QQ群：185534916 ",
+//                            @"disableScrollGesture可以设置禁止拖动",
+//                            @"感谢您的支持，如果下载的",
+//                            @"如果代码在使用过程中出现问题",
+//                            @"您可以发邮件到gsdios@126.com"
+//                            ];
         
         
         // 网络加载 --- 创建带标题的图片轮播器
@@ -205,17 +225,19 @@
         
         
         return cell;
-    }else if (indexPath.section==1){
+    }
+    else if (indexPath.section==1){
         static NSString*cell1 =@"cell2";
         UITableViewCell *cell =[_table dequeueReusableCellWithIdentifier:cell1];
         if(cell==nil){
             cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell1];
         }
         UIView *textvie =(UIView*)[cell viewWithTag:200];
-        
+       //考勤时间滚动 如果没有显示暂无考勤时间
         
         return cell;
-    }else if (indexPath.section==2){
+    }
+    else if (indexPath.section==2){
         static NSString*cell1 =@"cell3";
         UITableViewCell *cell =[_table dequeueReusableCellWithIdentifier:cell1];
         if(cell==nil){
@@ -240,17 +262,37 @@
         [set addTarget:self action:@selector(Set:) forControlEvents:UIControlEventTouchUpInside];
        
         return cell;
-    }else{
+    }
+    else{
         static NSString*cell1 =@"cell4";
         UITableViewCell *cell =[_table dequeueReusableCellWithIdentifier:cell1];
         if(cell==nil){
             cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell1];
         }
-        UIView *view =(UIView*)[cell viewWithTag:405];
+        //UIView *view =(UIView*)[cell viewWithTag:405];
         UILabel*title =(UILabel*)[cell viewWithTag:400];
         UILabel*time =(UILabel*)[cell viewWithTag:401];
         UIImageView*img1= (UIImageView*)[cell viewWithTag:402];
         UIImageView*img2= (UIImageView*)[cell viewWithTag:403];
+        
+        if([notelist[indexPath.row] objectForKey:@"noticeTitle"]==NULL){
+         title.text =@"";
+        }else{
+            title.text =[NSString stringWithFormat:@"%@",[notelist[indexPath.row] objectForKey:@"noticeTitle"]];
+        }
+        if([notelist[indexPath.row] objectForKey:@"createDate"]==NULL){
+            time.text =@"";
+        }else{
+            time.text =[NSString stringWithFormat:@"%@",[notelist[indexPath.row] objectForKey:@"createDate"]];
+        }
+        if([[notelist[indexPath.row] objectForKey:@"isRead"] intValue]==1){
+            img1.image =[UIImage imageNamed:@"important.png"];
+            img2.image =[UIImage imageNamed:@""];
+        }else{
+            img1.image =[UIImage imageNamed:@"important.png"];
+            img2.image =[UIImage imageNamed:@"weidu.png"];
+        }
+        
         
         
         cell.backgroundColor =[UIColor clearColor];
@@ -312,7 +354,7 @@
 {
     
     ImgInfoViewController  *imginfo = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Imginfo"];
-    imginfo.CarouselId =@"";
+    imginfo.CarouselId =[NSString stringWithFormat:@"%@",[carolist[index] objectForKey:@"carouselId"]];
     
     [self.navigationController pushViewController:imginfo animated:YES];
     

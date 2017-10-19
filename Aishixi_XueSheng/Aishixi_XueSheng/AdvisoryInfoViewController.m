@@ -9,7 +9,9 @@
 #import "AdvisoryInfoViewController.h"
 #import "XL_TouWenJian.h"
 @interface AdvisoryInfoViewController ()
+{
 
+}
 @end
 
 @implementation AdvisoryInfoViewController
@@ -18,6 +20,16 @@
     [super viewDidLoad];
     
     [self navagatio];
+    [self jiekou];
+    if([_status intValue]==1){
+    
+    }else{
+        _img.hidden =YES;
+        _viewss.hidden =YES;
+        _reporttime.hidden =YES;
+        _reportname.hidden =YES;
+    
+    }
     // Do any additional setup after loading the view.
 }
 
@@ -47,6 +59,44 @@
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_ConsulId,@"consulId", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"13 学生咨询详情\n%@",responseObject);
+        
+        
+        if ([[responseObject objectForKey:@"data"] objectForKey:@"createDate"]==NULL) {
+            _zixuntime.text =@"";
+        }else{
+            _zixuntime.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"createDate"]];
+        }
+        if ([[responseObject objectForKey:@"data"]  objectForKey:@"consulUserName"]==NULL) {
+            _consulname.text =@"";
+        }else{
+            _consulname.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"consulUserName"]];
+        }
+        if ([[responseObject objectForKey:@"data"]  objectForKey:@"consulContext"]==NULL) {
+            _context.text =@"";
+        }else{
+            _context.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"consulContext"]];
+        }
+        
+       
+        
+        if([[responseObject objectForKey:@"data"]  objectForKey:@"reportTime"]==NULL){
+            _reporttime.text =@"";
+        }else{
+           _reporttime.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"reportTime"]];
+        }
+        if([[responseObject objectForKey:@"data"]  objectForKey:@"reportContent"]==NULL){
+           _reportname.text =@"";
+        }else{
+           _reportname.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"reportUserName"]];
+        }
+        if([[responseObject objectForKey:@"data"]  objectForKey:@"reportContent"]==NULL){
+            _reportcont.text =@"";
+        }else{
+          _reportcont.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"reportContent"]];
+        }
+       
+        
+        
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];

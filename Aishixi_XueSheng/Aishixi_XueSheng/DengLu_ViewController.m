@@ -19,7 +19,9 @@
     [super viewDidLoad];
     [self delegate];
     [self navagatio];
-   // NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"zls",@"userName",@"123456789",@"passWord",@"2",@"userType", nil];
+    _username.text =@"13888888888";
+    _password.text =@"123456";
+   // NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"zls",@"userName",@"123456789",@"passWord",@"2",@"userType", nil];13888888888
     // Do any additional setup after loading the view, typically from a nib.
 }
 -(void)navagatio{
@@ -73,6 +75,10 @@
             [user setObject:[data objectForKey:@"userId"] forKey:@"userId"];
             //用户电话
             [user setObject:[data objectForKey:@"tel"] forKey:@"tel"];
+            //用户姓名
+            [user setObject:[data objectForKey:@"nick"] forKey:@"nick"];
+            //教师电话
+            [user setObject:[data objectForKey:@"teacherTel"] forKey:@"teacherTel"];
             
             NavagationViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Navagation"];
             [self presentViewController:his animated:YES completion:^{

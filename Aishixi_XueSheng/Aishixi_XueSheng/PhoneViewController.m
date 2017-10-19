@@ -9,7 +9,9 @@
 #import "PhoneViewController.h"
 #import "XL_TouWenJian.h"
 @interface PhoneViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+{
+NSMutableArray *arr;
+}
 @end
 
 @implementation PhoneViewController
@@ -19,7 +21,7 @@
   
     
     [self navagatio];
-    //[self jiekou];
+    [self jiekou];
     [self delegate];
     // Do any additional setup after loading the view.
 }
@@ -46,6 +48,9 @@
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"20 学生通讯录\n%@",responseObject);
+        arr =[NSMutableArray array];
+        arr=[[responseObject objectForKey:@"data"] objectForKey:@"mailList"];
+        [_table reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -67,8 +72,8 @@
     _table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    //return arr.count;
-    return 10;
+   return arr.count;
+    //return 10;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -93,8 +98,8 @@
 
      UILabel *teaname =(UILabel*)[cell viewWithTag:100];
      UILabel *phonenum =(UILabel*)[cell viewWithTag:101];
-     teaname.text =[NSString stringWithFormat:@"姓名:%@",@"linzixi"];
-     phonenum.text =[NSString stringWithFormat:@"%@",@"13214567896"];
+     teaname.text =[NSString stringWithFormat:@"姓名:%@",[arr[indexPath.section]objectForKey:@"nick"]];
+     phonenum.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"mobilePhone"]];
     
     //cell.backgroundColor =[UIColor clearColor];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
@@ -103,6 +108,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSLog(@"1");
+    //调用打电话方法
     
 }
 

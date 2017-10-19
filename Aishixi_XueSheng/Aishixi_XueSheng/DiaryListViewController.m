@@ -29,7 +29,7 @@
     count = 0;
     pageSize = 5;
     pageNo = 1;
-    arr = [[NSMutableArray alloc] init];
+   
     self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
@@ -79,9 +79,12 @@
 -(void)wlrequest{
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/diary/internshipList";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"pageNo",@"10",@"pageSize",nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"pageNo",@"5",@"pageSize",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"16 学生日记列表\n%@",responseObject);
+       arr =[NSMutableArray array];
+       arr=[[responseObject objectForKey:@"data"] objectForKey:@"internshipList"];
+        [_tableview reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -141,8 +144,8 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    //return arr.count;
-    return 10;
+    return arr.count;
+
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 90;
@@ -179,41 +182,37 @@
 //    type.font =[UIFont systemFontOfSize:15];
 //    type.adjustsFontSizeToFitWidth =YES;
 //    type.textAlignment =NSTextAlignmentRight;
-    [type setTitle:@"私密" forState:UIControlStateNormal];
-    [type setImage:[UIImage imageNamed:@"私密.png"] forState:UIControlStateNormal];
-    [type setImageEdgeInsets:UIEdgeInsetsMake(2, 0, 2,10)];
-    [type setTitleEdgeInsets:UIEdgeInsetsMake(0,0, 0, 0)];
+    
+    if([[arr[indexPath.row]objectForKey:@"quesionChapter"] intValue]==1){
+       [type setTitle:@"公开" forState:UIControlStateNormal];
+       [type setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
+    }else{
+        [type setTitle:@"私密" forState:UIControlStateNormal];
+        [type setImage:[UIImage imageNamed:@"私密.png"] forState:UIControlStateNormal];
+        [type setImageEdgeInsets:UIEdgeInsetsMake(2, 0, 2,10)];
+        [type setTitleEdgeInsets:UIEdgeInsetsMake(0,0, 0, 0)];
+        [type setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    }
+    
+    
     type.titleLabel.font =[UIFont systemFontOfSize:13];
-    [type setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    
-//    if(nil==[arr[indexPath.row]objectForKey:@"className"]){
-//        banji.text=@"";
-//    }else{
-//        banji.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"className"]];
-//        
-//    }
-//    if(nil==[arr[indexPath.row]objectForKey:@"classType"]){
-//        
-//        xueke.text =@"";
-//    }else{
-//        xueke.text =[NSString stringWithFormat:@"学科:%@",[arr[indexPath.row]objectForKey:@"classType"]];
-//        
-//    }
-//    if(nil==[arr[indexPath.row]objectForKey:@"teacherName"]){
-//        
-//        jiaoshi.text =@"";
-//    }else{
-//        NSString *iqoq =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"teacherName"]];
-//        iqoq =[iqoq substringToIndex:1];
-//        
-//        jiaoshi.text =[NSString stringWithFormat:@"任课教师:%@老师",iqoq];
-//        
-//    }
     
     
-    
-    title.text=@"日记内容是啥我不知道啊";
-    time.text =@"更新时间:2017.11.12";
+    if(nil==[arr[indexPath.row]objectForKey:@"content"]){
+        title.text=@"";
+    }else{
+        title.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"content"]];
+        
+    }
+    if(nil==[arr[indexPath.row]objectForKey:@"cretateTime"]){
+        
+        time.text =@"";
+    }else{
+        time.text =[NSString stringWithFormat:@"更新时间:%@",[arr[indexPath.row]objectForKey:@"cretateTime"]];
+        
+    }
+
+
     
     
     [backview addSubview:title];
@@ -228,8 +227,8 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //
-    DiaryInfoViewController *info = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"atthisinfo"];
-    info.InternshipId =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"classId"]];
+    DiaryInfoViewController *info = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DiaryInfo"];
+    info.InternshipId =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"internshipId"]];
     
     [self.navigationController pushViewController:info animated:YES];
     

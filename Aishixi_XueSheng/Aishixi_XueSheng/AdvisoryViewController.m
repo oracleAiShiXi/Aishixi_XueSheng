@@ -81,9 +81,13 @@
 -(void)jiekou{
      NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/consult/consulList";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"pageNo",@"10",@"pageSize", nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"pageNo",@"5",@"pageSize", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"12 学生咨询列表\n%@",responseObject);
+        arr =[NSMutableArray array];
+        arr=[[responseObject objectForKey:@"data"] objectForKey:@"consulList"];
+        [_tableview reloadData];
+        
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -159,8 +163,8 @@
    
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    //return arr.count;
-    return 10;
+   return arr.count;
+    //return 10;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -186,9 +190,31 @@
     UIView *backview =(UIView*)[cell viewWithTag:100];
 //    UIImageView*img =(UIImageView*)[cell viewWithTag:105];
 //    UILabel *teaname =(UILabel*)[cell viewWithTag:101];
-//    UILabel *concent =(UILabel*)[cell viewWithTag:102];
-//    UILabel *time =(UILabel*)[cell viewWithTag:103];
-//    UILabel *type =(UILabel*)[cell viewWithTag:104];
+    UILabel *concent =(UILabel*)[cell viewWithTag:102];
+    UILabel *time =(UILabel*)[cell viewWithTag:103];
+    UILabel *type =(UILabel*)[cell viewWithTag:104];
+    if(nil==[arr[indexPath.section]objectForKey:@"consulTitle"]){
+        concent.text=@"";
+    }else{
+        concent.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"consulTitle"]];
+        
+    }
+    
+    if(nil==[arr[indexPath.section]objectForKey:@"createDate"]){
+        time.text=@"";
+    }else{
+        time.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"createDate"]];
+        
+    }
+    if([[arr[indexPath.section]objectForKey:@"status"] intValue]==1){
+        type.text=@"已回复";
+    }else{
+        type.text=@"未回复";
+        
+    }
+    
+    
+    
     
     backview.layer.cornerRadius =5;
     cell.backgroundColor =[UIColor clearColor];
@@ -203,7 +229,8 @@
     //    his.pushId =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
     //    [self.navigationController pushViewController:his animated:YES];
     AdvisoryInfoViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AdvisoryInfo"];
-    his.ConsulId =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"id"]];
+    his.ConsulId =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"consulId"]];
+    his.status =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"status"]];
     [self.navigationController pushViewController:his animated:YES];
     
 }

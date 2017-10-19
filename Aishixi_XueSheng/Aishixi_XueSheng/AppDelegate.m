@@ -32,7 +32,7 @@
     
     //前导页
     NSString *str;
-    //    =[NSString stringWithFormat:@"%@%@%@",Scheme,QianWaiWangIP,[[NSUserDefaults standardUserDefaults] objectForKey:@"tupianqidong"]];
+    str=[NSString stringWithFormat:@"%@%@%@",Scheme,QianWaiWangIP,[[NSUserDefaults standardUserDefaults] objectForKey:@"tupianqidong"]];
     self.window.backgroundColor=[UIColor colorWithHexString:@"33c383"];
     [self.window makeKeyAndVisible];
     UIViewController *viewController = [[UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil] instantiateViewControllerWithIdentifier:@"LaunchScreen"];
@@ -42,8 +42,8 @@
     [self.window addSubview:lunchView];
     
     UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UISCREEN_WIDTH, UISCREEN_HEIGHT)];
-    //    str = [str  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    str= @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490322357&di=41a07a09e62f75400dade1b603142199&imgtype=jpg&er=1&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F7acb0a46f21fbe09359315d16f600c338644ad22.jpg";
+       // str = [str  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //str= @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490322357&di=41a07a09e62f75400dade1b603142199&imgtype=jpg&er=1&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F7acb0a46f21fbe09359315d16f600c338644ad22.jpg";
     [imageV sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"welcome.png"]];
     [lunchView addSubview:imageV];
     
@@ -66,9 +66,15 @@
 }
 #pragma mark -- 启动页接口
 -(void)jiekou{
+    
+    __block NSString *str = [NSString string];
     NSString *BizMethod=@"/set/startPage";
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:BizMethod Rucan:nil type:Post success:^(id responseObject) {
         NSLog(@"%@",responseObject);
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+            str = [[responseObject objectForKey:@"data"] objectForKey:@"url"];
+            [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"tupianqidong"];
+        }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];

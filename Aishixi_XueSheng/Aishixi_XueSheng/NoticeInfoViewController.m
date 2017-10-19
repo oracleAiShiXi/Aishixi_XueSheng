@@ -24,8 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegate];
-    //[self wangluo];
-    //[self comeback];
+    [self wangluo];
+    [self comeback];
   
     
    
@@ -47,12 +47,16 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)wangluo{
-    //noticeId上个页面传值
+     arr =[[NSDictionary alloc]init];
+    
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/homePageStu/noticeInfo";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"37",@"noticeId",nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_NoticeId,@"noticeId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"10 学生公告详情\n%@",responseObject);
+
+        arr =[responseObject objectForKey:@"data"];
+        [_tableview reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -112,12 +116,12 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row==0){
         NSString* s=[[NSString alloc] init];
-//        if(nil==[arr objectForKey:@"title"]){
-//            s =@"";
-//        }else{
-//            s =[NSString stringWithFormat:@"%@",[arr objectForKey:@"title"]];
-//        }
-        s =[NSString stringWithFormat:@"新学期暑期实习公告暑期实习公告暑期实习公告暑期实习公告暑期实习公告"];
+        if(nil==[arr objectForKey:@"noticeTitle"]){
+            s =@"";
+        }else{
+            s =[NSString stringWithFormat:@"%@",[arr objectForKey:@"noticeTitle"]];
+        }
+        
         titt=[[UILabel alloc] init];
         UIFont *font = [UIFont fontWithName:@"Arial" size:20];
         titt.textAlignment =NSTextAlignmentLeft;
@@ -135,12 +139,12 @@
     }
     else if (indexPath.row==1){
         NSString* ss=[[NSString alloc] init];
-//        if(nil==[arr objectForKey:@"context"]){
-//            ss =@"";
-//        }else{
-//            ss =[NSString stringWithFormat:@"%@",[arr objectForKey:@"context"]];
-//        }
-        ss =[NSString stringWithFormat:@"新浪科技讯 北京时间9月19日早间消息，凯基证券本周发布了关于iPhone 8和Apple Watch Series 3预订情况的报告。这两款产品从上周末开始启动预售。凯基证券认为，iPhone X或许影响了iPhone 8的预订销量，而Apple Watch Series 3的需求则强于预期。在这份报告中，凯基证券指出，新推出的iPhone通常会在开放预订的3到6周后发货，但大部分iPhone 8将在不到1到2周，甚至更短时间内发货。原因是什么？全新设计的iPhone X将于11月份开售，预订将会从10月底开始。此前，Lup Ventures分析师吉恩·蒙斯特（Gene Munster）收集了苹果官方网站上各款iPhone 8的配置和发货时间数据。他发现，iPhone 8的发售有些不同于以往。可以看到，即使已经开放预订几天，几款iPhone 8仍然会在开售当天发货，而无需等待。"];
+        if(nil==[arr objectForKey:@"noticeContext"]){
+            ss =@"";
+        }else{
+            ss =[NSString stringWithFormat:@"%@",[arr objectForKey:@"noticeContext"]];
+        }
+
         messa=[[UILabel alloc] init];
         UIFont *font = [UIFont fontWithName:@"Arial" size:15];
         NSAttributedString *attributedText =
@@ -211,16 +215,23 @@
             name.font= [UIFont systemFontOfSize:14];
             name.textAlignment = NSTextAlignmentRight;
             
-//            if(nil==[arr objectForKey:@"pushTime"]){
-//                time.text =@"";
-//            }else{
-//                NSString *ss =[NSString stringWithFormat:@"时间:%@",[arr objectForKey:@"pushTime"]];
-//                //NSString *sss = [ss substringToIndex:10];
-//                time.text =ss;
-//            }
-            school.text =@"黑龙江八一农垦大学";
-            time.text =@"2017.06.21 17:54:20";
-            name.text =@"发布人:管理员";
+            
+            if(nil==[arr objectForKey:@"noticeOrgName"]){
+                school.text =@"";
+            }else{
+                school.text=[NSString stringWithFormat:@"%@",[arr objectForKey:@"noticeOrgName"]];
+            }
+            if(nil==[arr objectForKey:@"publicUserName"]){
+                name.text =@"";
+            }else{
+                name.text=[NSString stringWithFormat:@"%@",[arr objectForKey:@"publicUserName"]];
+            }
+            
+            if(nil==[arr objectForKey:@"createDate"]){
+                time.text =@"";
+            }else{
+                time.text=[NSString stringWithFormat:@"%@",[arr objectForKey:@"createDate"]];
+            }
             
             [cell.contentView addSubview:school];
             [cell.contentView addSubview:time];

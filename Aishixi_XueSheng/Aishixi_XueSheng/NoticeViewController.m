@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self delegate];
-   // [self wangluo];
+    [self wangluo];
     [self comeback];
     count = 0;
     pageSize = 5;
@@ -77,6 +77,9 @@
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"pageNo",@"5",@"pageSize", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"9 学生公告列表\n%@",responseObject);
+        arr =[NSMutableArray array];
+        arr =[[responseObject objectForKey:@"data"] objectForKey:@"noticeList"];
+        [_tableview reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -133,8 +136,8 @@
     height =[UIScreen mainScreen].bounds.size.height;
    }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    //return arr.count;
-    return 10;
+   return arr.count;
+    //return 10;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -170,11 +173,10 @@
     
     titles.font =[UIFont systemFontOfSize:15];
     
-   // titles.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"title"]];
-    titles.text =[NSString stringWithFormat:@"新学期暑期实习公告"];
+    titles.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"noticeTitle"]];
     UILabel *pushtime = [[UILabel alloc]initWithFrame:CGRectMake(55,30,width-175,20)];
     pushtime.font =[UIFont systemFontOfSize:15];
-    pushtime.text =[NSString stringWithFormat:@"2017.06.21 17:54:20"];
+    pushtime.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"createDate"]];
 //    NSString *ss=[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"pushTime"]];
 //    ss=[ss substringToIndex:10];
 //    pushtime.text =ss;
@@ -214,7 +216,7 @@
 
     NoticeInfoViewController *info = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"noticeinfo"];
     
-     info.NoticeId =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"classId"]];
+     info.NoticeId =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"noticeId"]];
     
     [self.navigationController pushViewController:info animated:YES];
     
