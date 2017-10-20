@@ -62,6 +62,7 @@
 		D73E18F21F8DC053005A0456 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D73E18DB1F8DC053005A0456 /* NSString+MJExtension.m */; };
 		D73E18F31F8DC053005A0456 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = D73E18DC1F8DC053005A0456 /* README.md */; };
 		D73E18F51F8DC06E005A0456 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = D73E18F41F8DC06E005A0456 /* address.json */; };
+		D7443AC81F99AA160030CFD1 /* TextFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7443AC71F99AA160030CFD1 /* TextFlowView.m */; };
 		D744AFAA1F6FC27700F701B7 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D744AFA91F6FC27700F701B7 /* MainTableViewController.m */; };
 		D75AB1F91F720FD1005E9BBE /* EditAdvisoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75AB1F81F720FD1005E9BBE /* EditAdvisoryViewController.m */; };
 		D75AB1FC1F725FB6005E9BBE /* DiaryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75AB1FB1F725FB6005E9BBE /* DiaryListViewController.m */; };
@@ -203,6 +204,8 @@
 		D73E18DB1F8DC053005A0456 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
 		D73E18DC1F8DC053005A0456 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D73E18F41F8DC06E005A0456 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
+		D7443AC61F99AA160030CFD1 /* TextFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFlowView.h; sourceTree = "<group>"; };
+		D7443AC71F99AA160030CFD1 /* TextFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFlowView.m; sourceTree = "<group>"; };
 		D744AFA81F6FC27700F701B7 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
 		D744AFA91F6FC27700F701B7 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
 		D75AB1F71F720FD1005E9BBE /* EditAdvisoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAdvisoryViewController.h; sourceTree = "<group>"; };
@@ -259,6 +262,7 @@
 		5D5024C31F70E40B00924CCD /* 手动封装 */ = {
 			isa = PBXGroup;
 			children = (
+				D7443AC51F99A9FA0030CFD1 /* TextFolow */,
 				5D261E0C1F7B6C7F00724B6B /* XL_FengZhuang */,
 				5D5024C81F70E45900924CCD /* XL_Color */,
 				5D5024C71F70E45000924CCD /* XL_HUD */,
@@ -596,6 +600,15 @@
 			path = MJExtension;
 			sourceTree = "<group>";
 		};
+		D7443AC51F99A9FA0030CFD1 /* TextFolow */ = {
+			isa = PBXGroup;
+			children = (
+				D7443AC61F99AA160030CFD1 /* TextFlowView.h */,
+				D7443AC71F99AA160030CFD1 /* TextFlowView.m */,
+			);
+			name = TextFolow;
+			sourceTree = "<group>";
+		};
 		D75F0AA01F74AB48007A81C2 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
@@ -873,6 +886,7 @@
 				D73E18E61F8DC053005A0456 /* SWActionSheet.m in Sources */,
 				D73E18E91F8DC053005A0456 /* MJExtensionConst.m in Sources */,
 				D73E18EB1F8DC053005A0456 /* MJProperty.m in Sources */,
+				D7443AC81F99AA160030CFD1 /* TextFlowView.m in Sources */,
 				D73E18E71F8DC053005A0456 /* README.md in Sources */,
 				D7368F2F1F8F3D6600514742 /* TAAbstractDotView.m in Sources */,
 				D73E18E51F8DC053005A0456 /* DistancePickerView.m in Sources */,

@@ -42,9 +42,16 @@
     //    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithCustomView:btnn];
     //    self.navigationItem.leftBarButtonItem =left;
     
-    
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    [self.navigationItem setLeftBarButtonItem:left];
     
 }
+
+-(void)fanhui{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 
 -(void)jiekou{

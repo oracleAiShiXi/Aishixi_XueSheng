@@ -37,11 +37,15 @@
 //    [btnn addTarget:self action:@selector(Home:) forControlEvents:UIControlEventTouchUpInside];
 //    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithCustomView:btnn];
 //    self.navigationItem.leftBarButtonItem =left;
-    
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    [self.navigationItem setLeftBarButtonItem:left];
     
     
 }
-
+-(void)fanhui{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark---轮播详情接口页面没有
 -(void)jiekou6{

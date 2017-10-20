@@ -56,7 +56,17 @@
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"我的日记" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
     [self.navigationItem setRightBarButtonItem:right];
+    
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    [self.navigationItem setLeftBarButtonItem:left];
+    
 }
+
+-(void)fanhui{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 -(void)History{
     DiaryListViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DiaryList"];

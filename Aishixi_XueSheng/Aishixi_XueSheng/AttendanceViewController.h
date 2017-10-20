@@ -12,4 +12,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *Img;
 - (IBAction)Attendan:(id)sender;
 
+
+
+@property (strong, nonatomic) NSString *jingdu;
+@property (strong, nonatomic) NSString *weidu;
+@property (strong, nonatomic) NSString *dizhi;
+
+
 @end

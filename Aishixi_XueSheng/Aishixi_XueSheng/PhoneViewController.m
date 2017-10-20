@@ -36,10 +36,17 @@ NSMutableArray *arr;
     //    [btnn addTarget:self action:@selector(Home:) forControlEvents:UIControlEventTouchUpInside];
     //    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithCustomView:btnn];
     //    self.navigationItem.leftBarButtonItem =left;
-    
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    [self.navigationItem setLeftBarButtonItem:left];
     
     
 }
+
+-(void)fanhui{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 
 -(void)jiekou{
@@ -109,6 +116,18 @@ NSMutableArray *arr;
     
     NSLog(@"1");
     //调用打电话方法
+    UIAlertController*alert=[UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定要联系客服吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction*action1=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *ss = [NSString stringWithFormat:@"tel://%@",[arr[indexPath.section]objectForKey:@"mobilePhone"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ss]];
+        
+    }];
+    UIAlertAction*action2=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alert addAction:action1];
+    [alert addAction:action2];
+    [self presentViewController:alert animated:YES completion:^{
+    }];
     
 }
 

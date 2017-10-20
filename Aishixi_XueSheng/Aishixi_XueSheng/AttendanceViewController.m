@@ -19,9 +19,9 @@
 //    NSString*shi;
 //    NSString*qu;
 //    NSString*street;
-    NSString*jing;
-    NSString*wei;
-    NSString*address;
+//    NSString*jing;
+//    NSString*wei;
+//    NSString*address;
 //    NSString*jied;
     
 }
@@ -35,7 +35,7 @@
    
     [self navagatio];
     [self phone];//调取相机
-    [self  initializeLocationService];//开启定位
+    //[self  initializeLocationService];//开启定位
     
     
     // Do any additional setup after loading the view.
@@ -50,10 +50,17 @@
     //    [btnn addTarget:self action:@selector(Home:) forControlEvents:UIControlEventTouchUpInside];
     //    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithCustomView:btnn];
     //    self.navigationItem.leftBarButtonItem =left;
-    
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    [self.navigationItem setLeftBarButtonItem:left];
     
     
 }
+
+-(void)fanhui{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -83,12 +90,13 @@
     NSString * Method = @"/homePageStu/attendance";
     
     
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",jing,@"longitude",wei,@"latitude",address,@"address",nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_jingdu,@"longitude",_weidu,@"latitude",_dizhi,@"address",nil];
+    NSLog(@"%@",Rucan);
     //UIImage *image = [UIImage imageNamed:@"对号2"];
     UIImage *image = [[UIImage alloc]initWithContentsOfFile:filepath];
     NSLog(@"%@",image);
-    //NSArray * arr = [NSArray arrayWithObjects:image, nil];
-    [XL_WangLuo ShangChuanTuPianwithBizMethod:Method Rucan:Rucan type:Post image:image key:@"url" success:^(id responseObject) {
+    NSArray * arr = [NSArray arrayWithObjects:image, nil];
+    [XL_WangLuo ShangChuanTuPianwithBizMethod:Method Rucan:Rucan type:Post image:arr key:@"url" success:^(id responseObject) {
         NSLog(@"8 学生考勤\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
@@ -181,90 +189,90 @@
 
 #pragma mark - CLLocationManagerDelegate methods 定位
 
-- (void)initializeLocationService {
-    
-    // 初始化定位管理器
-    _locationManager = [[CLLocationManager alloc] init];
-    // 设置代理
-    _locationManager.delegate = self;
-    // 设置定位精确度到米
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    // 设置过滤器为无
-    _locationManager.distanceFilter = kCLDistanceFilterNone;
-    // 开始定位
-    // 取得定位权限，有两个方法，取决于你的定位使用情况
-    // 一个是requestAlwaysAuthorization，一个是requestWhenInUseAuthorization
-    [_locationManager requestAlwaysAuthorization];//这句话ios8以上版本使用。
-    [_locationManager startUpdatingLocation];
-}
-
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
-    
-    //将经度显示到label上
-    jing = [NSString stringWithFormat:@"%lf", newLocation.coordinate.longitude];
-    //将纬度现实到label上
-    wei = [NSString stringWithFormat:@"%lf", newLocation.coordinate.latitude];
-    // 获取当前所在的城市名
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    //根据经纬度反向地理编译出地址信息
-    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *array, NSError *error){
-        if (array.count > 0){
-            
-            CLPlacemark *placemark = [array objectAtIndex:0];
-            NSLog(@"%@",placemark);
-           
-            address=[placemark.addressDictionary objectForKey:@"FormattedAddressLines"][0];
-            
-            NSLog(@"--------%@",address);
-            
-           // sheng=[NSString stringWithFormat:@"%@",[placemark.addressDictionary objectForKey:@"State"]];
-            
-            //获取城市
-//            NSString *city = placemark.locality;
+//- (void)initializeLocationService {
+//    
+//    // 初始化定位管理器
+//    _locationManager = [[CLLocationManager alloc] init];
+//    // 设置代理
+//    _locationManager.delegate = self;
+//    // 设置定位精确度到米
+//    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    // 设置过滤器为无
+//    _locationManager.distanceFilter = kCLDistanceFilterNone;
+//    // 开始定位
+//    // 取得定位权限，有两个方法，取决于你的定位使用情况
+//    // 一个是requestAlwaysAuthorization，一个是requestWhenInUseAuthorization
+//    [_locationManager requestAlwaysAuthorization];//这句话ios8以上版本使用。
+//    [_locationManager startUpdatingLocation];
+//}
+//
+//-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+//    
+//    //将经度显示到label上
+//    jing = [NSString stringWithFormat:@"%lf", newLocation.coordinate.longitude];
+//    //将纬度现实到label上
+//    wei = [NSString stringWithFormat:@"%lf", newLocation.coordinate.latitude];
+//    // 获取当前所在的城市名
+//    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+//    //根据经纬度反向地理编译出地址信息
+//    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *array, NSError *error){
+//        if (array.count > 0){
 //            
-//            if (city) {
-//                //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
-//                city = placemark.administrativeArea;
-//                
-//                //市
-//                
-//                shi=[NSString stringWithFormat:@"%@",placemark.locality];
-//                //区
-//                qu=[NSString stringWithFormat:@"%@",placemark.subLocality];
-//                //街道
-//                jied =[NSString stringWithFormat:@"%@",placemark.thoroughfare];
-//            }
-//            if (sheng==nil||shi==nil||qu==nil) {
-//                
-//            }else{
-//                if(nicaicai==0){
-//                    nicaicai=1;
-//                    @try {
-//                       
-//                    } @catch (NSException *exception) {
-//                        NSLog(@"崩了崩了崩了");
-//                    }
-//                    
-//                }
-//            }
-        }
-        else if (error == nil && [array count] == 0)
-        {
-        }
-        else if (error != nil)
-        {
-        }
-    }];
-    
-    //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
-  //  panduan=0;
-    
-    
-    [manager stopUpdatingLocation];
-
-    
-    
-}
+//            CLPlacemark *placemark = [array objectAtIndex:0];
+//            NSLog(@"%@",placemark);
+//           
+//            address=[placemark.addressDictionary objectForKey:@"FormattedAddressLines"][0];
+//            
+//            NSLog(@"--------%@",address);
+//            
+//           // sheng=[NSString stringWithFormat:@"%@",[placemark.addressDictionary objectForKey:@"State"]];
+//            
+//            //获取城市
+////            NSString *city = placemark.locality;
+////            
+////            if (city) {
+////                //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
+////                city = placemark.administrativeArea;
+////                
+////                //市
+////                
+////                shi=[NSString stringWithFormat:@"%@",placemark.locality];
+////                //区
+////                qu=[NSString stringWithFormat:@"%@",placemark.subLocality];
+////                //街道
+////                jied =[NSString stringWithFormat:@"%@",placemark.thoroughfare];
+////            }
+////            if (sheng==nil||shi==nil||qu==nil) {
+////                
+////            }else{
+////                if(nicaicai==0){
+////                    nicaicai=1;
+////                    @try {
+////                       
+////                    } @catch (NSException *exception) {
+////                        NSLog(@"崩了崩了崩了");
+////                    }
+////                    
+////                }
+////            }
+//        }
+//        else if (error == nil && [array count] == 0)
+//        {
+//        }
+//        else if (error != nil)
+//        {
+//        }
+//    }];
+//    
+//    //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
+//  //  panduan=0;
+//    
+//    
+//    [manager stopUpdatingLocation];
+//
+//    
+//    
+//}
 
 
 

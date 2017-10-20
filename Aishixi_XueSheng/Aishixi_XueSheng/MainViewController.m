@@ -19,6 +19,8 @@
 #import "UIImageView+WebCache.h"
 #import "SDCycleScrollView.h"
 #import "XL_TouWenJian.h"
+#import "TextFlowView.h"
+#import "NoticeInfoViewController.h"
 #import <CoreLocation/CoreLocation.h>
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,CLLocationManagerDelegate,UIActionSheetDelegate>
 {
@@ -96,6 +98,14 @@
         carolist =[[responseObject objectForKey:@"data"] objectForKey:@"carouselList"];
         notelist =[[responseObject objectForKey:@"data"] objectForKey:@"noticeList"];
         attendanceinfo =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"attendanceInfo"]];
+        
+        if([attendanceinfo isEqualToString:@""]){
+            attendanceinfo =@"暂无考勤信息";
+        }else{
+           // attendanceinfo =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"attendanceInfo"]];
+            attendanceinfo =@"暂无考勤信息暂无考勤信息暂无考勤信息暂无考勤信息";
+        }
+        
         
         for (int i=0; i<carolist.count; i++) {
             [notelist addObject:[carolist[i]objectForKey:@"title"]];
@@ -232,7 +242,7 @@
         
         
         
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     else if (indexPath.section==1){
@@ -241,9 +251,17 @@
         if(cell==nil){
             cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell1];
         }
+//            for (id suView in cell.contentView.subviews) {//获取当前cell的全部子视图
+//                [suView removeFromSuperview];//移除全部子视图
+//            }
         UIView *textvie =(UIView*)[cell viewWithTag:200];
        //考勤时间滚动 如果没有显示暂无考勤时间
+       
+        TextFlowView *nameview =  [[TextFlowView alloc] initWithFrame:textvie.frame Text:attendanceinfo textColor:[UIColor colorWithHexString:@"646464"] font:[UIFont boldSystemFontOfSize:15] backgroundColor:[UIColor clearColor] alignLeft:YES];
         
+        
+        [cell addSubview:nameview];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     else if (indexPath.section==2){
@@ -269,7 +287,7 @@
         [diary addTarget:self action:@selector(Diary:) forControlEvents:UIControlEventTouchUpInside];
         [myself addTarget:self action:@selector(Myself:) forControlEvents:UIControlEventTouchUpInside];
         [set addTarget:self action:@selector(Set:) forControlEvents:UIControlEventTouchUpInside];
-       
+       cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     else{
@@ -303,15 +321,36 @@
         }
         
         
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor =[UIColor clearColor];
         return cell;
     }
   
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"3213123123");
+    if(indexPath.section==3){
+        NoticeInfoViewController *info = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"noticeinfo"];
+        
+        info.NoticeId =[NSString stringWithFormat:@"%@",[notelist[indexPath.row] objectForKey:@"noticeId"]];
+        
+        [self.navigationController pushViewController:info animated:YES];
+    
+    }
+    
+
+    
+}
+
+
+
 - (void)Attendance:(UIButton*)sender {
     AttendanceViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Attendance"];
+    his.jingdu =jing;
+    his.weidu =wei;
+    his.dizhi =address;
     [self.navigationController pushViewController:his animated:YES];
 }
 

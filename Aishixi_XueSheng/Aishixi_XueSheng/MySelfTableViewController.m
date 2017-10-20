@@ -96,15 +96,22 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     
-    UIButton *btn =[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    UIButton *btn =[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 20)];
     [btn setTitle:@"保存" forState:UIControlStateNormal];
 //    [btn setImage:[UIImage imageNamed:@"通讯录.png"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(Saves) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = right;
     
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    [self.navigationItem setLeftBarButtonItem:left];
     
-    
+}
+
+
+-(void)fanhui{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
