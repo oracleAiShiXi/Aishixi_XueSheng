@@ -2872,7 +2872,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="gyG-RS-Lmg"/>
                                 </constraints>
-                                <state key="normal" image="016"/>
+                                <state key="normal" image="011"/>
                                 <connections>
                                     <action selector="Good:" destination="v96-Sf-fB7" eventType="touchUpInside" id="hZc-vH-hDO"/>
                                 </connections>
@@ -3441,9 +3441,9 @@
     </scenes>
     <resources>
         <image name="01" width="83" height="83"/>
+        <image name="011" width="171" height="81"/>
         <image name="012" width="180" height="88"/>
         <image name="013" width="171" height="81"/>
-        <image name="016" width="171" height="81"/>
         <image name="02" width="83" height="83"/>
         <image name="03" width="83" height="83"/>
         <image name="05" width="83" height="83"/>

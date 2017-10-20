@@ -19,13 +19,18 @@
 #import "UIImageView+WebCache.h"
 #import "SDCycleScrollView.h"
 #import "XL_TouWenJian.h"
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
+#import <CoreLocation/CoreLocation.h>
+@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,CLLocationManagerDelegate,UIActionSheetDelegate>
 {
     NSMutableArray *notelist;//公告arr
     NSMutableArray *carolist;//轮播arr
     NSString *attendanceinfo;//考勤时间
     NSMutableArray*titles;//图片title
     NSMutableArray*imagesURLStrings;//图片路径
+    CLLocationManager*_locationManager;
+    NSString*jing;
+    NSString*wei;
+    NSString*address;
 }
 @end
 
@@ -43,7 +48,7 @@
     
     [self navagatio];
     [self jiekou];
-    
+    [self initializeLocationService];
     
     // Do any additional setup after loading the view.
 }
@@ -108,14 +113,18 @@
 
 -(void)SOSjiekou{
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSString*content= [NSString stringWithFormat:@"我是%@，我在%@遇到困难",[defaults objectForKey:@"nick"],address];
     
     NSString * Method = @"/classManagement/sos/seekHelp";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"123°43′45",@"longitude",@"45°03′38",@"latitude",@"哈尔滨工业大学",@"address",@"哈哈哈哈",@"context", nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",jing,@"longitude",wei,@"latitude",address,@"address",content,@"context", nil];
+    NSLog(@"-----%@",Rucan);
+    NSLog(@"12312312312323");
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"14 学生sos\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
+
 
 }
 
@@ -321,17 +330,46 @@
 - (void)Help:(UIButton*)sender {
     
     
-    
+    [self SOSjiekou];
     
     
     
 }
 
 - (void)Appraise:(UIButton*)sender {
-    AppraiseViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Appraise"];
-    [self.navigationController pushViewController:his animated:YES];
-    
+   
+    [self tan];
 }
+
+
+-(void)tan{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择被评价类型" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"评价企业" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+   
+        AppraiseViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Appraise"];
+        his.EvaluatEdType =@"1";
+        [self.navigationController pushViewController:his animated:YES];
+        
+        
+        
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"评价教师" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+      
+        AppraiseViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Appraise"];
+        his.EvaluatEdType =@"2";
+        [self.navigationController pushViewController:his animated:YES];
+        
+    }]];
+    [self.view endEditing:YES];
+    // 由于它是一个控制器 直接modal出来就好了
+    [self presentViewController:alertController animated:YES completion:nil];
+
+}
+
 
 - (void)Diary:(UIButton*)sender {
     EditDiaryViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"EditDiary"];
@@ -347,7 +385,63 @@
     SetViewController  *set = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Set"];
     [self.navigationController pushViewController:set animated:YES];
 }
-
+#pragma mark - CLLocationManagerDelegate methods 定位
+//
+- (void)initializeLocationService {
+    
+    // 初始化定位管理器
+    _locationManager = [[CLLocationManager alloc] init];
+    // 设置代理
+    _locationManager.delegate = self;
+    // 设置定位精确度到米
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    // 设置过滤器为无
+    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    // 开始定位
+    // 取得定位权限，有两个方法，取决于你的定位使用情况
+    // 一个是requestAlwaysAuthorization，一个是requestWhenInUseAuthorization
+    [_locationManager requestAlwaysAuthorization];//这句话ios8以上版本使用。
+    [_locationManager startUpdatingLocation];
+}
+//int nicaicai=0;
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    
+    //将经度显示到label上
+    jing = [NSString stringWithFormat:@"%lf", newLocation.coordinate.longitude];
+    //将纬度现实到label上
+    wei = [NSString stringWithFormat:@"%lf", newLocation.coordinate.latitude];
+    // 获取当前所在的城市名
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    //根据经纬度反向地理编译出地址信息
+    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *array, NSError *error){
+        if (array.count > 0){
+            
+            CLPlacemark *placemark = [array objectAtIndex:0];
+            NSLog(@"%@",placemark);
+            
+            address=[placemark.addressDictionary objectForKey:@"FormattedAddressLines"][0];
+            
+            NSLog(@"--------%@",address);
+            
+       
+        }
+        else if (error == nil && [array count] == 0)
+        {
+        }
+        else if (error != nil)
+        {
+        }
+    }];
+    
+    //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
+    //  panduan=0;
+    
+    
+    [manager stopUpdatingLocation];
+    
+    
+    
+}
 #pragma mark - SDCycleScrollViewDelegate
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index

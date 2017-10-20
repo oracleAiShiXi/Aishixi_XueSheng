@@ -29,7 +29,7 @@
     [self navagatio];
     
     
-     type =@"0";
+     type =@"1";
     
     _textview.delegate =self;
     _textview.text = @"请编辑评价内容";
@@ -39,7 +39,12 @@
     // Do any additional setup after loading the view.
 }
 -(void)navagatio{
-    self.title =@"评价";
+    if([_EvaluatEdType isEqualToString:@"1"]){
+    self.title =@"评价企业";
+    }else{
+    self.title =@"评价教师";
+    }
+    
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     
@@ -104,13 +109,15 @@
         NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
         
         NSString * Method = @"/homePageStu/evaluate";
-        /*edUserId 被评人ID
+        /*edUserId 被评人ID 传空串
          content 评价内容
          evaluateType 1 好评 2 中评 3 差评
          evaluatEdType 受评类型 1 企业 2 老师 3 学生
          */
         //被评价人和被评人ID没写那
-        NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"14",@"edUserId",_textview.text,@"content",type,@"evaluateType",@"3",@"evaluatEdType", nil];
+        NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"",@"edUserId",_textview.text,@"content",type,@"evaluateType",_EvaluatEdType,@"evaluatEdType", nil];
+        NSLog(@"%@",Rucan);
+        NSLog(@"123123123123");
         [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
             NSLog(@"4、评价\n%@",responseObject);
         } failure:^(NSError *error) {
@@ -118,7 +125,7 @@
         }];
         
         
-        NSLog(@"提交中");
+        
     }
     
 }

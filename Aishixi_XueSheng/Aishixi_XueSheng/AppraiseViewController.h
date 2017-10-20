@@ -27,4 +27,6 @@
 
 - (IBAction)publist:(id)sender;
 
+@property (strong, nonatomic) NSString *EvaluatEdType;
+
 @end

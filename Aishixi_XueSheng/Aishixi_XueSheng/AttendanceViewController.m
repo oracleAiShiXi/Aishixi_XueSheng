@@ -197,7 +197,7 @@
     [_locationManager requestAlwaysAuthorization];//这句话ios8以上版本使用。
     [_locationManager startUpdatingLocation];
 }
-int nicaicai=0;
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     
     //将经度显示到label上
