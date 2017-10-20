@@ -7,8 +7,8 @@
 //
 
 #import "ChangePassViewController.h"
-#import "WarningBox.h"
-#import "XL_WangLuo.h"
+#import "DengLu_ViewController.h"
+#import "XL_TouWenJian.h"
 @interface ChangePassViewController ()<UITextFieldDelegate>
 
 @end
@@ -174,10 +174,25 @@
                
                NSString * Method = @"/user/setPassword";
                NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_oldPass.text,@"oldPassword",@"1",@"userType",_mewPass.text,@"newPassword", nil];
-
+             [WarningBox warningBoxModeIndeterminate:@"正在修改" andView:self.view];
                [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+                   [WarningBox warningBoxHide:YES andView:self.view];
+                   if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+                   
                    NSLog(@"3、修改密码\n%@",responseObject);
+                       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                           DengLu_ViewController *view = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DengLu"];
+                           [self presentViewController:view animated:YES completion:^{}];
+                       });
+                       
+                   }else{
+                       [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                       
+                   }
+                       
+                       
                } failure:^(NSError *error) {
+                   [WarningBox warningBoxHide:YES andView:self.view];
                    NSLog(@"%@",error);
                }];
             }

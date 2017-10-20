@@ -125,9 +125,11 @@
     NSString * Method = @"/attend/getUserInfo";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",nil];
     NSLog(@"-----------------%@",Rucan);
+    [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"18 学生个人信息查询\n%@",responseObject);
-        
+        [WarningBox warningBoxHide:YES andView:self.view];
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         Infodic =[[NSMutableDictionary alloc]init];
         Infodic =[[responseObject objectForKey:@"data"]objectForKey:@"object"];
         /*
@@ -164,9 +166,16 @@
     _lxdiqu.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"locationAll"]];//所在地区
     _lxdizhi.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"addressAll"]];//联系地址
      moneyAve =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"money"]];//所在地区
-        
+            
+        }else{
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
+        }
+            
+            
         
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
         NSLog(@"%@",error);
     }];
     //根据返回确定是否在岗
@@ -194,9 +203,22 @@
     
     NSLog(@"---------%@",Rucan);
     NSLog(@"dsadsdasdasdasd");
+    
+     [WarningBox warningBoxModeIndeterminate:@"正在修改" andView:self.view];
+    
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+        
         NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        
+        }else{
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
+        }
+            
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
         NSLog(@"%@",error);
     }];
 }

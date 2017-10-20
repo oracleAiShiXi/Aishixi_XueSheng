@@ -58,12 +58,28 @@
     
     NSString * Method = @"/diary/internshipInfo";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_InternshipId,@"internshipId",nil];
+    
+     [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
+    
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+        
         NSLog(@"17 学生日记详情\n%@",responseObject);
         arr =[[NSDictionary alloc]init];
         arr =[responseObject objectForKey:@"data"];
         [_table reloadData];
+        
+        }else{
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
+        }
+        
     } failure:^(NSError *error) {
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
+        
         NSLog(@"%@",error);
     }];
 

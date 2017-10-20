@@ -96,9 +96,24 @@
     UIImage *image = [[UIImage alloc]initWithContentsOfFile:filepath];
     NSLog(@"%@",image);
     NSArray * arr = [NSArray arrayWithObjects:image, nil];
+    
+    [WarningBox warningBoxModeIndeterminate:@"正在签到" andView:self.view];
+    
     [XL_WangLuo ShangChuanTuPianwithBizMethod:Method Rucan:Rucan type:Post image:arr key:@"url" success:^(id responseObject) {
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+            
         NSLog(@"8 学生考勤\n%@",responseObject);
+        }else{
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
+        }
+        
+        
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        
         NSLog(@"%@",error);
     }];
     

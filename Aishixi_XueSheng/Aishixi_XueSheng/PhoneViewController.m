@@ -53,12 +53,21 @@ NSMutableArray *arr;
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/attend/mailList";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",nil];
+    [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"20 学生通讯录\n%@",responseObject);
-        arr =[NSMutableArray array];
-        arr=[[responseObject objectForKey:@"data"] objectForKey:@"mailList"];
-        [_table reloadData];
+        [WarningBox warningBoxHide:YES andView:self.view];
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+           NSLog(@"20 学生通讯录\n%@",responseObject);
+           arr =[NSMutableArray array];
+           arr=[[responseObject objectForKey:@"data"] objectForKey:@"mailList"];
+           [_table reloadData];
+        }else{
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
+        }
+        
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
         NSLog(@"%@",error);
     }];
 

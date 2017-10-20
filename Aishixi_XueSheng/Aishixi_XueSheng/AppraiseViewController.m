@@ -124,9 +124,26 @@
         NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"",@"edUserId",_textview.text,@"content",type,@"evaluateType",_EvaluatEdType,@"evaluatEdType", nil];
         NSLog(@"%@",Rucan);
         NSLog(@"123123123123");
+        
+        
+        [WarningBox warningBoxModeIndeterminate:@"正在评价" andView:self.view];
+        
         [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+            
+            [WarningBox warningBoxHide:YES andView:self.view];
+            if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+            
             NSLog(@"4、评价\n%@",responseObject);
+            
+            }else{
+                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                
+            }
+            
         } failure:^(NSError *error) {
+            
+            [WarningBox warningBoxHide:YES andView:self.view];
+            
             NSLog(@"%@",error);
         }];
         

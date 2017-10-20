@@ -118,9 +118,25 @@
         NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",type,@"consultType",_textview.text,@"consultContent", nil];
         NSLog(@"%@",Rucan);
 
+        [WarningBox warningBoxModeIndeterminate:@"正在提交" andView:self.view];
+        
+        
         [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+            
+            [WarningBox warningBoxHide:YES andView:self.view];
+            if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+            
             NSLog(@"11 学生咨询\n%@",responseObject);
+            }else{
+                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                
+            }
+            
+            
         } failure:^(NSError *error) {
+            
+            
+            [WarningBox warningBoxHide:YES andView:self.view];
             NSLog(@"%@",error);
         }];
         

@@ -75,12 +75,29 @@
      NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/homePageStu/noticeList";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"pageNo",@"5",@"pageSize", nil];
+    
+    [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
+    
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+        
         NSLog(@"9 学生公告列表\n%@",responseObject);
         arr =[NSMutableArray array];
         arr =[[responseObject objectForKey:@"data"] objectForKey:@"noticeList"];
         [_tableview reloadData];
+            
+        }else{
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
+        }
+            
+            
     } failure:^(NSError *error) {
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
+        
         NSLog(@"%@",error);
     }];
     
