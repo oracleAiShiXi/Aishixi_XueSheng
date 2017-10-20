@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger,Post_or_Get) {
 /*
  * 店小二的上传图片
  */
-+(void)ShangChuanTuPianwithBizMethod:(NSString*)BizMetho Rucan:(NSDictionary*)BizParamSt type:(Post_or_Get)type image:(UIImage*)image key:(NSString*)key success:(void (^)(id responseObject))success
++(void)ShangChuanTuPianwithBizMethod:(NSString*)BizMetho Rucan:(NSDictionary*)BizParamSt type:(Post_or_Get)type image:(NSArray*)image key:(NSString*)key success:(void (^)(id responseObject))success
                              failure:(void (^)(NSError *error))failure;
 /*
  * 外网除了登录接口

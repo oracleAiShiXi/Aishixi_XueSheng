@@ -150,7 +150,7 @@
             // image.contentMode = UIViewContentModeScaleAspectFit;
             image.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
             [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
-            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,QianWaiWang,[arr objectForKey:@"url1"]];
+            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,QianWaiWangIP,[arr objectForKey:@"url1"]];
             url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSLog(@"%@",url);
             [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
@@ -158,7 +158,7 @@
             UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
             [image addGestureRecognizer:tapGestureRecognizer1];
             //让UIImageView和它的父类开启用户交互属性
-            NSString *ss=[NSString stringWithFormat:@"%@%@(null)",Scheme,QianWaiWang];
+            NSString *ss=[NSString stringWithFormat:@"%@%@(null)",Scheme,QianWaiWangIP];
             if([url isEqual:ss]){
                 [image setUserInteractionEnabled:NO];
             }else{
@@ -178,13 +178,13 @@
             //image.contentMode = UIViewContentModeScaleAspectFit;
             image.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
             [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
-            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,QianWaiWang,[arr objectForKey:@"url2"]];
+            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,QianWaiWangIP,[arr objectForKey:@"url2"]];
             url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
             UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
             [image addGestureRecognizer:tapGestureRecognizer1];
             //让UIImageView和它的父类开启用户交互属性
-            NSString *ss=[NSString stringWithFormat:@"%@%@(null)",Scheme,QianWaiWang];
+            NSString *ss=[NSString stringWithFormat:@"%@%@(null)",Scheme,QianWaiWangIP];
             if([url isEqual:ss]){
                 [image setUserInteractionEnabled:NO];
             }else{
@@ -201,13 +201,13 @@
             //image.contentMode = UIViewContentModeScaleAspectFit;
             image.clipsToBounds  = YES;//是否剪切掉超出 UIImageView 范围的图片
             [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
-            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,QianWaiWang,[arr objectForKey:@"url3"]];
+            NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,QianWaiWangIP,[arr objectForKey:@"url3"]];
             url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
             UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];
             [image addGestureRecognizer:tapGestureRecognizer1];
             //让UIImageView和它的父类开启用户交互属性
-            NSString *ss=[NSString stringWithFormat:@"%@%@(null)",Scheme,QianWaiWang];
+            NSString *ss=[NSString stringWithFormat:@"%@%@(null)",Scheme,QianWaiWangIP];
             if([url isEqual:ss]){
                 [image setUserInteractionEnabled:NO];
             }else{

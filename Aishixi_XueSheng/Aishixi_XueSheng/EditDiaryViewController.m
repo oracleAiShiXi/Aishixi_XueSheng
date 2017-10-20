@@ -339,6 +339,9 @@
         NSString *picpath=[NSString stringWithFormat:@"%@/1.jpg",dicpath];
         NSString *picpath1=[NSString stringWithFormat:@"%@/2.jpg",dicpath];
         NSString *picpath2=[NSString stringWithFormat:@"%@/3.jpg",dicpath];
+        UIImage *img =[UIImage imageNamed:picpath];
+        UIImage *img1 =[UIImage imageNamed:picpath1];
+        UIImage *img2 =[UIImage imageNamed:picpath2];
         NSArray*apq=[NSArray arrayWithObjects:picpath,picpath1,picpath2, nil];
         for (int i=0; i<apq.count; i++) {
             if ([fm1 fileExistsAtPath: apq[i]]) {
@@ -350,9 +353,9 @@
         NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
         NSString * Method = @"/diary/internshipPublic";
         NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",switchtype,@"quesionChapter",type,@"mood",_textview.text,@"content", nil];
-        UIImage *image = [UIImage imageNamed:@"对号2"];
-        NSArray *arr = [NSArray arrayWithObjects:image,image, nil];
-        [XL_WangLuo ShangChuanTuPianwithBizMethod:Method Rucan:Rucan type:Post image:heheda key:@"imageUrl" success:^(id responseObject) {
+//        UIImage *image = [UIImage imageNamed:@"对号2"];
+        NSArray *arr = [NSArray arrayWithObjects:img,img1,img2, nil];
+        [XL_WangLuo ShangChuanTuPianwithBizMethod:Method Rucan:Rucan type:Post image:arr key:@"imageUrl" success:^(id responseObject) {
             NSLog(@"15 学生日记发布\n%@",responseObject);
             
             NSFileManager *defaultManager;
