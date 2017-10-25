@@ -10,7 +10,8 @@
 #import "XL_TouWenJian.h"
 @interface PhoneViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
-NSMutableArray *arr;
+     NSMutableArray *arr;
+    int  pageNo,pageSize,count;
 }
 @end
 
@@ -23,7 +24,32 @@ NSMutableArray *arr;
     [self navagatio];
     [self jiekou];
     [self delegate];
+    
+    count = 0;
+    pageSize = 10;
+    pageNo = 1;
+    arr = [[NSMutableArray alloc] init];
+    self.table.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.table.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
     // Do any additional setup after loading the view.
+}
+
+-(void)loadNewData{
+    arr = [[NSMutableArray alloc] init];
+    pageNo = 1;
+    [self jiekou];
+    [_table.mj_header endRefreshing];
+    self.table.mj_footer.hidden = NO;
+}
+-(void)loadMoreData{
+    if (pageNo * pageSize >= count) {
+        self.table.mj_footer.hidden = YES;
+    }else{
+        pageNo += 1;
+        [self jiekou];
+        [_table.mj_footer endRefreshing];
+    }
 }
 
 -(void)navagatio{
@@ -52,14 +78,21 @@ NSMutableArray *arr;
 -(void)jiekou{
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/attend/mailList";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",nil];
+    
+    NSString *_pageSize = [NSString stringWithFormat:@"%d",pageSize];
+    
+    NSString *_pageNo = [NSString stringWithFormat:@"%d",pageNo];
+    
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_pageNo,@"pageNo",_pageSize,@"pageSize",nil];
     [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
+        NSLog(@"20 学生通讯录\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
            NSLog(@"20 学生通讯录\n%@",responseObject);
            arr =[NSMutableArray array];
            arr=[[responseObject objectForKey:@"data"] objectForKey:@"mailList"];
+            count = [[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
            [_table reloadData];
         }else{
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];

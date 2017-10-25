@@ -155,6 +155,7 @@
 - (IBAction)Sure:(id)sender {
     [self.view endEditing:YES];
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSLog(@"%@",[defaults objectForKey:@"Password"]);
         if (self.oldPass.text.length > 0 && self.mewPass.text.length > 0 && self.rePass.text.length > 0){
             
             if(self.oldPass.text != [NSString stringWithFormat:@"%@",[defaults objectForKey:@"Password"]])

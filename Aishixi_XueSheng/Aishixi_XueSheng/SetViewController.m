@@ -8,6 +8,8 @@
 
 #import "SetViewController.h"
 #import "ChangePassViewController.h"
+#import "AboutViewController.h"
+#import "DengLu_ViewController.h"
 @interface SetViewController ()
 
 @end
@@ -59,6 +61,11 @@
 }
 */
 
+- (IBAction)Abouts:(id)sender {
+    AboutViewController*his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"About"];
+    [self.navigationController pushViewController:his animated:YES];
+}
+
 - (IBAction)ChangePass:(id)sender {
     ChangePassViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ChangePass"];
     [self.navigationController pushViewController:his animated:YES];
@@ -66,5 +73,8 @@
 }
 
 - (IBAction)Exit:(id)sender {
+    DengLu_ViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DengLu"];
+    [self presentViewController:his animated:YES completion:^{
+    }];
 }
 @end

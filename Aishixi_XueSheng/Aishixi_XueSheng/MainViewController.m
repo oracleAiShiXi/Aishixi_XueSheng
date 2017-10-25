@@ -110,8 +110,8 @@
         if([attendanceinfo isEqualToString:@""]){
             attendanceinfo =@"暂无考勤信息";
         }else{
-           // attendanceinfo =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"attendanceInfo"]];
-            attendanceinfo =@"暂无考勤信息暂无考勤信息暂无考勤信息暂无考勤信息";
+           attendanceinfo =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"attendanceInfo"]];
+           // attendanceinfo =@"暂无考勤信息暂无考勤信息暂无考勤信息暂无考勤信息";
         }
         
         

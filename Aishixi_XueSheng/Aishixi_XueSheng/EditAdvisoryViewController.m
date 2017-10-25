@@ -109,9 +109,12 @@
 //    }else{
 //        NSLog(@"提交中");
 //    }
-    if([type isEqualToString:@"0"]||[_textview.text isEqualToString:@"请编辑咨询内容"]){
-        NSLog(@"请选择咨询类型或编辑咨询内容");
-    }else{
+    if([type isEqualToString:@"0"]){
+        [WarningBox warningBoxModeText:@"请选择咨询类型" andView:self.view];
+    }else if ([_textview.text isEqualToString:@"请编辑咨询内容"]){
+       [WarningBox warningBoxModeText:@"请输入咨询内容" andView:self.view];
+    }
+    else{
         
       NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
         NSString * Method = @"/consult/consul";

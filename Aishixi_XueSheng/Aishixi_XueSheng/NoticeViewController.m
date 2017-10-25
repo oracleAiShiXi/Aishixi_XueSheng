@@ -26,7 +26,7 @@
     [self wangluo];
     [self comeback];
     count = 0;
-    pageSize = 5;
+    pageSize = 10;
     pageNo = 1;
     arr = [[NSMutableArray alloc] init];
     self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -74,7 +74,12 @@
 -(void)wangluo{
      NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/homePageStu/noticeList";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"pageNo",@"5",@"pageSize", nil];
+    
+    NSString *_pageSize = [NSString stringWithFormat:@"%d",pageSize];
+    
+    NSString *_pageNo = [NSString stringWithFormat:@"%d",pageNo];
+    
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_pageNo,@"pageNo",_pageSize,@"pageSize", nil];
     
     [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
     
@@ -86,6 +91,8 @@
         NSLog(@"9 学生公告列表\n%@",responseObject);
         arr =[NSMutableArray array];
         arr =[[responseObject objectForKey:@"data"] objectForKey:@"noticeList"];
+        count = [[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
+        //arr=(NSMutableArray *)[[arr reverseObjectEnumerator] allObjects];
         [_tableview reloadData];
             
         }else{
@@ -183,17 +190,28 @@
     
     UIView*backview=[[UIView alloc] initWithFrame:CGRectMake(0,10,width-20,55)];
     backview.backgroundColor =[UIColor whiteColor];
-    UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(15,15, 30, 30)];
-    imageview.image =[UIImage imageNamed:@"01.png"];
+    UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(15,20, 15, 20)];
+    imageview.image =[UIImage imageNamed:@"发布.png"];
     
-    UILabel *titles = [[UILabel alloc]initWithFrame:CGRectMake(55,10,width-175,20)];
+    UILabel *titles = [[UILabel alloc]initWithFrame:CGRectMake(40,10,width-175,20)];
     
     titles.font =[UIFont systemFontOfSize:15];
     
+    if([arr[indexPath.section]objectForKey:@"noticeTitle"]==NULL){
+    titles.text =@"";
+    }else{
     titles.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"noticeTitle"]];
-    UILabel *pushtime = [[UILabel alloc]initWithFrame:CGRectMake(55,30,width-175,20)];
-    pushtime.font =[UIFont systemFontOfSize:15];
-    pushtime.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"createDate"]];
+    }
+    
+    UILabel *pushtime = [[UILabel alloc]initWithFrame:CGRectMake(40,30,width-175,20)];
+    pushtime.font =[UIFont systemFontOfSize:13];
+    pushtime.textColor=[UIColor colorWithHexString:@"AAAAAA"];
+    if([arr[indexPath.section]objectForKey:@"createDate"]==NULL){
+     pushtime.text =@"";
+    }else{
+     pushtime.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"createDate"]];
+    }
+   
 //    NSString *ss=[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"pushTime"]];
 //    ss=[ss substringToIndex:10];
 //    pushtime.text =ss;
@@ -202,10 +220,24 @@
 //    ll.layer.borderWidth =1;
 //    ll.layer.cornerRadius =5;
 //    ll.text =@"最新";
-    UIImageView*imageview1=[[UIImageView alloc] initWithFrame:CGRectMake(width-90,10,40,30)];
-    imageview1.image =[UIImage imageNamed:@"important.png"];
+    UIImageView*imageview1=[[UIImageView alloc] initWithFrame:CGRectMake(width-90,10,40,35)];
+    
     UIImageView*imageview2=[[UIImageView alloc] initWithFrame:CGRectMake(width-50,0,30,30)];
-    imageview2.image =[UIImage imageNamed:@"weidu.png"];
+    if([[arr[indexPath.section]objectForKey:@"level"] intValue]==1){
+     imageview1.image =[UIImage imageNamed:@"important.png"];
+    }else{
+     imageview1.image =[UIImage imageNamed:@""];
+    }
+    
+    if([[arr[indexPath.section]objectForKey:@"isRead"] intValue]==1){
+        imageview2.image =[UIImage imageNamed:@""];
+    }else{
+       imageview2.image =[UIImage imageNamed:@"weidu.png"];
+    }
+    
+    
+    
+    
     //    UIImageView*imageview1=[[UIImageView alloc] initWithFrame:CGRectMake(width-50,35,20,20)];
     //    if([[arr[indexPath.section]objectForKey:@"state"] intValue]==1){
     //      imageview1.image =[UIImage imageNamed:@"新消息提示-2.png"];
@@ -233,7 +265,7 @@
 
     NoticeInfoViewController *info = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"noticeinfo"];
     
-     info.NoticeId =[NSString stringWithFormat:@"%@",[arr[indexPath.row] objectForKey:@"noticeId"]];
+     info.NoticeId =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"noticeId"]];
     
     [self.navigationController pushViewController:info animated:YES];
     

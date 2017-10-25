@@ -27,6 +27,7 @@
 		D71B6F931F7894A800AA91BE /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71B6F921F7894A700AA91BE /* SetViewController.m */; };
 		D71B6F961F78E36B00AA91BE /* AppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71B6F951F78E36B00AA91BE /* AppraiseViewController.m */; };
 		D71D7CEF1F96EE4B000C432F /* ImgInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71D7CEE1F96EE4B000C432F /* ImgInfoViewController.m */; };
+		D72A1B941F9EE13600588394 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72A1B931F9EE13600588394 /* AboutViewController.m */; };
 		D72E12EF1F7A320C0081DB1B /* NavagationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72E12EE1F7A320C0081DB1B /* NavagationViewController.m */; };
 		D73235EC1F95DE75000DAC9F /* PhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D73235EB1F95DE75000DAC9F /* PhoneViewController.m */; };
 		D7368F1E1F8EF6A900514742 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7368F1D1F8EF6A900514742 /* MainViewController.m */; };
@@ -138,6 +139,8 @@
 		D71B6F951F78E36B00AA91BE /* AppraiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppraiseViewController.m; sourceTree = "<group>"; };
 		D71D7CED1F96EE4B000C432F /* ImgInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgInfoViewController.h; sourceTree = "<group>"; };
 		D71D7CEE1F96EE4B000C432F /* ImgInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgInfoViewController.m; sourceTree = "<group>"; };
+		D72A1B921F9EE13600588394 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		D72A1B931F9EE13600588394 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		D72E12ED1F7A320C0081DB1B /* NavagationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavagationViewController.h; sourceTree = "<group>"; };
 		D72E12EE1F7A320C0081DB1B /* NavagationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavagationViewController.m; sourceTree = "<group>"; };
 		D73235EA1F95DE75000DAC9F /* PhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneViewController.h; sourceTree = "<group>"; };
@@ -487,6 +490,15 @@
 			name = "主页";
 			sourceTree = "<group>";
 		};
+		D72A1B911F9EE11700588394 /* 关于 */ = {
+			isa = PBXGroup;
+			children = (
+				D72A1B921F9EE13600588394 /* AboutViewController.h */,
+				D72A1B931F9EE13600588394 /* AboutViewController.m */,
+			);
+			name = "关于";
+			sourceTree = "<group>";
+		};
 		D73235E91F95DE3D000DAC9F /* 通讯录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -624,6 +636,7 @@
 			children = (
 				D71B6F911F7894A700AA91BE /* SetViewController.h */,
 				D71B6F921F7894A700AA91BE /* SetViewController.m */,
+				D72A1B911F9EE11700588394 /* 关于 */,
 				D777FD461F7DE69D0083860A /* 修改密码 */,
 			);
 			name = "设置";
@@ -858,6 +871,7 @@
 				D75AB1FF1F725FC9005E9BBE /* EditDiaryViewController.m in Sources */,
 				D73E18E21F8DC053005A0456 /* ActionSheetLocalePicker.m in Sources */,
 				D73E18F01F8DC053005A0456 /* NSObject+MJKeyValue.m in Sources */,
+				D72A1B941F9EE13600588394 /* AboutViewController.m in Sources */,
 				D7368F341F8F3D6600514742 /* SDCycleScrollView.m in Sources */,
 				D777FD4D1F7DE7690083860A /* ChangePassViewController.m in Sources */,
 				D71AE86B1F70FB08006F542B /* NoticeViewController.m in Sources */,

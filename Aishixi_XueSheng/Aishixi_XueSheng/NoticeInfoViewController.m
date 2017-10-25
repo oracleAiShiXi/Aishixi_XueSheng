@@ -52,7 +52,7 @@
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/homePageStu/noticeInfo";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_NoticeId,@"noticeId",nil];
-    
+    NSLog(@"%@",Rucan);
     [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
     
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
@@ -216,21 +216,22 @@
             
         }
         else{
-            UILabel *school= [[UILabel alloc]initWithFrame:CGRectMake(width-250, 10,230, 20)];
-            school.textColor =[UIColor colorWithHexString:@"fd8f30"];
+            UILabel *name= [[UILabel alloc]initWithFrame:CGRectMake(width-250, 10,230, 20)];
+            name.textColor =[UIColor colorWithHexString:@"908C8C"];
+            name.font= [UIFont systemFontOfSize:14];
+            name.textAlignment = NSTextAlignmentRight;
+            
+            
+            UILabel *school= [[UILabel alloc]initWithFrame:CGRectMake(width-250, 35,230, 20)];
+            
+            school.textColor =[UIColor colorWithHexString:@"908C8C"];
             school.font= [UIFont systemFontOfSize:14];
             school.textAlignment = NSTextAlignmentRight;
             
-            UILabel *time= [[UILabel alloc]initWithFrame:CGRectMake(width-250, 40,230, 20)];
-            time.textColor =[UIColor colorWithHexString:@"fd8f30"];
+            UILabel *time= [[UILabel alloc]initWithFrame:CGRectMake(width-250, 60,230, 20)];
+            time.textColor =[UIColor colorWithHexString:@"908C8C"];
             time.font= [UIFont systemFontOfSize:14];
             time.textAlignment = NSTextAlignmentRight;
-            
-            
-            UILabel *name= [[UILabel alloc]initWithFrame:CGRectMake(width-250, 70,230, 20)];
-            name.textColor =[UIColor colorWithHexString:@"fd8f30"];
-            name.font= [UIFont systemFontOfSize:14];
-            name.textAlignment = NSTextAlignmentRight;
             
             
             if(nil==[arr objectForKey:@"noticeOrgName"]){

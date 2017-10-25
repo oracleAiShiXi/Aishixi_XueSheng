@@ -10,20 +10,38 @@
 #import "NavagationViewController.h"
 #import "XL_TouWenJian.h"
 @interface DengLu_ViewController ()<UITextFieldDelegate>
-
+{
+    NSUserDefaults *def;
+}
 @end
 
 @implementation DengLu_ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+     def =[NSUserDefaults standardUserDefaults];
     [self delegate];
     [self navagatio];
-    _username.text =@"13888888888";
-    _password.text =@"123456";
+//    _username.text =@"13888888888";
+//    _password.text =@"123456";
    // NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"zls",@"userName",@"123456789",@"passWord",@"2",@"userType", nil];13888888888
     // Do any additional setup after loading the view, typically from a nib.
 }
+-(void)viewWillAppear:(BOOL)animated{
+    
+    if(nil==[def objectForKey:@"userName"]){
+        _username.text =@"";
+    }else{
+        _username.text =[NSString stringWithFormat:@"%@",[def objectForKey:@"userName"]];
+    }
+    if(nil==[def objectForKey:@"Password"]){
+        _password.text =@"";
+    }else{
+        _password.text =[NSString stringWithFormat:@"%@",[def objectForKey:@"Password"]];
+    }
+    
+}
+
 -(void)navagatio{
     self.title =@"登录";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -71,6 +89,12 @@
             /*数据处理*/
             NSDictionary * data =[responseObject objectForKey:@"data"];
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            
+            [user setObject:[NSString stringWithFormat:@"%@",_username.text] forKey:@"userName"];
+            [user setObject:[NSString stringWithFormat:@"%@",_password.text] forKey:@"Password"];
+            
+            
+            
             //用户Id
             [user setObject:[data objectForKey:@"userId"] forKey:@"userId"];
             //用户电话

@@ -27,7 +27,7 @@
     [self comeback];
     [self delegate];
     count = 0;
-    pageSize = 5;
+    pageSize = 10;
     pageNo = 1;
    
     self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -63,7 +63,7 @@
 }
 
 -(void)comeback{
-    self.title =@"日记列表";
+    self.title =@"我的日记";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
 
@@ -79,7 +79,12 @@
 -(void)wlrequest{
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/diary/internshipList";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"pageNo",@"5",@"pageSize",nil];
+    
+    NSString *_pageSize = [NSString stringWithFormat:@"%d",pageSize];
+    
+    NSString *_pageNo = [NSString stringWithFormat:@"%d",pageNo];
+    
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_pageNo,@"pageNo",_pageSize,@"pageSize",nil];
     
      [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
@@ -90,6 +95,7 @@
         NSLog(@"16 学生日记列表\n%@",responseObject);
        arr =[NSMutableArray array];
        arr=[[responseObject objectForKey:@"data"] objectForKey:@"internshipList"];
+        count = [[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
         [_tableview reloadData];
        
         }else{
@@ -187,7 +193,7 @@
     backview.backgroundColor =[UIColor whiteColor];
     backview.layer.cornerRadius =5;
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(10,15, 180, 20)];
-    UIButton *type = [[UIButton alloc]initWithFrame:CGRectMake(backview.frame.size.width-80,35, 60, 20)];
+    UIButton *type = [[UIButton alloc]initWithFrame:CGRectMake(backview.frame.size.width-80,35, 50, 20)];
     UILabel *time = [[UILabel alloc]initWithFrame:CGRectMake(10,50, 180, 20)];
     title.font =[UIFont systemFontOfSize:15];
     title.adjustsFontSizeToFitWidth =YES;
@@ -199,13 +205,16 @@
     
     if([[arr[indexPath.row]objectForKey:@"quesionChapter"] intValue]==1){
        [type setTitle:@"公开" forState:UIControlStateNormal];
-       [type setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
+       [type setImage:[UIImage imageNamed:@"公开.png"] forState:UIControlStateNormal];
+        [type setImageEdgeInsets:UIEdgeInsetsMake(2, 0, 2,10)];
+        [type setTitleEdgeInsets:UIEdgeInsetsMake(0,0, 0, 0)];
+       [type setTitleColor:[UIColor colorWithHexString:@"0FE5C9"] forState:UIControlStateNormal];
     }else{
         [type setTitle:@"私密" forState:UIControlStateNormal];
         [type setImage:[UIImage imageNamed:@"私密.png"] forState:UIControlStateNormal];
         [type setImageEdgeInsets:UIEdgeInsetsMake(2, 0, 2,10)];
         [type setTitleEdgeInsets:UIEdgeInsetsMake(0,0, 0, 0)];
-        [type setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [type setTitleColor:[UIColor colorWithHexString:@"9165F6"] forState:UIControlStateNormal];
     }
     
     
@@ -222,7 +231,7 @@
         
         time.text =@"";
     }else{
-        time.text =[NSString stringWithFormat:@"更新时间:%@",[arr[indexPath.row]objectForKey:@"cretateTime"]];
+        time.text =[NSString stringWithFormat:@"%@",[arr[indexPath.row]objectForKey:@"cretateTime"]];
         
     }
 

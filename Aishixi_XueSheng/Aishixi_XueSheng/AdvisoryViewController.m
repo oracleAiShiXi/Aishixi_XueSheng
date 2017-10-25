@@ -33,7 +33,7 @@
     count = 0;
     pageSize = 5;
     pageNo = 1;
-    arr = [[NSMutableArray alloc] init];
+   arr = [[NSMutableArray alloc] init];
     self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
@@ -42,7 +42,7 @@
     // Do any additional setup after loading the view.
 }
 -(void)loadNewData{
-    arr = [[NSMutableArray alloc] init];
+    //arr = [[NSMutableArray alloc] init];
     pageNo = 1;
     [self jiekou];
     [_tableview.mj_header endRefreshing];
@@ -69,7 +69,7 @@
     //    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithCustomView:btnn];
     //    self.navigationItem.leftBarButtonItem =left;
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"写咨询" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
+    UIBarButtonItem*right=[[UIBarButtonItem alloc]initWithTitle:@"写消息" style:UIBarButtonItemStyleDone target:self action:@selector(History)];
     [self.navigationItem setRightBarButtonItem:right];
     self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
@@ -87,7 +87,14 @@
 -(void)jiekou{
      NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/consult/consulList";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"1",@"pageNo",@"5",@"pageSize", nil];
+    
+    
+    NSString *_pageSize = [NSString stringWithFormat:@"%d",pageSize];
+    
+    NSString *_pageNo = [NSString stringWithFormat:@"%d",pageNo];
+    
+    NSLog(@"%@-----%@",_pageNo,_pageSize);
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_pageNo,@"pageNo",_pageSize,@"pageSize", nil];
     
     [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
     
@@ -97,8 +104,11 @@
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         
         NSLog(@"12 学生咨询列表\n%@",responseObject);
-        arr =[NSMutableArray array];
+       // arr =[NSMutableArray array];
         arr=[[responseObject objectForKey:@"data"] objectForKey:@"consulList"];
+        count = [[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
+        //arr=(NSMutableArray *)[[arr reverseObjectEnumerator] allObjects];
+            
         [_tableview reloadData];
         
         }else{
@@ -122,56 +132,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-//-(void)comeback{
-//    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-//    UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back@2x"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
-//    [self.navigationItem setLeftBarButtonItem:left];
-//}
-//-(void)fanhui{
-//    
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
-//
-//
-//-(void)wangluo{
-//    //    [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
-//    //    NSUserDefaults*def =[NSUserDefaults standardUserDefaults];
-//    //    NSString *fangshi =@"/userInfo/pushList";
-//    //    NSDictionary *datadic = [NSDictionary dictionaryWithObjectsAndKeys:[def objectForKey:@"studentId"],@"studentId",[def objectForKey:@"officeId"],@"officeId", nil];
-//    //    [XL_wangluo JieKouwithBizMethod:fangshi Rucan:datadic type:Post success:^(id responseObject) {
-//    //
-//    //
-//    //        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
-//    //            [WarningBox warningBoxHide:YES andView:self.view];
-//    //            arr =[NSMutableArray array];
-//    //            arr =[[responseObject objectForKey:@"data"] objectForKey:@"pushInfoList"];
-//    //            if(arr.count==0){
-//    //                _Img.hidden =NO;
-//    //                _table.hidden=YES;
-//    //            }else{
-//    //                _Img.hidden =YES;
-//    //                _table.hidden =NO;
-//    //                [_table reloadData];
-//    //            }
-//    //
-//    //
-//    //        }
-//    //        else if ([[responseObject objectForKey:@"code"]isEqual:@"9999"]){
-//    //            //账号在其他手机登录，请重新登录。
-//    //            [XL_wangluo sigejiu:self];
-//    //        }
-//    //        else{
-//    //            [WarningBox warningBoxHide:YES andView:self.view];
-//    //            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
-//    //        }
-//    //    } failure:^(NSError *error) {
-//    //        [WarningBox warningBoxHide:YES andView:self.view];
-//    //        [WarningBox warningBoxModeText:@"网络连接错误" andView:self.view];
-//    //
-//    //    }];
-//    
-//    
-//}
+
 
 -(void)delegate{
     _tableview.delegate=self;
@@ -215,12 +176,17 @@
     UILabel *concent =(UILabel*)[cell viewWithTag:102];
     UILabel *time =(UILabel*)[cell viewWithTag:103];
     UILabel *type =(UILabel*)[cell viewWithTag:104];
-    if(nil==[arr[indexPath.section]objectForKey:@"consulTitle"]){
-        concent.text=@"";
-    }else{
-        concent.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"consulTitle"]];
+    
+   
         
-    }
+        if([[arr[indexPath.section]objectForKey:@"consulTitle"]isEqualToString:@""]){
+            concent.text=@"";
+        }else{
+            concent.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"consulTitle"]];
+            
+        }
+   
+    
     
     if(nil==[arr[indexPath.section]objectForKey:@"createDate"]){
         time.text=@"";
@@ -230,8 +196,10 @@
     }
     if([[arr[indexPath.section]objectForKey:@"status"] intValue]==1){
         type.text=@"已回复";
+        type.textColor =[UIColor colorWithHexString:@"8A5BF7"];
     }else{
         type.text=@"未回复";
+        type.textColor =[UIColor colorWithHexString:@"EF00FF"];
         
     }
     
