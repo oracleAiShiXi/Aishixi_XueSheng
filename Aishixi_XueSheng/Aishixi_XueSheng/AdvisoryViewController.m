@@ -33,7 +33,7 @@
     count = 0;
     pageSize = 5;
     pageNo = 1;
-   arr = [[NSMutableArray alloc] init];
+    arr =[NSMutableArray array];
     self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
@@ -42,7 +42,8 @@
     // Do any additional setup after loading the view.
 }
 -(void)loadNewData{
-    //arr = [[NSMutableArray alloc] init];
+    arr =[NSMutableArray array];
+    [_tableview reloadData];
     pageNo = 1;
     [self jiekou];
     [_tableview.mj_header endRefreshing];
@@ -105,7 +106,10 @@
         
         NSLog(@"12 学生咨询列表\n%@",responseObject);
        // arr =[NSMutableArray array];
-        arr=[[responseObject objectForKey:@"data"] objectForKey:@"consulList"];
+        //arr=[[responseObject objectForKey:@"data"] objectForKey:@"consulList"];
+        
+            [arr addObjectsFromArray:[[responseObject objectForKey:@"data"] objectForKey:@"consulList"]];
+            
         count = [[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
         //arr=(NSMutableArray *)[[arr reverseObjectEnumerator] allObjects];
             
@@ -177,9 +181,27 @@
     UILabel *time =(UILabel*)[cell viewWithTag:103];
     UILabel *type =(UILabel*)[cell viewWithTag:104];
     
+    
+//    CATransform3D rotation;
+//    rotation = CATransform3DMakeRotation( (90.0*M_PI)/180, 0.0, 0.7, 0.4);
+//    rotation.m34 = 1.0/ -600;
+//    
+//    cell.layer.shadowColor = [[UIColor blackColor]CGColor];
+//    cell.layer.shadowOffset = CGSizeMake(10, 10);
+//    cell.alpha = 0;
+//    cell.layer.transform = rotation;
+//    cell.layer.anchorPoint = CGPointMake(0, 0.5);
+//    
+//    
+//    [UIView beginAnimations:@"rotation" context:NULL];
+//    [UIView setAnimationDuration:0.8];
+//    cell.layer.transform = CATransform3DIdentity;
+//    cell.alpha = 1;
+//    cell.layer.shadowOffset = CGSizeMake(0, 0);
+//    [UIView commitAnimations];
    
         
-        if([[arr[indexPath.section]objectForKey:@"consulTitle"]isEqualToString:@""]){
+        if(NULL==[arr[indexPath.section]objectForKey:@"consulTitle"]||[arr[indexPath.section]objectForKey:@"consulTitle"]==nil){
             concent.text=@"";
         }else{
             concent.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"consulTitle"]];
@@ -188,7 +210,7 @@
    
     
     
-    if(nil==[arr[indexPath.section]objectForKey:@"createDate"]){
+    if(NULL==[arr[indexPath.section]objectForKey:@"createDate"]){
         time.text=@"";
     }else{
         time.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"createDate"]];
@@ -223,6 +245,85 @@
     his.status =[NSString stringWithFormat:@"%@",[arr[indexPath.section] objectForKey:@"status"]];
     [self.navigationController pushViewController:his animated:YES];
     
+}
+
+//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (arr.count>0) {
+//        //设置x和y的初始值为0.1；
+//        //cell.alpha=0.5;
+//        cell.layer.transform = CATransform3DMakeScale(0.97, 0.97, 1);
+//        //x和y的最终值为1
+//        [UIView animateWithDuration:1 animations:^{
+//            cell.layer.transform = CATransform3DMakeScale(1, 1, 1);
+//            //cell.alpha=1;
+//        }];
+//    }
+//}
+
+
+//- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.section % 2 != 0) {
+//        cell.transform = CGAffineTransformTranslate(cell.transform, width/2, 0);
+//        
+//    }else{
+//        cell.transform = CGAffineTransformTranslate(cell.transform, -width/2, 0);
+//    }
+//    cell.alpha = 0.0;
+//    
+//    [UIView animateWithDuration:0.7 animations:^{
+//        
+//        cell.transform = CGAffineTransformIdentity;
+//        
+//        cell.alpha = 1.0;
+//        
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+//    
+//}
+//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    CATransform3D rotation;
+//    rotation = CATransform3DMakeRotation( (20.0*M_PI)/180, 0.0, 0.7, 0.4);
+//    rotation.m34 = 1.0/ -600;
+//    
+//    cell.layer.shadowColor = [[UIColor blackColor]CGColor];
+//    cell.layer.shadowOffset = CGSizeMake(10, 10);
+//    cell.alpha = 0;
+//    cell.layer.transform = rotation;
+//    cell.layer.anchorPoint = CGPointMake(0, 0.5);
+//    
+//    
+//    [UIView beginAnimations:@"rotation" context:NULL];
+//    [UIView setAnimationDuration:0.2];
+//    cell.layer.transform = CATransform3DIdentity;
+//    cell.alpha = 1;
+//    cell.layer.shadowOffset = CGSizeMake(0, 0);
+//    [UIView commitAnimations];
+//}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    CGFloat rotationAngleDegrees = 0;
+    CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
+    CGPoint offsetPositioning = CGPointMake(-200, -20);
+    CATransform3D transform = CATransform3DIdentity;
+    transform = CATransform3DRotate(transform, rotationAngleRadians, 0.0, 0.0, 1.0);
+    transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
+    
+    
+    UIView *card = [cell contentView];
+    card.layer.transform = transform;
+    card.layer.opacity = 0.8;
+    
+    
+    
+    [UIView animateWithDuration:1.0f animations:^{
+        card.layer.transform = CATransform3DIdentity;
+        card.layer.opacity = 1;
+    }];
 }
 
 

@@ -27,9 +27,9 @@
     [self comeback];
     [self delegate];
     count = 0;
-    pageSize = 10;
+    pageSize = 5;
     pageNo = 1;
-   
+    arr =[NSMutableArray array];
     self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
@@ -46,7 +46,8 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)loadNewData{
-    arr = [[NSMutableArray alloc] init];
+    arr =[NSMutableArray array];
+    [_tableview reloadData];
     pageNo = 1;
     [self wlrequest];
     [_tableview.mj_header endRefreshing];
@@ -93,8 +94,11 @@
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             
         NSLog(@"16 学生日记列表\n%@",responseObject);
-       arr =[NSMutableArray array];
-       arr=[[responseObject objectForKey:@"data"] objectForKey:@"internshipList"];
+       
+       //arr=[[responseObject objectForKey:@"data"] objectForKey:@"internshipList"];
+       [arr addObjectsFromArray:[[responseObject objectForKey:@"data"] objectForKey:@"internshipList"]];
+            
+            
         count = [[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
         [_tableview reloadData];
        

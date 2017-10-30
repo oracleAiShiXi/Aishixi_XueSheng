@@ -99,11 +99,15 @@
         }else{
            _reporttime.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"reportTime"]];
         }
-        if([[responseObject objectForKey:@"data"]  objectForKey:@"reportContent"]==NULL){
+            
+            _reportname.adjustsFontSizeToFitWidth =YES;
+        if([[responseObject objectForKey:@"data"]  objectForKey:@"reportUserName"]==NULL){
            _reportname.text =@"";
         }else{
            _reportname.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"reportUserName"]];
         }
+            
+            
         if([[responseObject objectForKey:@"data"]  objectForKey:@"reportContent"]==NULL){
             _reportcont.text =@"";
         }else{

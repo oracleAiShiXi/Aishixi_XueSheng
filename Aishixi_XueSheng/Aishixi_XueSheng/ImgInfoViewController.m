@@ -9,7 +9,10 @@
 #import "ImgInfoViewController.h"
 #import "XL_TouWenJian.h"
 @interface ImgInfoViewController ()<UIWebViewDelegate>
+{
+    NSDictionary *dic;
 
+}
 @end
 
 @implementation ImgInfoViewController
@@ -18,8 +21,9 @@
     [super viewDidLoad];
     
     [self navagatio];
+    
+   [self jiekou6];
     [self webviews];
-    //[self jiekou6];
     // Do any additional setup after loading the view.
 }
 
@@ -51,15 +55,43 @@
 -(void)jiekou6{
     NSString * Method = @"/homePageStu/carouselInfo";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_CarouselId,@"carouselId",nil];
-    
+    NSLog(@"%@",Rucan);
     [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
     
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         
         [WarningBox warningBoxHide:YES andView:self.view];
+       
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+          NSLog(@"7、轮播详情\n%@",responseObject);
+            
+        dic =[NSDictionary dictionary];
+        dic =[responseObject objectForKey:@"data"];
         
-        NSLog(@"7、轮播详情\n%@",responseObject);
+            
+            NSString *urlstr=[NSString stringWithFormat:@"%@",[dic objectForKey:@"url"]];
+                   NSString *transString = [NSString stringWithString:[urlstr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            
+           
+                
+                NSString*ssss =[NSString stringWithFormat:@"%@%@%@%@",Scheme,QianWaiWangIP,AppName,transString];
+           // NSString*ssss =[NSString stringWithFormat:@"%@%@",AppName,transString];
+            NSMutableString *string = [[NSMutableString alloc] initWithString:ssss];
+            NSLog(@"%@",string);
+//            [string insertString:@"<body style=\"text-indent:2em;line-height: 25px;\">" atIndex:0];
+//            [string appendString:@"</body>"];
+            
+            //[_webview loadHTMLString:string baseURL:nil];
+            // 2.创建URL
+            NSURL *url = [NSURL URLWithString:string];
+            // 3.创建Request
+            NSURLRequest *request =[NSURLRequest requestWithURL:url];
+            // 4.加载网页
+            [_webview loadRequest:request];
+            
+            
+
+        
         
     }else{
         [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
@@ -81,9 +113,9 @@
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '300%'"];//修改百分比即可
-    NSString *meta = [NSString stringWithFormat:@"document.getElementsByName(\"viewport\")[0].content = \"width=self.view.frame.size.width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\""];
-    [webView stringByEvaluatingJavaScriptFromString:meta];//(initial-scale是初始缩放比,minimum-scale=1.0最小缩放比,maximum-scale=5.0最大缩放比,user-scalable=yes是否支持缩放)
+//    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%'"];//修改百分比即可
+//     NSString *meta = [NSString stringWithFormat:@"document.getElementsByName(\"viewport\")[0].content = \"width=self.view.frame.size.width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes\""];
+//     [webView stringByEvaluatingJavaScriptFromString:meta];//(initial-scale是初始缩放比,minimum-scale=1.0最小缩放比,maximum-scale=5.0最大缩放比,user-scalable=yes是否支持缩放)
     
 }
 

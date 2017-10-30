@@ -16,13 +16,13 @@
     NSMutableDictionary *Infodic;
    
     NSString *moneyAves;
-    NSString *companyIndustry;
-    NSString *post;
-    NSString *moneyAve;
+    NSString *companyIndustry;//行业ID
+    NSString *post;//职位ID
+    NSString *moneyAve;//平均薪资
 //    UIPickerView *mypicker;
 //    UIView *popview;
 //    float width,heigth;
-//    NSArray  *provines,*cities,*areas;//省 市 区
+    NSString  *provines,*cities,*areas;//省 市 区
     int a;
         
    
@@ -166,6 +166,16 @@
     _lxdiqu.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"locationAll"]];//所在地区
     _lxdizhi.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"addressAll"]];//联系地址
      moneyAve =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"money"]];//所在地区
+     companyIndustry =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"companyIndustryId"]];//所属行业ID
+    post =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"post"]];//所属职位ID
+            
+    provines=[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"provinceName"]];//所在省
+    cities=[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"cityName"]];//所在市
+    NSString *locastr=[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"location"]];//所在区
+    NSString *string = [NSString stringWithFormat:@"%@%@",provines,cities];
+    NSRange range =[locastr rangeOfString:string];
+    areas = [locastr substringFromIndex:range.length];
+            NSLog(@"13234444");
             
         }else{
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
@@ -191,15 +201,31 @@
    // moneyAve;//平均月薪
     //companyIndustry;//所属行业
     //post;//所在职位
-    
-    
+   
+    if ([_xinzi.text  isEqualToString:@"1000元以下"]) {
+        moneyAve =@"1000";
+    }else if ([_xinzi.text  isEqualToString:@"1000-2000元"]){
+        moneyAve =@"1500";
+    }else if ([_xinzi.text  isEqualToString:@"2001-4000元"]){
+        moneyAve =@"3000";
+    }else if ([_xinzi.text  isEqualToString:@"4001-6000元"]){
+        moneyAve =@"5000";
+    }else if ([_xinzi.text  isEqualToString:@"6001-8000元"]){
+        moneyAve =@"7000";
+    }else if ([_xinzi.text  isEqualToString:@"8001-10000元"]){
+        moneyAve =@"9000";
+    }else if ([_xinzi.text  isEqualToString:@"10000元以上"]){
+        moneyAve =@"10000";
+    }else{
+        moneyAve =@"0";
+    }
     
     
     
     
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_phone.text,@"mobilePhone",_qq.text,@"qqCode",_weixin.text,@"wxCode",_xinzi.text,@"money",_hangye.text,@"companyIndustryName",_mingcheng.text,@"companyName",_dianhua.text,@"companyTelephone",_zhiwei.text,@"postName",_diqu.text,@"location",_dizhi.text,@"address",_xingming.text,@"urgentName",_lxdianhua.text,@"urgentTel",_lxdiqu.text,@"locationAll",_lxdizhi.text,@"addressAll",companyIndustry,@"companyIndustry",post,@"post",moneyAve,@"moneyAve",type,@"isInPost",nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_phone.text,@"mobilePhone",_qq.text,@"qqCode",_weixin.text,@"wxCode",_xinzi.text,@"money",_hangye.text,@"companyIndustryName",_mingcheng.text,@"companyName",_dianhua.text,@"companyTelephone",_zhiwei.text,@"postName",_dizhi.text,@"address",_xingming.text,@"urgentName",_lxdianhua.text,@"urgentTel",_lxdiqu.text,@"locationAll",_lxdizhi.text,@"addressAll",companyIndustry,@"companyIndustry",post,@"post",moneyAve,@"moneyAve",type,@"isInPost",provines,@"provinceName",cities,@"cityName",areas,@"location",nil];
     
     NSLog(@"---------%@",Rucan);
     NSLog(@"dsadsdasdasdasd");
@@ -655,18 +681,25 @@
 // 点击done的时候回调
 - (void)actionSheetPickerDidSucceed:(ActionSheetCustomPicker *)actionSheetPicker origin:(id)origin
 {
+  
     NSMutableString *detailAddress = [[NSMutableString alloc] init];
     if (self.index1 < self.provinceArr.count) {
         NSString *firstAddress = self.provinceArr[self.index1];
         [detailAddress appendString:firstAddress];
+        provines =[NSString stringWithFormat:@"%@",firstAddress];
+        NSLog(@"第一个数组------%@",firstAddress);
     }
     if (self.index2 < self.countryArr.count) {
         NSString *secondAddress = self.countryArr[self.index2];
         [detailAddress appendString:secondAddress];
+         cities =[NSString stringWithFormat:@"%@",secondAddress];
+        NSLog(@"第二个数组------%@",secondAddress);
     }
     if (self.index3 < self.districtArr.count) {
         NSString *thirfAddress = self.districtArr[self.index3];
         [detailAddress appendString:thirfAddress];
+       areas =[NSString stringWithFormat:@"%@",thirfAddress];
+        NSLog(@"第三个数组------%@",thirfAddress);
     }
     // 此界面显示
     if(a==1){

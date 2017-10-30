@@ -26,9 +26,9 @@
     [self wangluo];
     [self comeback];
     count = 0;
-    pageSize = 10;
+    pageSize = 5;
     pageNo = 1;
-    arr = [[NSMutableArray alloc] init];
+    arr =[NSMutableArray array];
     self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
@@ -36,7 +36,8 @@
     // Do any additional setup after loading the view.
 }
 -(void)loadNewData{
-    arr = [[NSMutableArray alloc] init];
+    arr =[NSMutableArray array];
+    [_tableview reloadData];
     pageNo = 1;
     [self wangluo];
     [_tableview.mj_header endRefreshing];
@@ -89,8 +90,9 @@
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         
         NSLog(@"9 学生公告列表\n%@",responseObject);
-        arr =[NSMutableArray array];
-        arr =[[responseObject objectForKey:@"data"] objectForKey:@"noticeList"];
+        
+       // arr =[[responseObject objectForKey:@"data"] objectForKey:@"noticeList"];
+            [arr addObjectsFromArray:[[responseObject objectForKey:@"data"] objectForKey:@"noticeList"]];
         count = [[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
         //arr=(NSMutableArray *)[[arr reverseObjectEnumerator] allObjects];
         [_tableview reloadData];
@@ -220,7 +222,7 @@
 //    ll.layer.borderWidth =1;
 //    ll.layer.cornerRadius =5;
 //    ll.text =@"最新";
-    UIImageView*imageview1=[[UIImageView alloc] initWithFrame:CGRectMake(width-90,10,40,35)];
+    UIImageView*imageview1=[[UIImageView alloc] initWithFrame:CGRectMake(width-90,10,30,33)];
     
     UIImageView*imageview2=[[UIImageView alloc] initWithFrame:CGRectMake(width-50,0,30,30)];
     if([[arr[indexPath.section]objectForKey:@"level"] intValue]==1){

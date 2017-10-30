@@ -26,9 +26,9 @@
     [self delegate];
     
     count = 0;
-    pageSize = 10;
+    pageSize = 5;
     pageNo = 1;
-    arr = [[NSMutableArray alloc] init];
+    arr =[NSMutableArray array];
     self.table.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.table.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
@@ -36,7 +36,8 @@
 }
 
 -(void)loadNewData{
-    arr = [[NSMutableArray alloc] init];
+    arr =[NSMutableArray array];
+    [_table reloadData];
     pageNo = 1;
     [self jiekou];
     [_table.mj_header endRefreshing];
@@ -90,8 +91,9 @@
         NSLog(@"20 学生通讯录\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
            NSLog(@"20 学生通讯录\n%@",responseObject);
-           arr =[NSMutableArray array];
-           arr=[[responseObject objectForKey:@"data"] objectForKey:@"mailList"];
+           
+           //arr=[[responseObject objectForKey:@"data"] objectForKey:@"mailList"];
+            [arr addObjectsFromArray:[[responseObject objectForKey:@"data"] objectForKey:@"mailList"]];
             count = [[[responseObject objectForKey:@"data"] objectForKey:@"count"] intValue];
            [_table reloadData];
         }else{
@@ -118,7 +120,7 @@
     self.table.tableFooterView=[[UIView alloc] init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     //_table.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _table.bounces =NO;
+    //_table.bounces =NO;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
    return arr.count;
@@ -156,9 +158,10 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSLog(@"1");
+   NSString*ss = [NSString stringWithFormat:@"确定要联系%@吗？",[arr[indexPath.section]objectForKey:@"nick"] ];
+   // NSLog(@"%@",ss);
     //调用打电话方法
-    UIAlertController*alert=[UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定要联系客服吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController*alert=[UIAlertController alertControllerWithTitle:@"温馨提示" message:ss preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction*action1=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSString *ss = [NSString stringWithFormat:@"tel://%@",[arr[indexPath.section]objectForKey:@"mobilePhone"]];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ss]];

@@ -36,7 +36,7 @@
     _btn3.adjustsImageWhenHighlighted = NO;
    
     _textview.delegate =self;
-    _textview.text = @"请编辑评价内容";
+    _textview.text = @"这一刻的想法...";
     _textview.textColor = [UIColor grayColor];
     
     // Do any additional setup after loading the view.
@@ -258,13 +258,13 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
     if(_textview.text.length ==0){
-        _textview.text = @"请编辑评价内容";
+        _textview.text = @"这一刻的想法...";
         _textview.textColor = [UIColor grayColor];
         _editbtn.hidden =NO;
     }
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    if([_textview.text isEqualToString:@"请编辑评价内容"]){
+    if([_textview.text isEqualToString:@"这一刻的想法..."]){
         _textview.text=@"";
         _textview.textColor=[UIColor blackColor];
         _editbtn.hidden =YES;
@@ -337,9 +337,11 @@
     
     
     
-    if([type isEqualToString:@"0"]||[_textview.text isEqualToString:@"请编辑评价内容"]){
-        NSLog(@"请选择咨询类型或编辑评价内容");
-    }else{
+  
+    if(_textview.text.length==0||[_textview.text isEqualToString:@"这一刻的想法..."]){
+     [WarningBox warningBoxModeText:@"请输入这一刻的想法" andView:self.view];
+    }
+    else{
         
         
         //拿图片
@@ -377,6 +379,12 @@
             defaultManager = [NSFileManager defaultManager];
             NSString*path=[NSString stringWithFormat:@"%@/Documents/images",NSHomeDirectory()];
             [defaultManager removeItemAtPath:path error:NULL];
+                
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                 DiaryListViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DiaryList"];
+                 [self.navigationController pushViewController:his animated:YES];
+            });
+                
             }else{
                 [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                 

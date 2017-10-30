@@ -8,6 +8,7 @@
 
 #import "DiaryInfoViewController.h"
 #import "XL_TouWenJian.h"
+#import "EBImageBrowser.h"
 @interface DiaryInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSDictionary *arr;
@@ -23,6 +24,8 @@
     [self navagatio];
     [self delegate];
     [self jiekou];
+    _table.showsHorizontalScrollIndicator= NO;
+    _table.showsVerticalScrollIndicator =NO;
      width =[UIScreen mainScreen].bounds.size.width;
     // Do any additional setup after loading the view.
 }
@@ -123,6 +126,9 @@
         [titles setFrame:CGRectMake(20,10, rect.size.width, rect.size.height)];
         
         return titles.frame.size.height+15>40? titles.frame.size.height+55:40;
+    }
+    else if (indexPath.section==2){
+        return 50;
     }
     else{
         if(![[arr objectForKey:@"quesionImg1"]isEqualToString:@""]){
@@ -245,7 +251,12 @@
     return cell;
 }
 
-
+-(void)scanBigImageClick1:(UITapGestureRecognizer *)tap{
+    
+    UIImageView *clickedImageView = (UIImageView *)tap.view;
+    //    [XWScanImage scanBigImageWithImageView:clickedImageView];
+    [EBImageBrowser showImage:clickedImageView];
+}
 
 
 

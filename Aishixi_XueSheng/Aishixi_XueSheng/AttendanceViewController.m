@@ -105,6 +105,9 @@
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             
         NSLog(@"8 学生考勤\n%@",responseObject);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
         }else{
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
             

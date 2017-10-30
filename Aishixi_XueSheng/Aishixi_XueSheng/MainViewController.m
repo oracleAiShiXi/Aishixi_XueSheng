@@ -22,7 +22,14 @@
 #import "TextFlowView.h"
 #import "NoticeInfoViewController.h"
 #import <CoreLocation/CoreLocation.h>
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,CLLocationManagerDelegate,UIActionSheetDelegate>
+
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
+#define kWidth [UIScreen mainScreen].bounds.size.width
+#define kHeight [UIScreen mainScreen].bounds.size.height
+
+
+@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,CLLocationManagerDelegate,UIActionSheetDelegate,UIViewControllerPreviewingDelegate>
 {
     NSMutableArray *notelist;//公告arr
     NSMutableArray *carolist;//轮播arr
@@ -74,6 +81,7 @@
 }
 
 -(void)Home:(UIButton *)button{
+    [self jiekou];
    
 }
 
@@ -116,10 +124,11 @@
         
         
         for (int i=0; i<carolist.count; i++) {
-            [notelist addObject:[carolist[i]objectForKey:@"title"]];
-            [imagesURLStrings addObject:[carolist[i]objectForKey:@"carouselUrl"]];
+            [titles addObject:[carolist[i]objectForKey:@"title"]];
+            NSString*ssss =[NSString stringWithFormat:@"%@%@%@",Scheme,QianWaiWangIP,[carolist[i]objectForKey:@"url"]];
+            [imagesURLStrings addObject:ssss];
         }
-        
+            NSLog(@"-----------------%@%@",titles,imagesURLStrings);
         
         [_table reloadData];
         
@@ -286,16 +295,18 @@
         if(cell==nil){
             cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell1];
         }
-//            for (id suView in cell.contentView.subviews) {//获取当前cell的全部子视图
-//                [suView removeFromSuperview];//移除全部子视图
-//            }
+        
         UIView *textvie =(UIView*)[cell viewWithTag:200];
        //考勤时间滚动 如果没有显示暂无考勤时间
-       
+        for (UIView *vv in cell.contentView.subviews) {//获取当前cell的全部子视图
+            if (vv.tag==10000){
+                [vv removeFromSuperview];
+            }
+        }
         TextFlowView *nameview =  [[TextFlowView alloc] initWithFrame:textvie.frame Text:attendanceinfo textColor:[UIColor colorWithHexString:@"646464"] font:[UIFont boldSystemFontOfSize:15] backgroundColor:[UIColor clearColor] alignLeft:YES];
+        nameview.tag =10000;
         
-        
-        [cell addSubview:nameview];
+        [cell.contentView addSubview:nameview];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -477,7 +488,7 @@
     [_locationManager requestAlwaysAuthorization];//这句话ios8以上版本使用。
     [_locationManager startUpdatingLocation];
 }
-//int nicaicai=0;
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     
     //将经度显示到label上
@@ -491,11 +502,11 @@
         if (array.count > 0){
             
             CLPlacemark *placemark = [array objectAtIndex:0];
-            NSLog(@"%@",placemark);
+           // NSLog(@"%@",placemark);
             
             address=[placemark.addressDictionary objectForKey:@"FormattedAddressLines"][0];
             
-            NSLog(@"--------%@",address);
+            //NSLog(@"--------%@",address);
             
        
         }
@@ -516,13 +527,46 @@
     
     
 }
+#pragma mark---摇一摇
+//-(UIViewController *)previewingContext:(id<UIViewControllerPreviewing>) viewControllerForLocation:(CGPoint)location{
+//   
+//}
+//-(void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit{
+//    NSLog(@"哈哈哈哈");
+//}
+#pragma mark - 开始摇晃就会调用
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+   
+   
+    
+}
+
+#pragma mark - 摇晃结束就会调用
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    //震动
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    //摇晃结束
+    [self SOSjiekou];
+}
+
+#pragma mark - 摇晃被打断就会调用
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    //摇晃被打断
+}
+
+
+
+
 #pragma mark - SDCycleScrollViewDelegate
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
     
     ImgInfoViewController  *imginfo = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Imginfo"];
-    imginfo.CarouselId =[NSString stringWithFormat:@"%@",[carolist[index] objectForKey:@"carouselId"]];
+    imginfo.CarouselId =[NSString stringWithFormat:@"%@",[carolist[index] objectForKey:@"id"]];
     
     [self.navigationController pushViewController:imginfo animated:YES];
     

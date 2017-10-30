@@ -109,9 +109,14 @@
     [_textview resignFirstResponder];
      _edit.hidden =NO;
     
-    if([type isEqualToString:@"0"]||[_textview.text isEqualToString:@"请编辑评价内容"]){
+    if([type isEqualToString:@"0"]){
         NSLog(@"请选择咨询类型或编辑评价内容");
-    }else{
+        [WarningBox warningBoxModeText:@"请选择评价类型" andView:self.view];
+        
+    }else if ([_textview.text isEqualToString:@"请编辑评价内容"]||_textview.text.length==0){
+    [WarningBox warningBoxModeText:@"请输入评价内容" andView:self.view];
+    }
+    else{
         NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
         
         NSString * Method = @"/homePageStu/evaluate";

@@ -111,7 +111,7 @@
 //    }
     if([type isEqualToString:@"0"]){
         [WarningBox warningBoxModeText:@"请选择咨询类型" andView:self.view];
-    }else if ([_textview.text isEqualToString:@"请编辑咨询内容"]){
+    }else if ([_textview.text isEqualToString:@"请编辑咨询内容"]||_textview.text.length==0){
        [WarningBox warningBoxModeText:@"请输入咨询内容" andView:self.view];
     }
     else{

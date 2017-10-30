@@ -10,8 +10,6 @@
 
 @interface ImgInfoViewController : UIViewController
 @property (strong, nonatomic) NSString *CarouselId;
-@property (weak, nonatomic) IBOutlet UILabel *titles;
-@property (weak, nonatomic) IBOutlet UILabel *time;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 
