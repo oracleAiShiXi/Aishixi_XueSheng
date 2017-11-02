@@ -98,6 +98,7 @@
 		5D261E0E1F7B6C9A00724B6B /* XL_TouWenJian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XL_TouWenJian.h; sourceTree = "<group>"; };
 		5D261E0F1F7B6C9B00724B6B /* XL_WangLuo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XL_WangLuo.m; sourceTree = "<group>"; };
 		5D261E101F7B6C9B00724B6B /* XL_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XL_Header.h; sourceTree = "<group>"; };
+		5D445AF31FAAFA6F001EB7D8 /* Aishixi_XueSheng.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aishixi_XueSheng.entitlements; sourceTree = "<group>"; };
 		5D5024C91F70E46B00924CCD /* XL_FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XL_FMDB.h; sourceTree = "<group>"; };
 		5D5024CA1F70E46B00924CCD /* XL_FMDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XL_FMDB.m; sourceTree = "<group>"; };
 		5D5024CC1F70E47400924CCD /* WarningBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningBox.h; sourceTree = "<group>"; };
@@ -372,6 +373,7 @@
 		5DEA43981F6FB3A000486956 /* Aishixi_XueSheng */ = {
 			isa = PBXGroup;
 			children = (
+				5D445AF31FAAFA6F001EB7D8 /* Aishixi_XueSheng.entitlements */,
 				5D5024D31F70E4C400924CCD /* Model */,
 				5D5024C51F70E42600924CCD /* Controller */,
 				5D5024C41F70E41E00924CCD /* 界面 */,
@@ -744,10 +746,13 @@
 					5DEA43951F6FB3A000486956 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = GP8BUACAG4;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
@@ -1080,12 +1085,17 @@
 			baseConfigurationReference = D53ADF550F0463FFF74C6C0F /* Pods-Aishixi_XueSheng.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Aishixi_XueSheng/Aishixi_XueSheng.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GP8BUACAG4;
 				INFOPLIST_FILE = Aishixi_XueSheng/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GuoYun.Aishixi-XueSheng";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "873836df-1270-49a7-b1e3-d0d5495d686c";
+				PROVISIONING_PROFILE_SPECIFIER = AiShiXi_XueSheng_CeShi;
 			};
 			name = Debug;
 		};
@@ -1094,12 +1104,17 @@
 			baseConfigurationReference = 70C67E08E53B23DCAA31A9F0 /* Pods-Aishixi_XueSheng.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Aishixi_XueSheng/Aishixi_XueSheng.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GP8BUACAG4;
 				INFOPLIST_FILE = Aishixi_XueSheng/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GuoYun.Aishixi-XueSheng";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "873836df-1270-49a7-b1e3-d0d5495d686c";
+				PROVISIONING_PROFILE_SPECIFIER = AiShiXi_XueSheng_CeShi;
 			};
 			name = Release;
 		};

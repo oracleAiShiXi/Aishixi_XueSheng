@@ -258,7 +258,6 @@
 		3F31DFE7989340E2FB8BD260DD3593F3 /* MJRefreshBackStateFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshBackStateFooter.h; path = MJRefresh/Custom/Footer/Back/MJRefreshBackStateFooter.h; sourceTree = "<group>"; };
 		3F6C2EC9F9CE68A29238578715683C48 /* SDWebImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageManager.h; path = SDWebImage/SDWebImageManager.h; sourceTree = "<group>"; };
 		44D0C88F67BB99A8983E66358F002CA5 /* MJRefreshAutoNormalFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoNormalFooter.m; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoNormalFooter.m; sourceTree = "<group>"; };
-		45389C76E1DB19647CC3081BA82359A4 /* libjcore-ios-1.1.5.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjcore-ios-1.1.5.a"; sourceTree = "<group>"; };
 		45A7ACACC39F53A53B8BE23CA0CFCD68 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+MJRefresh.m"; path = "MJRefresh/UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		4691DCEF5DD5C926480B5340ACE81F3A /* MJRefreshNormalHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshNormalHeader.h; path = MJRefresh/Custom/Header/MJRefreshNormalHeader.h; sourceTree = "<group>"; };
 		48292F94703FCC06CA6744577011EA2F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
@@ -304,7 +303,6 @@
 		894DCBA12F86896D7DDE687A57731F87 /* UIImageView+HighlightedWebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+HighlightedWebCache.m"; path = "SDWebImage/UIImageView+HighlightedWebCache.m"; sourceTree = "<group>"; };
 		8AB78E90DAABCF062D4AB9B769A0B93C /* libPods-Aishixi_XueSheng.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Aishixi_XueSheng.a"; path = "libPods-Aishixi_XueSheng.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B56707A1879AB49697533DA6D6B9DA0 /* FMDatabase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
-		8D83C2ED8FB930593E6BD4DF1941061D /* libjpush-ios-3.0.6.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjpush-ios-3.0.6.a"; sourceTree = "<group>"; };
 		8DA9D1BF2E2027A0CA82518B45C9D3BC /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+MJExtension.h"; path = "MJRefresh/UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
 		8FD9FAACB3A321016085440EC62A41A4 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "SDWebImage/UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		9088511F62A21A459C933550DA0E780B /* MBProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD-prefix.pch"; sourceTree = "<group>"; };
@@ -332,6 +330,7 @@
 		AB4209192C46C11910FE74452F76B016 /* MJRefreshGifHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshGifHeader.h; path = MJRefresh/Custom/Header/MJRefreshGifHeader.h; sourceTree = "<group>"; };
 		AB68CCBCD3C4978C26265DB27EDDC568 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIWebView+AFNetworking.m"; path = "UIKit+AFNetworking/UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		AC69B841D83881942178248C0D450166 /* MJRefreshAutoStateFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshAutoStateFooter.m; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoStateFooter.m; sourceTree = "<group>"; };
+		AD9C45B872166C0CC3E173492B4D4EB2 /* libjcore-ios-1.1.6.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjcore-ios-1.1.6.a"; sourceTree = "<group>"; };
 		ADB857BAE4878F9931BF21D7B2F54D3E /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+HighlightedWebCache.h"; path = "SDWebImage/UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
 		AEEE7266AC5B21E3F2569048A24C7221 /* AFAutoPurgingImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFAutoPurgingImageCache.h; path = "UIKit+AFNetworking/AFAutoPurgingImageCache.h"; sourceTree = "<group>"; };
 		B1850DFF408CCCDD32BC91B8789C03FA /* MJRefreshAutoGifFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoGifFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoGifFooter.h; sourceTree = "<group>"; };
@@ -368,6 +367,7 @@
 		DBC035304456168484F6F1BAADCADA4B /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = AFNetworking/AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
 		DBFB687B585B58C81F4DEC54CDCD1CAE /* UIScrollView+MJRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+MJRefresh.h"; path = "MJRefresh/UIScrollView+MJRefresh.h"; sourceTree = "<group>"; };
 		DCAF8738964CCF2D798C83EF81A91161 /* Pods-Aishixi_XueSheng-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Aishixi_XueSheng-resources.sh"; sourceTree = "<group>"; };
+		DD19EED9054C2EC8232B65A2E8EA2B25 /* libjpush-ios-3.0.7.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjpush-ios-3.0.7.a"; sourceTree = "<group>"; };
 		DE2A0554A7A5109EAD25FBC64176EBA4 /* MJRefreshBackFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackFooter.m; path = MJRefresh/Base/MJRefreshBackFooter.m; sourceTree = "<group>"; };
 		DFA0D3C54F5E6AF44B10E83B113DA52E /* MJRefreshAutoNormalFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoNormalFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoNormalFooter.h; sourceTree = "<group>"; };
 		E151173D39F3A5168169E043CBE19B67 /* NSImage+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSImage+WebCache.h"; path = "SDWebImage/NSImage+WebCache.h"; sourceTree = "<group>"; };
@@ -545,14 +545,6 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		2EE59EFDEA0A96597AC6DB5F3FB73F3D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8D83C2ED8FB930593E6BD4DF1941061D /* libjpush-ios-3.0.6.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		3E59A515B5D25CCE5DF6965353F75FF0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -583,7 +575,7 @@
 			isa = PBXGroup;
 			children = (
 				0B84C38AE0FB3CC0126E91F7107A2831 /* JPUSHService.h */,
-				2EE59EFDEA0A96597AC6DB5F3FB73F3D /* Frameworks */,
+				ADB38A8914D247C8C203079884EBED50 /* Frameworks */,
 			);
 			name = JPush;
 			path = JPush;
@@ -634,7 +626,7 @@
 		4CB03C3FEB5070CF14281B9FD091FC74 /* JCore */ = {
 			isa = PBXGroup;
 			children = (
-				60CD2F71BF5D820A4F9352F8D7F2998B /* Frameworks */,
+				E67F7B061E329F5024224CF936065896 /* Frameworks */,
 			);
 			name = JCore;
 			path = JCore;
@@ -662,14 +654,6 @@
 				273669B35879026D37D465FC6DF24EFD /* AFNetworkReachabilityManager.m */,
 			);
 			name = Reachability;
-			sourceTree = "<group>";
-		};
-		60CD2F71BF5D820A4F9352F8D7F2998B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				45389C76E1DB19647CC3081BA82359A4 /* libjcore-ios-1.1.5.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		66FA68D879A7636BC25243202B5BAEC2 /* Serialization */ = {
@@ -780,6 +764,14 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		ADB38A8914D247C8C203079884EBED50 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DD19EED9054C2EC8232B65A2E8EA2B25 /* libjpush-ios-3.0.7.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B246F2AF445D1860B2394381E8271EFB /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -863,6 +855,14 @@
 			);
 			name = MJRefresh;
 			path = MJRefresh;
+			sourceTree = "<group>";
+		};
+		E67F7B061E329F5024224CF936065896 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD9C45B872166C0CC3E173492B4D4EB2 /* libjcore-ios-1.1.6.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E6BFB2F0FFF669F885E96E8B62B00539 /* Pods-Aishixi_XueSheng */ = {
