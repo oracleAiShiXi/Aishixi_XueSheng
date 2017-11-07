@@ -30,7 +30,7 @@
 #define kHeight [UIScreen mainScreen].bounds.size.height
 
 
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,CLLocationManagerDelegate,UIActionSheetDelegate,UIViewControllerPreviewingDelegate,MFMessageComposeViewControllerDelegate>
+@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,CLLocationManagerDelegate,UIActionSheetDelegate,UIViewControllerPreviewingDelegate,MFMessageComposeViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     NSMutableArray *notelist;//公告arr
     NSMutableArray *carolist;//轮播arr
@@ -41,6 +41,9 @@
     NSString*jing;
     NSString*wei;
     NSString*address;
+    
+     NSString *filepath;
+    UIImagePickerController  *Imgpicker;
 }
 @end
 
@@ -466,11 +469,12 @@
 
 
 - (void)Attendance:(UIButton*)sender {
-    AttendanceViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Attendance"];
-    his.jingdu =jing;
-    his.weidu =wei;
-    his.dizhi =address;
-    [self.navigationController pushViewController:his animated:YES];
+//    AttendanceViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Attendance"];
+//    his.jingdu =jing;
+//    his.weidu =wei;
+//    his.dizhi =address;
+//    [self.navigationController pushViewController:his animated:YES];
+    [self phone];
 }
 
 - (void)Notice:(UIButton*)sender {
@@ -680,6 +684,124 @@
             break;
     }
     [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+#pragma mark--------签到方法
+
+-(void)qiandao{
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSString * Method = @"/homePageStu/attendance";
+    
+    
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",jing,@"longitude",wei,@"latitude",address,@"address",nil];
+    NSLog(@"%@",Rucan);
+    //UIImage *image = [UIImage imageNamed:@"对号2"];
+    UIImage *image = [[UIImage alloc]initWithContentsOfFile:filepath];
+    NSLog(@"%@",image);
+    NSArray * arr = [NSArray arrayWithObjects:image, nil];
+    
+    [WarningBox warningBoxModeIndeterminate:@"正在签到" andView:self.view];
+    
+    [XL_WangLuo ShangChuanTuPianwithBizMethod:Method Rucan:Rucan type:Post image:arr key:@"url" success:^(id responseObject) {
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+            
+            NSLog(@"8 学生考勤\n%@",responseObject);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }else{
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
+        }
+        
+        
+    } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        
+        NSLog(@"%@",error);
+    }];
+
+}
+
+
+//相机
+-(void)phone {
+    
+    //打开相机
+    
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        //设置拍照后的图片可被编辑
+        picker.allowsEditing = YES;
+        picker.sourceType = sourceType;
+        [self presentViewController:picker animated:YES completion:^{}];
+        
+    }else
+    {
+        
+        
+        Imgpicker = [[UIImagePickerController alloc] init];
+        Imgpicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;//相册
+        
+        Imgpicker.delegate = self;
+        //设置选择后的图片可被编辑
+        Imgpicker.allowsEditing = YES;
+        
+        [self presentViewController:Imgpicker animated:YES completion:nil];
+        
+        
+    }
+    
+    
+}
+
+#pragma mark  相机相册
+
+//当选择一张图片后进入这里
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    //self.image.image = image;
+    NSData  *imgdata = UIImageJPEGRepresentation(image, 0.1);
+    
+    //图片保存的路径
+    //文件管理器
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    //这里将图片放在沙盒的documents下的Image文件夹中
+    NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/"];
+    
+    
+    [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    //图片名以时间戳的格式存储到目录下
+    filepath=[DocumentsPath stringByAppendingString:[NSString stringWithFormat:@"/currentImage.png"]];
+    
+    
+    
+    
+    [fileManager createFileAtPath:filepath contents:imgdata attributes:nil];
+    
+  
+    
+    // NSLog(@"%@",NSHomeDirectory());
+    
+    //关闭相册界面
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    [self qiandao];
+    
+    
+}
+//取消选择图片
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 
