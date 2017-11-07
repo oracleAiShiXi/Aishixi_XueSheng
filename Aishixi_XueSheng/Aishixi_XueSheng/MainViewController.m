@@ -25,6 +25,7 @@
 #import <MessageUI/MessageUI.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
+#import "Masonry.h"
 #define kWidth [UIScreen mainScreen].bounds.size.width
 #define kHeight [UIScreen mainScreen].bounds.size.height
 
@@ -359,6 +360,43 @@
         UIButton *diary =(UIButton*)[cell viewWithTag:306];
         UIButton *myself =(UIButton*)[cell viewWithTag:307];
         UIButton *set =(UIButton*)[cell viewWithTag:308];
+        
+        
+        UIView *view1 =(UIView*)[cell viewWithTag:1000];
+        UIView *view2 =(UIView*)[cell viewWithTag:1001];
+        UIView *view3 =(UIView*)[cell viewWithTag:1002];
+        UIView *view4 =(UIView*)[cell viewWithTag:1003];
+        UIView *view5 =(UIView*)[cell viewWithTag:1004];
+        UIView *view6 =(UIView*)[cell viewWithTag:1005];
+        UIView *view7 =(UIView*)[cell viewWithTag:1006];
+        UIView *view8 =(UIView*)[cell viewWithTag:1007];
+        
+        
+        [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(-(((kWidth-200)/5)+((kWidth-200)/5)/2+75));
+        }];
+        [view2 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(-(((kWidth-200)/5)/2+25));
+        }];
+        [view3 mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.centerX.mas_equalTo(((kWidth-200)/5)/2+25);
+        }];
+        [view4 mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.centerX.mas_equalTo(((kWidth-200)/5)+((kWidth-200)/5)/2+75);
+        }];
+        [view5 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(-(((kWidth-200)/5)+((kWidth-200)/5)/2+75));
+        }];
+        [view6 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(-(((kWidth-200)/5)/2+25));
+        }];
+        [view7 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(((kWidth-200)/5)/2+25);
+        }];
+        [view8 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(((kWidth-200)/5)+((kWidth-200)/5)/2+75);
+        }];
+        
         
         [attendance addTarget:self action:@selector(Attendance:) forControlEvents:UIControlEventTouchUpInside];
         [notice addTarget:self action:@selector(Notice:) forControlEvents:UIControlEventTouchUpInside];

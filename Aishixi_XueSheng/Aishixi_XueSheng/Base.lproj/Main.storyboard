@@ -1224,13 +1224,13 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5F-5v-Tpu">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Crh-bM-hAC">
+                                                        <view tag="1000" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Crh-bM-hAC">
                                                             <rect key="frame" x="57.5" y="10" width="50" height="65"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="01" translatesAutoresizingMaskIntoConstraints="NO" id="98g-XP-SOt">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="01" translatesAutoresizingMaskIntoConstraints="NO" id="98g-XP-SOt">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="考勤" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DwP-4b-PGo">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="考勤" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DwP-4b-PGo">
                                                                     <rect key="frame" x="4" y="44" width="42" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="pQi-Bj-shG"/>
@@ -1239,7 +1239,7 @@
                                                                     <color key="textColor" red="0.37705063820000001" green="0.35301068429999999" blue="0.34442824129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" tag="301" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYM-Ip-Dof">
+                                                                <button opaque="NO" tag="301" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYM-Ip-Dof">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="65"/>
                                                                 </button>
                                                             </subviews>
@@ -1259,13 +1259,13 @@
                                                                 <constraint firstItem="JYM-Ip-Dof" firstAttribute="top" secondItem="Crh-bM-hAC" secondAttribute="top" id="xsX-C0-QAn"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wc-as-6tF">
+                                                        <view tag="1001" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0wc-as-6tF">
                                                             <rect key="frame" x="127.5" y="10" width="50" height="65"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="02" translatesAutoresizingMaskIntoConstraints="NO" id="oOF-qi-zp0">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="02" translatesAutoresizingMaskIntoConstraints="NO" id="oOF-qi-zp0">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公告" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqt-rj-1fN">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="公告" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqt-rj-1fN">
                                                                     <rect key="frame" x="4" y="44" width="42" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="p7p-Fr-Jw9"/>
@@ -1274,7 +1274,7 @@
                                                                     <color key="textColor" red="0.37705063820000001" green="0.35301068429999999" blue="0.34442824129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" tag="302" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKv-1t-jTu">
+                                                                <button opaque="NO" tag="302" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKv-1t-jTu">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="65"/>
                                                                 </button>
                                                             </subviews>
@@ -1294,13 +1294,13 @@
                                                                 <constraint firstAttribute="bottom" secondItem="nqt-rj-1fN" secondAttribute="bottom" id="yQW-gv-mNc"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzb-oQ-P0A">
+                                                        <view tag="1002" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uzb-oQ-P0A">
                                                             <rect key="frame" x="197.5" y="10" width="50" height="65"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="03" translatesAutoresizingMaskIntoConstraints="NO" id="VA0-IS-tN6">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="03" translatesAutoresizingMaskIntoConstraints="NO" id="VA0-IS-tN6">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="咨询" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLA-6Y-pb8">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="咨询" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLA-6Y-pb8">
                                                                     <rect key="frame" x="4" y="44" width="42" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="x0q-8c-mag"/>
@@ -1309,7 +1309,7 @@
                                                                     <color key="textColor" red="0.37705063820000001" green="0.35301068429999999" blue="0.34442824129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" tag="303" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkZ-Kq-9qR">
+                                                                <button opaque="NO" tag="303" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkZ-Kq-9qR">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="65"/>
                                                                 </button>
                                                             </subviews>
@@ -1329,13 +1329,13 @@
                                                                 <constraint firstItem="VA0-IS-tN6" firstAttribute="top" secondItem="uzb-oQ-P0A" secondAttribute="top" id="zNP-uQ-bjs"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apu-Th-o8l">
+                                                        <view tag="1003" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="apu-Th-o8l">
                                                             <rect key="frame" x="267.5" y="10" width="50" height="65"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qiuzhu" translatesAutoresizingMaskIntoConstraints="NO" id="ZBs-hQ-goe">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="qiuzhu" translatesAutoresizingMaskIntoConstraints="NO" id="ZBs-hQ-goe">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="求助" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLE-cK-BEN">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="求助" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLE-cK-BEN">
                                                                     <rect key="frame" x="4" y="44" width="42" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="g3x-pu-nR5"/>
@@ -1344,7 +1344,7 @@
                                                                     <color key="textColor" red="0.37705063820000001" green="0.35301068429999999" blue="0.34442824129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" tag="304" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oef-Xc-Hda">
+                                                                <button opaque="NO" tag="304" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oef-Xc-Hda">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="65"/>
                                                                 </button>
                                                             </subviews>
@@ -1364,13 +1364,13 @@
                                                                 <constraint firstAttribute="trailing" secondItem="LLE-cK-BEN" secondAttribute="trailing" constant="4" id="zbm-m0-PhQ"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Un9-J2-xGU">
+                                                        <view tag="1007" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Un9-J2-xGU">
                                                             <rect key="frame" x="267.5" y="85" width="50" height="65"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="08" translatesAutoresizingMaskIntoConstraints="NO" id="sB5-zC-kt8">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="08" translatesAutoresizingMaskIntoConstraints="NO" id="sB5-zC-kt8">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设置" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iq8-di-9wB">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="设置" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iq8-di-9wB">
                                                                     <rect key="frame" x="4" y="44" width="42" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="gVc-xm-5Ul"/>
@@ -1379,7 +1379,7 @@
                                                                     <color key="textColor" red="0.37705063820000001" green="0.35301068429999999" blue="0.34442824129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" tag="308" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxh-Ih-dvW">
+                                                                <button opaque="NO" tag="308" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxh-Ih-dvW">
                                                                     <rect key="frame" x="-0.5" y="0.0" width="50" height="65"/>
                                                                 </button>
                                                             </subviews>
@@ -1399,13 +1399,13 @@
                                                                 <constraint firstItem="iq8-di-9wB" firstAttribute="top" secondItem="sB5-zC-kt8" secondAttribute="bottom" id="zYH-gW-A4B"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lTZ-9X-psM">
+                                                        <view tag="1006" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lTZ-9X-psM">
                                                             <rect key="frame" x="197.5" y="85" width="50" height="65"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="07" translatesAutoresizingMaskIntoConstraints="NO" id="JPZ-GS-RLD">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="07" translatesAutoresizingMaskIntoConstraints="NO" id="JPZ-GS-RLD">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZK-gN-5x9">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="我的" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZK-gN-5x9">
                                                                     <rect key="frame" x="4" y="44" width="42" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="biz-mN-vhx"/>
@@ -1414,7 +1414,7 @@
                                                                     <color key="textColor" red="0.37705063820000001" green="0.35301068429999999" blue="0.34442824129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" tag="307" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-k9-1l3">
+                                                                <button opaque="NO" tag="307" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-k9-1l3">
                                                                     <rect key="frame" x="-0.5" y="0.0" width="50" height="65"/>
                                                                 </button>
                                                             </subviews>
@@ -1434,13 +1434,13 @@
                                                                 <constraint firstItem="pZK-gN-5x9" firstAttribute="top" secondItem="JPZ-GS-RLD" secondAttribute="bottom" id="xGa-8s-oql"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EBr-zX-mDJ">
+                                                        <view tag="1005" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EBr-zX-mDJ">
                                                             <rect key="frame" x="127.5" y="85" width="50" height="65"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="06" translatesAutoresizingMaskIntoConstraints="NO" id="nUR-VA-Jew">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="06" translatesAutoresizingMaskIntoConstraints="NO" id="nUR-VA-Jew">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日记" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0C-MK-O9Q">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="日记" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0C-MK-O9Q">
                                                                     <rect key="frame" x="4" y="44" width="42" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="Ojb-CJ-aCq"/>
@@ -1449,7 +1449,7 @@
                                                                     <color key="textColor" red="0.37705063820000001" green="0.35301068429999999" blue="0.34442824129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" tag="306" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0h9-Jl-SWl">
+                                                                <button opaque="NO" tag="306" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0h9-Jl-SWl">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="65"/>
                                                                 </button>
                                                             </subviews>
@@ -1469,13 +1469,13 @@
                                                                 <constraint firstAttribute="bottom" secondItem="h0C-MK-O9Q" secondAttribute="bottom" id="zhl-27-Sgp"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AVh-mn-ZtN">
+                                                        <view tag="1004" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AVh-mn-ZtN">
                                                             <rect key="frame" x="57.5" y="85" width="50" height="65"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="05" translatesAutoresizingMaskIntoConstraints="NO" id="4Xs-ke-J90">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="05" translatesAutoresizingMaskIntoConstraints="NO" id="4Xs-ke-J90">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评价" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFE-rC-v9V">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="评价" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFE-rC-v9V">
                                                                     <rect key="frame" x="4" y="44" width="42" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="4Lw-LN-Dn1"/>
@@ -1504,22 +1504,28 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="apu-Th-o8l" firstAttribute="centerX" secondItem="K5F-5v-Tpu" secondAttribute="centerX" constant="105" id="8H4-uE-C9o"/>
+                                                        <constraint firstItem="Un9-J2-xGU" firstAttribute="width" secondItem="Crh-bM-hAC" secondAttribute="width" id="2Ai-nw-xVJ"/>
+                                                        <constraint firstItem="EBr-zX-mDJ" firstAttribute="height" secondItem="Crh-bM-hAC" secondAttribute="height" id="8q5-Z1-Xfl"/>
                                                         <constraint firstAttribute="bottom" secondItem="AVh-mn-ZtN" secondAttribute="bottom" constant="10" id="9qe-qZ-VnR"/>
-                                                        <constraint firstItem="uzb-oQ-P0A" firstAttribute="centerX" secondItem="K5F-5v-Tpu" secondAttribute="centerX" constant="35" id="AsZ-B2-b3Q"/>
-                                                        <constraint firstItem="EBr-zX-mDJ" firstAttribute="centerX" secondItem="K5F-5v-Tpu" secondAttribute="centerX" constant="-35" id="LQi-xT-NyP"/>
+                                                        <constraint firstItem="Un9-J2-xGU" firstAttribute="height" secondItem="Crh-bM-hAC" secondAttribute="height" id="DRb-Dx-T4g"/>
+                                                        <constraint firstItem="lTZ-9X-psM" firstAttribute="height" secondItem="Crh-bM-hAC" secondAttribute="height" id="ImV-pk-7cR"/>
+                                                        <constraint firstItem="AVh-mn-ZtN" firstAttribute="height" secondItem="Crh-bM-hAC" secondAttribute="height" id="Iq0-XJ-Op0"/>
+                                                        <constraint firstItem="EBr-zX-mDJ" firstAttribute="width" secondItem="Crh-bM-hAC" secondAttribute="width" id="Lvx-AU-yYF"/>
                                                         <constraint firstItem="Crh-bM-hAC" firstAttribute="top" secondItem="K5F-5v-Tpu" secondAttribute="top" constant="10" id="Unt-BJ-2Me"/>
-                                                        <constraint firstItem="AVh-mn-ZtN" firstAttribute="centerX" secondItem="K5F-5v-Tpu" secondAttribute="centerX" constant="-105" id="X02-de-7l1"/>
+                                                        <constraint firstItem="AVh-mn-ZtN" firstAttribute="width" secondItem="Crh-bM-hAC" secondAttribute="width" id="WW3-9R-lEL"/>
                                                         <constraint firstAttribute="bottom" secondItem="Un9-J2-xGU" secondAttribute="bottom" constant="10" id="YTw-aC-Gl2"/>
                                                         <constraint firstItem="uzb-oQ-P0A" firstAttribute="top" secondItem="K5F-5v-Tpu" secondAttribute="top" constant="10" id="ZXX-dy-jHZ"/>
+                                                        <constraint firstItem="lTZ-9X-psM" firstAttribute="width" secondItem="Crh-bM-hAC" secondAttribute="width" id="aIS-dt-kbz"/>
                                                         <constraint firstAttribute="bottom" secondItem="EBr-zX-mDJ" secondAttribute="bottom" constant="10" id="cvX-FW-tjV"/>
-                                                        <constraint firstItem="Un9-J2-xGU" firstAttribute="centerX" secondItem="K5F-5v-Tpu" secondAttribute="centerX" constant="105" id="d8C-zI-Ash"/>
-                                                        <constraint firstItem="lTZ-9X-psM" firstAttribute="centerX" secondItem="K5F-5v-Tpu" secondAttribute="centerX" constant="35" id="gOv-RY-nS5"/>
-                                                        <constraint firstItem="Crh-bM-hAC" firstAttribute="centerX" secondItem="K5F-5v-Tpu" secondAttribute="centerX" constant="-105" id="jCy-VX-yQg"/>
+                                                        <constraint firstItem="uzb-oQ-P0A" firstAttribute="width" secondItem="Crh-bM-hAC" secondAttribute="width" id="kvJ-a1-oGw"/>
+                                                        <constraint firstItem="0wc-as-6tF" firstAttribute="width" secondItem="Crh-bM-hAC" secondAttribute="width" id="oo7-pg-j18"/>
                                                         <constraint firstItem="apu-Th-o8l" firstAttribute="top" secondItem="K5F-5v-Tpu" secondAttribute="top" constant="10" id="qk0-xN-isP"/>
+                                                        <constraint firstItem="apu-Th-o8l" firstAttribute="height" secondItem="Crh-bM-hAC" secondAttribute="height" id="rmh-dK-ipz"/>
+                                                        <constraint firstItem="uzb-oQ-P0A" firstAttribute="height" secondItem="Crh-bM-hAC" secondAttribute="height" id="tFB-qc-ehA"/>
+                                                        <constraint firstItem="0wc-as-6tF" firstAttribute="height" secondItem="Crh-bM-hAC" secondAttribute="height" id="tIs-mI-cg3"/>
                                                         <constraint firstItem="0wc-as-6tF" firstAttribute="top" secondItem="K5F-5v-Tpu" secondAttribute="top" constant="10" id="uSt-FT-Hwe"/>
                                                         <constraint firstAttribute="bottom" secondItem="lTZ-9X-psM" secondAttribute="bottom" constant="10" id="ulG-lk-9pw"/>
-                                                        <constraint firstItem="0wc-as-6tF" firstAttribute="centerX" secondItem="K5F-5v-Tpu" secondAttribute="centerX" constant="-35" id="yC4-4z-H3j"/>
+                                                        <constraint firstItem="apu-Th-o8l" firstAttribute="width" secondItem="Crh-bM-hAC" secondAttribute="width" id="yYU-FE-iyP"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
