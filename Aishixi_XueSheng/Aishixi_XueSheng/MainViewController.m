@@ -22,14 +22,14 @@
 #import "TextFlowView.h"
 #import "NoticeInfoViewController.h"
 #import <CoreLocation/CoreLocation.h>
-
+#import <MessageUI/MessageUI.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 #define kWidth [UIScreen mainScreen].bounds.size.width
 #define kHeight [UIScreen mainScreen].bounds.size.height
 
 
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,CLLocationManagerDelegate,UIActionSheetDelegate,UIViewControllerPreviewingDelegate>
+@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,CLLocationManagerDelegate,UIActionSheetDelegate,UIViewControllerPreviewingDelegate,MFMessageComposeViewControllerDelegate>
 {
     NSMutableArray *notelist;//公告arr
     NSMutableArray *carolist;//轮播arr
@@ -58,6 +58,8 @@
     [self navagatio];
     [self jiekou];
     [self initializeLocationService];
+    
+   
     
     // Do any additional setup after loading the view.
 }
@@ -159,12 +161,13 @@
     NSLog(@"12312312312323");
     
     [WarningBox warningBoxModeIndeterminate:@"正在上报" andView:self.view];
-    
+ 
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
-        
+        [WarningBox warningBoxModeText:@"求助成功" andView:self.view];
+            [self sendsms];
         NSLog(@"14 学生sos\n%@",responseObject);
             
         }else{
@@ -181,7 +184,39 @@
 
 
 }
-
+//摇一摇调用的紧急求助接口
+-(void)SOSSSSjiekou{
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSString*content= [NSString stringWithFormat:@"我是%@，我在%@遇到困难",[defaults objectForKey:@"nick"],address];
+    
+    NSString * Method = @"/classManagement/sos/seekHelp";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",jing,@"longitude",wei,@"latitude",address,@"address",content,@"context", nil];
+    NSLog(@"-----%@",Rucan);
+    NSLog(@"12312312312323");
+    
+    [WarningBox warningBoxModeIndeterminate:@"正在上报" andView:self.view];
+    
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+            
+            NSLog(@"14 学生sos\n%@",responseObject);
+            
+        }else{
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
+        
+        NSLog(@"%@",error);
+    }];
+    
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -548,7 +583,7 @@
     //震动
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     //摇晃结束
-    [self SOSjiekou];
+    [self SOSSSSjiekou];
 }
 
 #pragma mark - 摇晃被打断就会调用
@@ -560,7 +595,61 @@
 
 
 
-#pragma mark - SDCycleScrollViewDelegate
+#pragma mark----发送短信
+-(void)sendsms{
+    if( [MFMessageComposeViewController canSendText] )// 判断设备能不能发送短信
+    {
+        MFMessageComposeViewController*picker = [[MFMessageComposeViewController alloc] init];
+        // 设置委托
+        picker.messageComposeDelegate= self;
+     
+        NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+        NSString*content= [NSString stringWithFormat:@"我是%@，我在%@遇到困难",[defaults objectForKey:@"nick"],address];
+        
+        
+        
+        picker.body = content;
+        // 默认收件人(可多个)
+        NSString *Ss = [NSString stringWithFormat:@"%@",[defaults objectForKey:@"teacherTel"]];
+        
+        picker.recipients = [NSArray arrayWithObject:Ss];
+        
+        
+        [self presentViewController:picker animated:YES completion:^{}];
+        
+    }else{
+        [WarningBox warningBoxModeText:@" 该设备不能发送应用内SMS消息，请升级设备" andView:self.view];
+        //NSLog(@"不支持");
+    }
+}
+
+#pragma mark MFMessageComposeViewControllerDelegate
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    switch (result){
+        case MessageComposeResultCancelled:
+            // NSLog(@"取消发送");
+            break;
+        case MessageComposeResultFailed:
+            
+            // NSLog(@"发送失败");
+            break;
+        case MessageComposeResultSent:
+            //  NSLog(@"发送成功");
+            break;
+            
+        default:
+            break;
+    }
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+
+
+
+
+
+#pragma mark - SDCycleScrollViewDelegate轮播点击方法
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {

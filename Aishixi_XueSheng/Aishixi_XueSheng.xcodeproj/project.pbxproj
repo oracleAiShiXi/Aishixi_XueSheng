@@ -65,6 +65,7 @@
 		D73E18F31F8DC053005A0456 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = D73E18DC1F8DC053005A0456 /* README.md */; };
 		D73E18F51F8DC06E005A0456 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = D73E18F41F8DC06E005A0456 /* address.json */; };
 		D7443AC81F99AA160030CFD1 /* TextFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7443AC71F99AA160030CFD1 /* TextFlowView.m */; };
+		D7446DF81FAC4ACD00BB224B /* 7008.wav in Resources */ = {isa = PBXBuildFile; fileRef = D7446DF71FAC4ACD00BB224B /* 7008.wav */; };
 		D744AFAA1F6FC27700F701B7 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D744AFA91F6FC27700F701B7 /* MainTableViewController.m */; };
 		D75AB1F91F720FD1005E9BBE /* EditAdvisoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75AB1F81F720FD1005E9BBE /* EditAdvisoryViewController.m */; };
 		D75AB1FC1F725FB6005E9BBE /* DiaryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D75AB1FB1F725FB6005E9BBE /* DiaryListViewController.m */; };
@@ -213,6 +214,7 @@
 		D73E18F41F8DC06E005A0456 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
 		D7443AC61F99AA160030CFD1 /* TextFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFlowView.h; sourceTree = "<group>"; };
 		D7443AC71F99AA160030CFD1 /* TextFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFlowView.m; sourceTree = "<group>"; };
+		D7446DF71FAC4ACD00BB224B /* 7008.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 7008.wav; sourceTree = "<group>"; };
 		D744AFA81F6FC27700F701B7 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
 		D744AFA91F6FC27700F701B7 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
 		D75AB1F71F720FD1005E9BBE /* EditAdvisoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAdvisoryViewController.h; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				5D445AF31FAAFA6F001EB7D8 /* Aishixi_XueSheng.entitlements */,
+				D7446DF71FAC4ACD00BB224B /* 7008.wav */,
 				5D5024D31F70E4C400924CCD /* Model */,
 				5D5024C51F70E42600924CCD /* Controller */,
 				5D5024C41F70E41E00924CCD /* 界面 */,
@@ -801,6 +804,7 @@
 				5DEA43A61F6FB3A000486956 /* Assets.xcassets in Resources */,
 				5DEA43A41F6FB3A000486956 /* Main.storyboard in Resources */,
 				D73E18DD1F8DC053005A0456 /* LICENSE in Resources */,
+				D7446DF81FAC4ACD00BB224B /* 7008.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

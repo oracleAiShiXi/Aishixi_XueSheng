@@ -303,28 +303,29 @@
 //    [UIView commitAnimations];
 //}
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    CGFloat rotationAngleDegrees = 0;
-    CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
-    CGPoint offsetPositioning = CGPointMake(-200, -20);
-    CATransform3D transform = CATransform3DIdentity;
-    transform = CATransform3DRotate(transform, rotationAngleRadians, 0.0, 0.0, 1.0);
-    transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
-    
-    
-    UIView *card = [cell contentView];
-    card.layer.transform = transform;
-    card.layer.opacity = 0.8;
-    
-    
-    
-    [UIView animateWithDuration:1.0f animations:^{
-        card.layer.transform = CATransform3DIdentity;
-        card.layer.opacity = 1;
-    }];
-}
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    CGFloat rotationAngleDegrees = 0;
+//    CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
+//    CGPoint offsetPositioning = CGPointMake(-200, -20);
+//    CATransform3D transform = CATransform3DIdentity;
+//    transform = CATransform3DRotate(transform, rotationAngleRadians, 0.0, 0.0, 1.0);
+//    transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
+//    
+//    
+//    UIView *card = [cell contentView];
+//    card.layer.transform = transform;
+//    card.layer.opacity = 0.8;
+//    
+//    
+//    
+//    [UIView animateWithDuration:1.0f animations:^{
+//        card.layer.transform = CATransform3DIdentity;
+//        card.layer.opacity = 1;
+//    }];
+//    
+//}
 
 
 /*
