@@ -94,7 +94,7 @@
 }
 -(void)OldPass
 {
-    int MaxLen = 14;
+    int MaxLen = 16;
     NSString* szText = [_oldPass text];
     if ([_oldPass.text length]> MaxLen)
     {
@@ -103,7 +103,7 @@
 }
 -(void)newPass1
 {
-    int MaxLen = 14;
+    int MaxLen = 16;
     NSString* szText = [_mewPass text];
     if ([_mewPass.text length]> MaxLen)
     {
@@ -112,7 +112,7 @@
 }
 -(void)newPass2
 {
-    int MaxLen = 14;
+    int MaxLen = 16;
     NSString* szText = [_rePass text];
     if ([_rePass.text length]> MaxLen)
     {
@@ -152,6 +152,18 @@
 }
 */
 
+
+//验证密码
+-(BOOL)mima:(NSString *)pass{
+    
+    NSString *password = @"^[a-zA-Z0-9]{6,16}";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",password];
+    BOOL isMatch = [pred evaluateWithObject:pass];
+    return isMatch;
+    
+}
+
+
 - (IBAction)Sure:(id)sender {
     [self.view endEditing:YES];
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
@@ -162,9 +174,10 @@
             {
                 [WarningBox warningBoxModeText:@"原密码不正确" andView:self.view];
             }
-            else if (![self newpass1:self.mewPass.text])
-            {
-                [WarningBox warningBoxModeText:@"密码长度不够" andView:self.view];
+            else if (![self mima:self.mewPass.text]) {
+                    [WarningBox warningBoxModeText:@"您的新密码格式不正确" andView:self.view];
+               
+            
             }
             else if (![self newpass_Deng:self.rePass.text])
             {
