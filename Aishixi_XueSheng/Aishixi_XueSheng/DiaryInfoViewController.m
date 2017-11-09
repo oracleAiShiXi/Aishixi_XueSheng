@@ -69,7 +69,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         
-        NSLog(@"17 学生日记详情\n%@",responseObject);
+        //NSLog(@"17 学生日记详情\n%@",responseObject);
         arr =[[NSDictionary alloc]init];
         arr =[responseObject objectForKey:@"data"];
         [_table reloadData];
@@ -83,7 +83,7 @@
         
         [WarningBox warningBoxHide:YES andView:self.view];
         
-        NSLog(@"%@",error);
+        //NSLog(@"%@",error);
     }];
 
 }
@@ -168,7 +168,14 @@
     }
     else if (indexPath.section==2){
         UILabel *time =[[UILabel alloc]initWithFrame:CGRectMake(15, 10, 290, 30)];
+        
+        if(NULL==[arr objectForKey:@"cretateTime"]){
+        time.text =@"";
+        }else{
         time.text =[NSString stringWithFormat:@"发布时间:%@",[arr objectForKey:@"cretateTime"]];
+        }
+        
+        
         [cell addSubview:time];
     }
     else if (indexPath.section==3){
@@ -181,7 +188,7 @@
             [image setContentScaleFactor:[[UIScreen mainScreen] scale]];//缩放图片的分辨率
             NSString *url =[NSString stringWithFormat:@"%@%@%@",Scheme,QianWaiWangIP,[arr objectForKey:@"url1"]];
             url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSLog(@"%@",url);
+            //NSLog(@"%@",url);
             [image sd_setImageWithURL:[NSURL URLWithString:url]  placeholderImage:[UIImage imageNamed:@""]];
             //为UIImageView1添加点击事件
             UITapGestureRecognizer *tapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanBigImageClick1:)];

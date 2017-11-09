@@ -124,10 +124,10 @@
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString * Method = @"/attend/getUserInfo";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",nil];
-    NSLog(@"-----------------%@",Rucan);
+    //NSLog(@"-----------------%@",Rucan);
     [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"18 学生个人信息查询\n%@",responseObject);
+       // NSLog(@"18 学生个人信息查询\n%@",responseObject);
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         Infodic =[[NSMutableDictionary alloc]init];
@@ -136,9 +136,26 @@
          行业  职位
          
          */
-    _phone.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"mobilePhone"]];//电话
-    _qq.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"qqCode"]];//QQ
-    _weixin.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"wxCode"]];//微信
+            if(NULL==[Infodic objectForKey:@"mobilePhone"]){
+            _phone.text =@"";
+            }else{
+            _phone.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"mobilePhone"]];//电话
+            }
+            
+            if(NULL==[Infodic objectForKey:@"qqCode"]){
+             _qq.text =@"";
+            }else{
+             _qq.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"qqCode"]];//QQ
+            }
+    
+            if(NULL==[Infodic objectForKey:@"wxCode"]){
+                _weixin.text =@"";
+            }else{
+               _weixin.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"wxCode"]];//微信
+            }
+            
+   
+   
         
         if([[Infodic objectForKey:@"isInPost"]intValue]==1){//是否在岗
             type=@"1";
@@ -150,21 +167,87 @@
             [_fou setImage:[UIImage imageNamed:@"是.png"] forState:UIControlStateNormal];
         }
         
-     
+            if(NULL==[Infodic objectForKey:@"moneyName"]){
+                _xinzi.text =@"";
+            }else{
+               _xinzi.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"moneyName"]];//月薪
+            }
+            
+            if(NULL==[Infodic objectForKey:@"companyIndustryName"]){
+                 _hangye.text =@"";
+            }else{
+               _hangye.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"companyIndustryName"]];//所属行业
+            }
+            
+            if(NULL==[Infodic objectForKey:@"companyName"]){
+              _mingcheng.text =@"";
+            }else{
+               _mingcheng.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"companyName"]];//单位名称
+            }
+            
+            if(NULL==[Infodic objectForKey:@"companyTelephone"]){
+                _dianhua.text =@"";
+            }else{
+                _dianhua.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"companyTelephone"]];//单位电话
+            }
+            
+            if(NULL==[Infodic objectForKey:@"postName"]){
+                _zhiwei.text =@"";
+            }else{
+                _zhiwei.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"postName"]];//所在职位
+            }
+            
+            if(NULL==[Infodic objectForKey:@"location"]){
+               _diqu.text =@"";
+            }else{
+               _diqu.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"location"]];//所在地区
+            }
+            
+            if(NULL==[Infodic objectForKey:@"address"]){
+               _dizhi.text =@"";
+            }else{
+                _dizhi.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"address"]];//详细地址
+            }
+            
+            if(NULL==[Infodic objectForKey:@"urgentName"]){
+              _xingming.text =@"";
+            }else{
+              _xingming.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"urgentName"]];//紧急联系人
+            }
+            
+            if(NULL==[Infodic objectForKey:@"urgentTel"]){
+              _lxdianhua.text =@"";
+            }else{
+               _lxdianhua.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"urgentTel"]];//联系电话
+            }
+            
+            if(NULL==[Infodic objectForKey:@"locationAll"]){
+               _lxdiqu.text =@"";
+            }else{
+              _lxdiqu.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"locationAll"]];//所在地区
+            }
+            
+            if(NULL==[Infodic objectForKey:@"addressAll"]){
+               _lxdizhi.text =@"";
+            }else{
+                _lxdizhi.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"addressAll"]];//联系地址
+            }
+            
+          
         
-    _xinzi.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"moneyName"]];//月薪
-    _hangye.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"companyIndustryName"]];//所属行业
-    _mingcheng.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"companyName"]];//单位名称
-    _dianhua.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"companyTelephone"]];//单位电话
-    _zhiwei.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"postName"]];//所在职位
-    _diqu.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"location"]];//所在地区
-    _dizhi.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"address"]];//详细地址
+    
+   
+    
+    
+   
+   
+    
         
         
-    _xingming.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"urgentName"]];//紧急联系人
-    _lxdianhua.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"urgentTel"]];//联系电话
-    _lxdiqu.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"locationAll"]];//所在地区
-    _lxdizhi.text =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"addressAll"]];//联系地址
+    
+    
+   
+    
      moneyAve =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"money"]];//所在地区
      companyIndustry =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"companyIndustryId"]];//所属行业ID
     post =[NSString stringWithFormat:@"%@",[Infodic objectForKey:@"post"]];//所属职位ID
@@ -175,7 +258,7 @@
     NSString *string = [NSString stringWithFormat:@"%@%@",provines,cities];
     NSRange range =[locastr rangeOfString:string];
     areas = [locastr substringFromIndex:range.length];
-            NSLog(@"13234444");
+          
             
         }else{
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
@@ -186,7 +269,7 @@
         
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
-        NSLog(@"%@",error);
+        //NSLog(@"%@",error);
     }];
     //根据返回确定是否在岗
 //    [_shi setImage:[UIImage imageNamed:@"是.png"] forState:UIControlStateNormal];
@@ -227,8 +310,8 @@
     NSString * Method = @"/attend/userInfoSet";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_phone.text,@"mobilePhone",_qq.text,@"qqCode",_weixin.text,@"wxCode",_xinzi.text,@"money",_hangye.text,@"companyIndustryName",_mingcheng.text,@"companyName",_dianhua.text,@"companyTelephone",_zhiwei.text,@"postName",_dizhi.text,@"address",_xingming.text,@"urgentName",_lxdianhua.text,@"urgentTel",_lxdiqu.text,@"locationAll",_lxdizhi.text,@"addressAll",companyIndustry,@"companyIndustry",post,@"post",moneyAve,@"moneyAve",type,@"isInPost",provines,@"provinceName",cities,@"cityName",areas,@"location",nil];
     
-    NSLog(@"---------%@",Rucan);
-    NSLog(@"dsadsdasdasdasd");
+    //NSLog(@"---------%@",Rucan);
+    //NSLog(@"dsadsdasdasdasd");
     
      [WarningBox warningBoxModeIndeterminate:@"正在修改" andView:self.view];
     
@@ -236,7 +319,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+       // NSLog(@"19 学生个人信息保存\n%@",responseObject);
         
         }else{
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
@@ -245,7 +328,7 @@
             
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
-        NSLog(@"%@",error);
+       // NSLog(@"%@",error);
     }];
 }
 
@@ -496,7 +579,7 @@
 {
     // 注意JSON后缀的东西和Plist不同，Plist可以直接通过contentOfFile抓取，Json要先打成字符串，然后用工具转换
     NSString *path = [[NSBundle mainBundle] pathForResource:@"address" ofType:@"json"];
-    NSLog(@"%@",path);
+    //NSLog(@"%@",path);
     NSString *jsonStr = [NSString stringWithContentsOfFile:path usedEncoding:nil error:nil];
     self.addressArr = [jsonStr mj_JSONObject];
     
@@ -687,19 +770,19 @@
         NSString *firstAddress = self.provinceArr[self.index1];
         [detailAddress appendString:firstAddress];
         provines =[NSString stringWithFormat:@"%@",firstAddress];
-        NSLog(@"第一个数组------%@",firstAddress);
+       // NSLog(@"第一个数组------%@",firstAddress);
     }
     if (self.index2 < self.countryArr.count) {
         NSString *secondAddress = self.countryArr[self.index2];
         [detailAddress appendString:secondAddress];
          cities =[NSString stringWithFormat:@"%@",secondAddress];
-        NSLog(@"第二个数组------%@",secondAddress);
+       // NSLog(@"第二个数组------%@",secondAddress);
     }
     if (self.index3 < self.districtArr.count) {
         NSString *thirfAddress = self.districtArr[self.index3];
         [detailAddress appendString:thirfAddress];
        areas =[NSString stringWithFormat:@"%@",thirfAddress];
-        NSLog(@"第三个数组------%@",thirfAddress);
+      //  NSLog(@"第三个数组------%@",thirfAddress);
     }
     // 此界面显示
     if(a==1){

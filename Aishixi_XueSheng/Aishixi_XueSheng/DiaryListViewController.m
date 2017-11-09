@@ -93,7 +93,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             
-        NSLog(@"16 学生日记列表\n%@",responseObject);
+       // NSLog(@"16 学生日记列表\n%@",responseObject);
        
        //arr=[[responseObject objectForKey:@"data"] objectForKey:@"internshipList"];
        [arr addObjectsFromArray:[[responseObject objectForKey:@"data"] objectForKey:@"internshipList"]];
@@ -110,7 +110,7 @@
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         
-        NSLog(@"%@",error);
+       // NSLog(@"%@",error);
     }];
     
 //    [WarningBox warningBoxModeIndeterminate:@"正在加载,请稍后" andView:self.view];

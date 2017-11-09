@@ -360,18 +360,21 @@
                 [heheda addObject:apq[i]];
             }
         }
+        //NSLog(@"--------%@",picpath);
         
     
         NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
         NSString * Method = @"/diary/internshipPublic";
         NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",switchtype,@"quesionChapter",type,@"mood",_textview.text,@"content", nil];
+        
 //        UIImage *image = [UIImage imageNamed:@"对号2"];
         NSArray *arr = [NSArray arrayWithObjects:img,img1,img2, nil];
         
+
         [WarningBox warningBoxModeIndeterminate:@"正在保存" andView:self.view];
         
         [XL_WangLuo ShangChuanTuPianwithBizMethod:Method Rucan:Rucan type:Post image:arr key:@"imageUrl" success:^(id responseObject) {
-            NSLog(@"15 学生日记发布\n%@",responseObject);
+           // NSLog(@"15 学生日记发布\n%@",responseObject);
             [WarningBox warningBoxHide:YES andView:self.view];
             if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             
@@ -394,7 +397,7 @@
         } failure:^(NSError *error) {
             
             [WarningBox warningBoxHide:YES andView:self.view];
-            NSLog(@"%@",error);
+            //NSLog(@"%@",error);
         }];
     }
     

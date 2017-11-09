@@ -7,6 +7,7 @@
 //
 
 #import "EditAdvisoryViewController.h"
+#import "AdvisoryViewController.h"
 #import "XL_TouWenJian.h"
 @interface EditAdvisoryViewController ()
 {
@@ -119,7 +120,7 @@
       NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
         NSString * Method = @"/consult/consul";
         NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",type,@"consultType",_textview.text,@"consultContent", nil];
-        NSLog(@"%@",Rucan);
+       // NSLog(@"%@",Rucan);
 
         [WarningBox warningBoxModeIndeterminate:@"正在提交" andView:self.view];
         
@@ -129,7 +130,15 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             
-            NSLog(@"11 学生咨询\n%@",responseObject);
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    AdvisoryViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Advisory"];
+                    [self.navigationController pushViewController:his animated:YES];
+                });
+                
+                
+                
+           // NSLog(@"11 学生咨询\n%@",responseObject);
             }else{
                 [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
                 
@@ -140,14 +149,14 @@
             
             
             [WarningBox warningBoxHide:YES andView:self.view];
-            NSLog(@"%@",error);
+          //  NSLog(@"%@",error);
         }];
         
         
         
         
         
-     NSLog(@"提交中");
+     //NSLog(@"提交中");
     }
     
     

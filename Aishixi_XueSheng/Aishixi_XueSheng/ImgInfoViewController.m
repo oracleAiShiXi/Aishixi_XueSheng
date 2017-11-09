@@ -55,7 +55,7 @@
 -(void)jiekou6{
     NSString * Method = @"/homePageStu/carouselInfo";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_CarouselId,@"carouselId",nil];
-    NSLog(@"%@",Rucan);
+    //NSLog(@"%@",Rucan);
     [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
     
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
@@ -63,7 +63,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
        
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
-          NSLog(@"7、轮播详情\n%@",responseObject);
+          //NSLog(@"7、轮播详情\n%@",responseObject);
             
         dic =[NSDictionary dictionary];
         dic =[responseObject objectForKey:@"data"];
@@ -77,7 +77,7 @@
                 NSString*ssss =[NSString stringWithFormat:@"%@%@%@%@",Scheme,QianWaiWangIP,AppName,transString];
            // NSString*ssss =[NSString stringWithFormat:@"%@%@",AppName,transString];
             NSMutableString *string = [[NSMutableString alloc] initWithString:ssss];
-            NSLog(@"%@",string);
+           // NSLog(@"%@",string);
 //            [string insertString:@"<body style=\"text-indent:2em;line-height: 25px;\">" atIndex:0];
 //            [string appendString:@"</body>"];
             
@@ -101,7 +101,7 @@
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         
-        NSLog(@"%@",error);
+       // NSLog(@"%@",error);
     }];
 }
 

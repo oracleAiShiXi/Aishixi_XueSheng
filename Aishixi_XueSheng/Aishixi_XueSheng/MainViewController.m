@@ -116,12 +116,12 @@
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         
         
-        NSLog(@"6、学生首页\n%@",responseObject);
+        //NSLog(@"6、学生首页\n%@",responseObject);
         carolist =[[responseObject objectForKey:@"data"] objectForKey:@"carouselList"];
         notelist =[[responseObject objectForKey:@"data"] objectForKey:@"noticeList"];
-        attendanceinfo =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"attendanceInfo"]];
         
-        if([attendanceinfo isEqualToString:@""]){
+        
+        if(NULL==[[responseObject objectForKey:@"data"] objectForKey:@"attendanceInfo"]){
             attendanceinfo =@"暂无考勤信息";
         }else{
            attendanceinfo =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"attendanceInfo"]];
@@ -134,7 +134,7 @@
             NSString*ssss =[NSString stringWithFormat:@"%@%@%@",Scheme,QianWaiWangIP,[carolist[i]objectForKey:@"url"]];
             [imagesURLStrings addObject:ssss];
         }
-            NSLog(@"-----------------%@%@",titles,imagesURLStrings);
+            //NSLog(@"-----------------%@%@",titles,imagesURLStrings);
         
         [_table reloadData];
         
@@ -149,7 +149,7 @@
         
         [WarningBox warningBoxHide:YES andView:self.view];
         
-        NSLog(@"%@",error);
+        //NSLog(@"%@",error);
     }];
 
 }
@@ -161,8 +161,8 @@
     
     NSString * Method = @"/classManagement/sos/seekHelp";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",jing,@"longitude",wei,@"latitude",address,@"address",content,@"context", nil];
-    NSLog(@"-----%@",Rucan);
-    NSLog(@"12312312312323");
+   // NSLog(@"-----%@",Rucan);
+   // NSLog(@"12312312312323");
     
     [WarningBox warningBoxModeIndeterminate:@"正在上报" andView:self.view];
  
@@ -172,7 +172,7 @@
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         [WarningBox warningBoxModeText:@"求助成功" andView:self.view];
             [self sendsms];
-        NSLog(@"14 学生sos\n%@",responseObject);
+       // NSLog(@"14 学生sos\n%@",responseObject);
             
         }else{
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
@@ -183,7 +183,7 @@
         
         [WarningBox warningBoxHide:YES andView:self.view];
         
-        NSLog(@"%@",error);
+       // NSLog(@"%@",error);
     }];
 
 
@@ -195,8 +195,8 @@
     
     NSString * Method = @"/classManagement/sos/seekHelp";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",jing,@"longitude",wei,@"latitude",address,@"address",content,@"context", nil];
-    NSLog(@"-----%@",Rucan);
-    NSLog(@"12312312312323");
+    //NSLog(@"-----%@",Rucan);
+   // NSLog(@"12312312312323");
     
     [WarningBox warningBoxModeIndeterminate:@"正在上报" andView:self.view];
     
@@ -205,7 +205,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             
-            NSLog(@"14 学生sos\n%@",responseObject);
+            //NSLog(@"14 学生sos\n%@",responseObject);
             
         }else{
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
@@ -216,7 +216,7 @@
         
         [WarningBox warningBoxHide:YES andView:self.view];
         
-        NSLog(@"%@",error);
+       // NSLog(@"%@",error);
     }];
     
     
@@ -424,12 +424,12 @@
         UIImageView*img1= (UIImageView*)[cell viewWithTag:402];
         UIImageView*img2= (UIImageView*)[cell viewWithTag:403];
         
-        if([notelist[indexPath.row] objectForKey:@"noticeTitle"]==NULL){
+        if(NULL==[notelist[indexPath.row] objectForKey:@"noticeTitle"]){
          title.text =@"";
         }else{
             title.text =[NSString stringWithFormat:@"%@",[notelist[indexPath.row] objectForKey:@"noticeTitle"]];
         }
-        if([notelist[indexPath.row] objectForKey:@"createDate"]==NULL){
+        if(NULL==[notelist[indexPath.row] objectForKey:@"createDate"]){
             time.text =@"";
         }else{
             time.text =[NSString stringWithFormat:@"%@",[notelist[indexPath.row] objectForKey:@"createDate"]];
@@ -452,7 +452,7 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"3213123123");
+   // NSLog(@"3213123123");
     if(indexPath.section==3){
         NoticeInfoViewController *info = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"noticeinfo"];
         
@@ -564,6 +564,7 @@
     // 一个是requestAlwaysAuthorization，一个是requestWhenInUseAuthorization
     [_locationManager requestAlwaysAuthorization];//这句话ios8以上版本使用。
     [_locationManager startUpdatingLocation];
+ 
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
@@ -576,6 +577,8 @@
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     //根据经纬度反向地理编译出地址信息
     [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *array, NSError *error){
+        
+       
         if (array.count > 0){
             
             CLPlacemark *placemark = [array objectAtIndex:0];
@@ -593,6 +596,9 @@
         else if (error != nil)
         {
         }
+            
+            
+    
     }];
     
     //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
@@ -694,10 +700,11 @@
     
     
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",jing,@"longitude",wei,@"latitude",address,@"address",nil];
-    NSLog(@"%@",Rucan);
+
+    //NSLog(@"%@",Rucan);
     //UIImage *image = [UIImage imageNamed:@"对号2"];
     UIImage *image = [[UIImage alloc]initWithContentsOfFile:filepath];
-    NSLog(@"%@",image);
+   // NSLog(@"%@",image);
     NSArray * arr = [NSArray arrayWithObjects:image, nil];
     
     [WarningBox warningBoxModeIndeterminate:@"正在签到" andView:self.view];
@@ -706,8 +713,8 @@
         
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
-            
-            NSLog(@"8 学生考勤\n%@",responseObject);
+             [WarningBox warningBoxModeText:@"考勤成功" andView:self.view];
+           // NSLog(@"8 学生考勤\n%@",responseObject);
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
@@ -720,7 +727,7 @@
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         
-        NSLog(@"%@",error);
+       // NSLog(@"%@",error);
     }];
 
 }
@@ -819,7 +826,7 @@
     
     [self.navigationController pushViewController:imginfo animated:YES];
     
-    NSLog(@"---点击了第%ld张图片", (long)index);
+    //NSLog(@"---点击了第%ld张图片", (long)index);
     
     
 }

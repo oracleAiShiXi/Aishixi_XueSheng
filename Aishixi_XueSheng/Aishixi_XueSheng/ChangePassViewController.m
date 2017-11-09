@@ -155,7 +155,7 @@
 - (IBAction)Sure:(id)sender {
     [self.view endEditing:YES];
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
-    NSLog(@"%@",[defaults objectForKey:@"Password"]);
+   // NSLog(@"%@",[defaults objectForKey:@"Password"]);
         if (self.oldPass.text.length > 0 && self.mewPass.text.length > 0 && self.rePass.text.length > 0){
             
             if(self.oldPass.text != [NSString stringWithFormat:@"%@",[defaults objectForKey:@"Password"]])
@@ -180,7 +180,7 @@
                    [WarningBox warningBoxHide:YES andView:self.view];
                    if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
                    
-                   NSLog(@"3、修改密码\n%@",responseObject);
+                   //NSLog(@"3、修改密码\n%@",responseObject);
                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                            DengLu_ViewController *view = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DengLu"];
                            [self presentViewController:view animated:YES completion:^{}];
@@ -194,7 +194,7 @@
                        
                } failure:^(NSError *error) {
                    [WarningBox warningBoxHide:YES andView:self.view];
-                   NSLog(@"%@",error);
+                 //  NSLog(@"%@",error);
                }];
             }
         }

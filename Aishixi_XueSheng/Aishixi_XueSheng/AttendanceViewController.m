@@ -91,10 +91,10 @@
     
     
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_jingdu,@"longitude",_weidu,@"latitude",_dizhi,@"address",nil];
-    NSLog(@"%@",Rucan);
+    //NSLog(@"%@",Rucan);
     //UIImage *image = [UIImage imageNamed:@"对号2"];
     UIImage *image = [[UIImage alloc]initWithContentsOfFile:filepath];
-    NSLog(@"%@",image);
+    //NSLog(@"%@",image);
     NSArray * arr = [NSArray arrayWithObjects:image, nil];
     
     [WarningBox warningBoxModeIndeterminate:@"正在签到" andView:self.view];
@@ -104,7 +104,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             
-        NSLog(@"8 学生考勤\n%@",responseObject);
+        //NSLog(@"8 学生考勤\n%@",responseObject);
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
@@ -117,7 +117,7 @@
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
         
-        NSLog(@"%@",error);
+       // NSLog(@"%@",error);
     }];
     
     

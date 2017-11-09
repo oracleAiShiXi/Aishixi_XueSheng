@@ -110,7 +110,7 @@
      _edit.hidden =NO;
     
     if([type isEqualToString:@"0"]){
-        NSLog(@"请选择咨询类型或编辑评价内容");
+       // NSLog(@"请选择咨询类型或编辑评价内容");
         [WarningBox warningBoxModeText:@"请选择评价类型" andView:self.view];
         
     }else if ([_textview.text isEqualToString:@"请编辑评价内容"]||_textview.text.length==0){
@@ -127,8 +127,8 @@
          */
         //被评价人和被评人ID没写那
         NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",@"",@"edUserId",_textview.text,@"content",type,@"evaluateType",_EvaluatEdType,@"evaluatEdType",@"",@"evaId", nil];
-        NSLog(@"%@",Rucan);
-        NSLog(@"123123123123");
+       // NSLog(@"%@",Rucan);
+       // NSLog(@"123123123123");
         
         
         [WarningBox warningBoxModeIndeterminate:@"正在评价" andView:self.view];
@@ -138,7 +138,7 @@
             [WarningBox warningBoxHide:YES andView:self.view];
             if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             
-            NSLog(@"4、评价\n%@",responseObject);
+           // NSLog(@"4、评价\n%@",responseObject);
    
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.navigationController popViewControllerAnimated:YES];
@@ -153,7 +153,7 @@
             
             [WarningBox warningBoxHide:YES andView:self.view];
             
-            NSLog(@"%@",error);
+           // NSLog(@"%@",error);
         }];
         
         

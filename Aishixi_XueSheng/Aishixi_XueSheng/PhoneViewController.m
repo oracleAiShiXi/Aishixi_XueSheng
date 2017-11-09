@@ -88,9 +88,9 @@
     [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
-        NSLog(@"20 学生通讯录\n%@",responseObject);
+        //NSLog(@"20 学生通讯录\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
-           NSLog(@"20 学生通讯录\n%@",responseObject);
+          // NSLog(@"20 学生通讯录\n%@",responseObject);
            
            //arr=[[responseObject objectForKey:@"data"] objectForKey:@"mailList"];
             [arr addObjectsFromArray:[[responseObject objectForKey:@"data"] objectForKey:@"mailList"]];
@@ -103,7 +103,7 @@
         
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
-        NSLog(@"%@",error);
+        //NSLog(@"%@",error);
     }];
 
 }
@@ -149,8 +149,19 @@
 
      UILabel *teaname =(UILabel*)[cell viewWithTag:100];
      UILabel *phonenum =(UILabel*)[cell viewWithTag:101];
-     teaname.text =[NSString stringWithFormat:@"姓名:%@",[arr[indexPath.section]objectForKey:@"nick"]];
-     phonenum.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"mobilePhone"]];
+    
+    if(NULL==[arr[indexPath.section]objectForKey:@"nick"]){
+       teaname.text =@"";
+    }else{
+       teaname.text =[NSString stringWithFormat:@"姓名:%@",[arr[indexPath.section]objectForKey:@"nick"]];
+    }
+    if(NULL==[arr[indexPath.section]objectForKey:@"mobilePhone"]){
+        phonenum.text =@"";
+    }else{
+       phonenum.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"mobilePhone"]];
+    }
+    
+    
     
     //cell.backgroundColor =[UIColor clearColor];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;

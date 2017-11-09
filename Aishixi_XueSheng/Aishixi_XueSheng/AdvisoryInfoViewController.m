@@ -73,20 +73,20 @@
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         
         
-        NSLog(@"13 学生咨询详情\n%@",responseObject);
+       // NSLog(@"13 学生咨询详情\n%@",responseObject);
         
         
-        if ([[responseObject objectForKey:@"data"] objectForKey:@"createDate"]==NULL) {
+        if (NULL==[[responseObject objectForKey:@"data"] objectForKey:@"createDate"]) {
             _zixuntime.text =@"";
         }else{
             _zixuntime.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"createDate"]];
         }
-        if ([[responseObject objectForKey:@"data"]  objectForKey:@"consulUserName"]==NULL) {
+        if (NULL==[[responseObject objectForKey:@"data"]  objectForKey:@"consulUserName"]) {
             _consulname.text =@"";
         }else{
             _consulname.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"consulUserName"]];
         }
-        if ([[responseObject objectForKey:@"data"]  objectForKey:@"consulContext"]==NULL) {
+        if (NULL==[[responseObject objectForKey:@"data"]  objectForKey:@"consulContext"]) {
             _context.text =@"";
         }else{
             _context.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"consulContext"]];
@@ -94,21 +94,21 @@
         
        
         
-        if([[responseObject objectForKey:@"data"]  objectForKey:@"reportTime"]==NULL){
+        if(NULL==[[responseObject objectForKey:@"data"]  objectForKey:@"reportTime"]){
             _reporttime.text =@"";
         }else{
            _reporttime.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"reportTime"]];
         }
             
             _reportname.adjustsFontSizeToFitWidth =YES;
-        if([[responseObject objectForKey:@"data"]  objectForKey:@"reportUserName"]==NULL){
+        if(NULL==[[responseObject objectForKey:@"data"]  objectForKey:@"reportUserName"]){
            _reportname.text =@"";
         }else{
            _reportname.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"reportUserName"]];
         }
             
             
-        if([[responseObject objectForKey:@"data"]  objectForKey:@"reportContent"]==NULL){
+        if(NULL==[[responseObject objectForKey:@"data"]  objectForKey:@"reportContent"]){
             _reportcont.text =@"";
         }else{
           _reportcont.text =[NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"]  objectForKey:@"reportContent"]];
@@ -128,7 +128,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         
         
-        NSLog(@"%@",error);
+       // NSLog(@"%@",error);
     }];
 }
 /*

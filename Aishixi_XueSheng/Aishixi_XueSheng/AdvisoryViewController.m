@@ -94,7 +94,7 @@
     
     NSString *_pageNo = [NSString stringWithFormat:@"%d",pageNo];
     
-    NSLog(@"%@-----%@",_pageNo,_pageSize);
+   // NSLog(@"%@-----%@",_pageNo,_pageSize);
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",_pageNo,@"pageNo",_pageSize,@"pageSize", nil];
     
     [WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
@@ -104,7 +104,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         
-        NSLog(@"12 学生咨询列表\n%@",responseObject);
+        //NSLog(@"12 学生咨询列表\n%@",responseObject);
        // arr =[NSMutableArray array];
         //arr=[[responseObject objectForKey:@"data"] objectForKey:@"consulList"];
         
@@ -125,7 +125,7 @@
         
         [WarningBox warningBoxHide:YES andView:self.view];
         
-        NSLog(@"%@",error);
+        //NSLog(@"%@",error);
     }];
 }
 

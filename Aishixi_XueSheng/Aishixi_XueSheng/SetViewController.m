@@ -10,7 +10,7 @@
 #import "ChangePassViewController.h"
 #import "AboutViewController.h"
 #import "DengLu_ViewController.h"
-@interface SetViewController ()
+@interface SetViewController ()<UIActionSheetDelegate>
 
 @end
 
@@ -73,8 +73,30 @@
 }
 
 - (IBAction)Exit:(id)sender {
-    DengLu_ViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DengLu"];
-    [self presentViewController:his animated:YES completion:^{
-    }];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择" message:@"确定退出登录吗?" preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+        
+        
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+     
+        DengLu_ViewController *his = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DengLu"];
+        [self presentViewController:his animated:YES completion:^{
+        }];
+        
+        
+        
+    }]];
+   
+    
+    
+  
+    [self.view endEditing:YES];
+    // 由于它是一个控制器 直接modal出来就好了
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+   
 }
 @end

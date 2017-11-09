@@ -83,7 +83,7 @@
     NSDictionary * did =[NSDictionary dictionaryWithObjectsAndKeys:_username.text,@"userName",_password.text,@"passWord",@"1",@"userType",nil];
     [WarningBox warningBoxModeIndeterminate:@"登陆中..." andView:self.view];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/user/logined" Rucan:did type:Post success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
+        //NSLog(@"%@",responseObject);
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             /*数据处理*/
@@ -114,7 +114,7 @@
         
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
-        NSLog(@"%@",error);
+        //NSLog(@"%@",error);
     }];
 }
 

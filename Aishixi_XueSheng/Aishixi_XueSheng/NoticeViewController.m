@@ -28,7 +28,7 @@
     count = 0;
     pageSize = 5;
     pageNo = 1;
-    arr =[NSMutableArray array];
+   
     self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
@@ -37,6 +37,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+     arr =[NSMutableArray array];
      [self wangluo];
 }
 
@@ -94,7 +95,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         
-        NSLog(@"9 学生公告列表\n%@",responseObject);
+        //NSLog(@"9 学生公告列表\n%@",responseObject);
         
        // arr =[[responseObject objectForKey:@"data"] objectForKey:@"noticeList"];
             [arr addObjectsFromArray:[[responseObject objectForKey:@"data"] objectForKey:@"noticeList"]];
@@ -112,7 +113,7 @@
         
         [WarningBox warningBoxHide:YES andView:self.view];
         
-        NSLog(@"%@",error);
+       // NSLog(@"%@",error);
     }];
     
 //    [WarningBox warningBoxModeIndeterminate:@"加载中,请稍后..." andView:self.view];
@@ -204,7 +205,7 @@
     
     titles.font =[UIFont systemFontOfSize:15];
     
-    if([arr[indexPath.section]objectForKey:@"noticeTitle"]==NULL){
+    if(NULL==[arr[indexPath.section]objectForKey:@"noticeTitle"]){
     titles.text =@"";
     }else{
     titles.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"noticeTitle"]];
@@ -213,7 +214,8 @@
     UILabel *pushtime = [[UILabel alloc]initWithFrame:CGRectMake(40,30,width-175,20)];
     pushtime.font =[UIFont systemFontOfSize:13];
     pushtime.textColor=[UIColor colorWithHexString:@"AAAAAA"];
-    if([arr[indexPath.section]objectForKey:@"createDate"]==NULL){
+    
+    if(NULL==[arr[indexPath.section]objectForKey:@"createDate"]){
      pushtime.text =@"";
     }else{
      pushtime.text =[NSString stringWithFormat:@"%@",[arr[indexPath.section]objectForKey:@"createDate"]];
