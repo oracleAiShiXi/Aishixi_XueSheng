@@ -320,6 +320,10 @@
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         
        // NSLog(@"19 学生个人信息保存\n%@",responseObject);
+            [WarningBox warningBoxModeText:@"保存成功" andView:self.view];
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//               [self.navigationController popViewControllerAnimated:YES]; 
+//            });
         
         }else{
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];

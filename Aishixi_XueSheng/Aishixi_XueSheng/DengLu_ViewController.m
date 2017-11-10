@@ -64,7 +64,31 @@
 -(void)delegate{
     _username.delegate = self;
     _password.delegate = self;
+    _username.keyboardType = UIKeyboardTypeASCIICapable;
+    _username.autocorrectionType = UITextAutocorrectionTypeNo;
+    [self.username addTarget:self action:@selector(OldPass) forControlEvents:UIControlEventEditingChanged];
+    [self.password addTarget:self action:@selector(newPass1) forControlEvents:UIControlEventEditingChanged];
 }
+
+-(void)OldPass
+{
+    int MaxLen = 11;
+    NSString* szText = [_username text];
+    if ([_username.text length]> MaxLen)
+    {
+        _username.text = [szText substringToIndex:MaxLen];
+    }
+}
+-(void)newPass1
+{
+    int MaxLen = 16;
+    NSString* szText = [_password text];
+    if ([_password.text length]> MaxLen)
+    {
+        _password.text = [szText substringToIndex:MaxLen];
+    }
+}
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }

@@ -183,6 +183,9 @@
             {
                 [WarningBox warningBoxModeText:@"两次密码不一致，请重新输入" andView:self.view];
             }
+            else if ([self.oldPass.text isEqual:self.mewPass.text]){
+            [WarningBox warningBoxModeText:@"新密码与旧密码不能相同" andView:self.view];
+            }
            else
            {
                

@@ -1732,7 +1732,7 @@
                                             <constraint firstAttribute="height" constant="70" id="ANp-BI-CFA"/>
                                             <constraint firstAttribute="width" constant="70" id="NKf-08-Zkq"/>
                                         </constraints>
-                                        <state key="normal" image="岗位2"/>
+                                        <state key="normal" image="岗位"/>
                                         <connections>
                                             <action selector="Post:" destination="oKQ-4o-q5z" eventType="touchUpInside" id="Mku-u7-meN"/>
                                         </connections>
@@ -2769,7 +2769,7 @@
                                         <rect key="frame" x="0.0" y="776" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xvd-QQ-zUF" id="S3D-iy-h84">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="详细地址:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0K-Rs-zVg">
@@ -4227,7 +4227,7 @@ AAA+AAAAAAAAAAAAAAAAAABWpw
         <image name="否" width="16" height="16"/>
         <image name="头像" width="68" height="68"/>
         <image name="密码" width="29" height="38"/>
-        <image name="岗位2" width="143" height="138"/>
+        <image name="岗位" width="143" height="138"/>
         <image name="是" width="16" height="16"/>
         <image name="添加" width="110" height="108"/>
         <image name="用户名" width="31" height="37"/>

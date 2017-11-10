@@ -41,7 +41,7 @@
     NSString*jing;
     NSString*wei;
     NSString*address;
-    
+    NSString*content;//求助信息
      NSString *filepath;
     UIImagePickerController  *Imgpicker;
 }
@@ -60,13 +60,18 @@
 
     
     [self navagatio];
-    [self jiekou];
+    
     [self initializeLocationService];
     
    
     
     // Do any additional setup after loading the view.
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+   [self jiekou];
+}
+
 -(void)navagatio{
     self.title =@"爱实习";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -157,12 +162,12 @@
 
 -(void)SOSjiekou{
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
-    NSString*content= [NSString stringWithFormat:@"我是%@，我在%@遇到困难",[defaults objectForKey:@"nick"],address];
+   
     
     NSString * Method = @"/classManagement/sos/seekHelp";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",jing,@"longitude",wei,@"latitude",address,@"address",content,@"context", nil];
    // NSLog(@"-----%@",Rucan);
-   // NSLog(@"12312312312323");
+   //NSLog(@"%@",content);
     
     [WarningBox warningBoxModeIndeterminate:@"正在上报" andView:self.view];
  
@@ -191,7 +196,7 @@
 //摇一摇调用的紧急求助接口
 -(void)SOSSSSjiekou{
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
-    NSString*content= [NSString stringWithFormat:@"我是%@，我在%@遇到困难",[defaults objectForKey:@"nick"],address];
+   
     
     NSString * Method = @"/classManagement/sos/seekHelp";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[defaults objectForKey:@"userId"],@"userId",jing,@"longitude",wei,@"latitude",address,@"address",content,@"context", nil];
@@ -551,22 +556,27 @@
 //
 - (void)initializeLocationService {
     
+    if([CLLocationManager locationServicesEnabled]){
+       
+    }
     // 初始化定位管理器
     _locationManager = [[CLLocationManager alloc] init];
     // 设置代理
     _locationManager.delegate = self;
+    // 一个是requestAlwaysAuthorization，一个是requestWhenInUseAuthorization
+    [_locationManager requestAlwaysAuthorization];//这句话ios8以上版本使用。
+    [_locationManager requestWhenInUseAuthorization];
     // 设置定位精确度到米
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     // 设置过滤器为无
-    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    _locationManager.distanceFilter = 5.0;
     // 开始定位
     // 取得定位权限，有两个方法，取决于你的定位使用情况
-    // 一个是requestAlwaysAuthorization，一个是requestWhenInUseAuthorization
-    [_locationManager requestAlwaysAuthorization];//这句话ios8以上版本使用。
+    
     [_locationManager startUpdatingLocation];
  
 }
-
+//定位成功
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     
     //将经度显示到label上
@@ -586,7 +596,9 @@
             
             address=[placemark.addressDictionary objectForKey:@"FormattedAddressLines"][0];
             
-            //NSLog(@"--------%@",address);
+            NSUserDefaults*defaults =[NSUserDefaults standardUserDefaults];
+            content=[NSString stringWithFormat:@"我是%@,我在%@遇到问题,请速与我联系! 经度:%@,纬度:%@, 电话:%@",[defaults objectForKey:@"nick"],address,jing,wei,[defaults objectForKey:@"tel"]];
+           // NSLog(@"--------%@",content);
             
        
         }
@@ -606,10 +618,32 @@
     
     
     [manager stopUpdatingLocation];
-    
-    
-    
+  
 }
+//定位失败
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    
+    
+    NSUserDefaults*defaults =[NSUserDefaults standardUserDefaults];
+   content=[NSString stringWithFormat:@"我是%@,遇到问题,请速与我联系! 电话:%@",[defaults objectForKey:@"nick"],[defaults objectForKey:@"tel"]];
+   // NSLog(@"%@",content);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请在设置中打开定位" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"打开定位" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSURL *settingURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        [[UIApplication sharedApplication]openURL:settingURL];
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:cancel];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+
+
+
 #pragma mark---摇一摇
 //-(UIViewController *)previewingContext:(id<UIViewControllerPreviewing>) viewControllerForLocation:(CGPoint)location{
 //   
@@ -652,8 +686,7 @@
         picker.messageComposeDelegate= self;
      
         NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
-        NSString*content= [NSString stringWithFormat:@"我是%@，我在%@遇到困难",[defaults objectForKey:@"nick"],address];
-        
+    
         
         
         picker.body = content;
