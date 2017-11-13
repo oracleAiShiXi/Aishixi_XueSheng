@@ -17,7 +17,7 @@
 
 
 #define channell @""
-#define isProduction 0
+#define isProduction 1
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif
