@@ -86,11 +86,14 @@
         self.index3 = [self.selections[2] integerValue];
     }
     // 一定要先加载出这三个数组，不然就蹦了
-    [self calculateFirstData];
+   
     [self navagatio];
-    [self gerenxinxi];
+    
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+     [self gerenxinxi];
+     [self calculateFirstData];
+}
 -(void)navagatio{
     self.title =@"个人信息";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -370,7 +373,7 @@
                 moneyAve =@"0";
             }
             
-            
+         
             
         }
     }else if ([actionSheet.title isEqualToString:@"职位："]){
@@ -380,13 +383,15 @@
         post=[NSString stringWithFormat:@"%ld",(long)buttonIndex+1];
        
         }
+  
     }else{
         if(buttonIndex<13){
         NSArray *hangye = [self Hangye];
         _hangye.text=[NSString stringWithFormat:@"%@",hangye[buttonIndex]];
         companyIndustry=[NSString stringWithFormat:@"%ld",(long)buttonIndex+1];
-        
         }
+       
+
     }
     
 }
@@ -509,21 +514,28 @@
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if(textField==_xinzi){
-        
+         [_weixin resignFirstResponder];
         [self tan];
+       
         return NO;
     }else if (textField==_hangye){
+           [textField resignFirstResponder];
         [self tan2];
+      
         return NO;
     }else if (textField==_zhiwei){
+         [_dianhua resignFirstResponder];
         [self tan1];
+        
         return NO;
     }else if (textField==_diqu){
         a=1;
+        [textField resignFirstResponder];
         [self addresssss];
         return NO;
     }else if (textField==_lxdiqu){
         a=2;
+         [_lxdianhua resignFirstResponder];
         [self addresssss];
         return NO;
     }else{

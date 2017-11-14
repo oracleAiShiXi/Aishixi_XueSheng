@@ -69,7 +69,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
         
-        //NSLog(@"17 学生日记详情\n%@",responseObject);
+       // NSLog(@"17 学生日记详情\n%@",responseObject);
         arr =[[NSDictionary alloc]init];
         arr =[responseObject objectForKey:@"data"];
         [_table reloadData];
@@ -153,18 +153,18 @@
     if (cell==nil) {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:aa];
     }
-    //    for (id suView in cell.contentView.subviews) {//获取当前cell的全部子视图
-    //        [suView removeFromSuperview];//移除全部子视图
-    //    }
+        for (id suView in cell.contentView.subviews) {//获取当前cell的全部子视图
+            [suView removeFromSuperview];//移除全部子视图
+        }
     if(indexPath.section==0){
         UILabel *xixi =[[UILabel alloc]initWithFrame:CGRectMake(15, 10, 100, 30)];
         xixi.text =@"日记内容:";
-        [cell addSubview:xixi];
+        [cell.contentView addSubview:xixi];
     }
     else if(indexPath.section==1){
         titles.numberOfLines =0;
         titles.font =[UIFont fontWithName:@"Arial" size:15];
-        [cell addSubview:titles];
+        [cell.contentView addSubview:titles];
     }
     else if (indexPath.section==2){
         UILabel *time =[[UILabel alloc]initWithFrame:CGRectMake(15, 10, 290, 30)];
@@ -176,7 +176,7 @@
         }
         
         
-        [cell addSubview:time];
+        [cell.contentView addSubview:time];
     }
     else if (indexPath.section==3){
         if(![[arr objectForKey:@"url1"]isEqualToString:@""]){
