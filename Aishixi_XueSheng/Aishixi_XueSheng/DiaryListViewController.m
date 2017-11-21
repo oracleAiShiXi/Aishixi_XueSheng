@@ -93,7 +93,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             
-       // NSLog(@"16 学生日记列表\n%@",responseObject);
+        NSLog(@"16 学生日记列表\n%@",responseObject);
        
        //arr=[[responseObject objectForKey:@"data"] objectForKey:@"internshipList"];
        [arr addObjectsFromArray:[[responseObject objectForKey:@"data"] objectForKey:@"internshipList"]];
@@ -260,6 +260,60 @@
     [self.navigationController pushViewController:info animated:YES];
     
 }
+
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return  YES;
+}
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return  UITableViewCellEditingStyleDelete;
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+   
+    
+ 
+    
+    
+    NSString * Method = @"/diary/delete";
+    
+    
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:[arr[indexPath.section] objectForKey:@"internshipId"],@"internshipId",nil];
+    
+    //[WarningBox warningBoxModeIndeterminate:@"正在加载" andView:self.view];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        
+      //  [WarningBox warningBoxHide:YES andView:self.view];
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+            
+             NSLog(@"日记删除\n%@",responseObject);
+         [WarningBox warningBoxModeText:@"已删除" andView:self.view];
+           // [_tableview reloadData];
+            [arr removeObjectAtIndex:indexPath.row];
+            
+            [_tableview reloadData];
+            
+            
+        }else{
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+            
+        }
+        
+    } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        
+         //NSLog(@"%@",error);
+    }];
+
+    
+    
+    
+    
+    
+    
+}
+
+
+
 //- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 //{
 //    
