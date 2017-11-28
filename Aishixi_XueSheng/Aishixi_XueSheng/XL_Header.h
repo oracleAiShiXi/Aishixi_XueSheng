@@ -14,9 +14,9 @@
 #define AppName @"/aishixi"
 
 #define apath    @"/api/rest/1.0"
+#define QianWaiWangIP @"www.ishixi.cn"
 
-//#define QianWaiWangIP @"192.168.1.158:8081"
-#define QianWaiWangIP @"192.168.1.146:8080"
+//#define QianWaiWangIP @"192.168.1.146:8080"
 #define QianWaiWang [NSString stringWithFormat:@"%@%@%@%@",Scheme,QianWaiWangIP,AppName,apath]
 
 #define Appkey   @"d800528f235e4142b78a8c26c4d537d9"

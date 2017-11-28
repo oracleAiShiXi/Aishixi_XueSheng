@@ -190,7 +190,16 @@
     UIView*shuxian=[[UIView alloc] initWithFrame:CGRectMake(15,5, 1,90)];
     shuxian.backgroundColor =[UIColor colorWithHexString:@"C9D0D6"];
     UIImageView*imageview=[[UIImageView alloc] initWithFrame:CGRectMake(5,5, 20, 20)];
-    imageview.image =[UIImage imageNamed:@"时间.png"];
+    
+    if([[arr[indexPath.row]objectForKey:@"mood"] intValue]==1){
+       imageview.image =[UIImage imageNamed:@"表情(1).png"];
+    }else if([[arr[indexPath.row]objectForKey:@"mood"] intValue]==1){
+       imageview.image =[UIImage imageNamed:@"表情(2).png"];
+    }else{
+       imageview.image =[UIImage imageNamed:@"表情(3).png"];
+    }
+    
+    
     
     //内部构造
     UIView *backview =[[UIView alloc]initWithFrame:CGRectMake(30,10, width-40, 80)];
@@ -241,12 +250,11 @@
 
 
     
-    
+    [cell addSubview:imageview];
+    [cell addSubview:shuxian];
     [backview addSubview:title];
     [backview addSubview:type];
     [backview addSubview:time];
-    [cell addSubview:shuxian];
-    [cell addSubview:imageview];
     [cell addSubview:backview];
     cell.backgroundColor =[UIColor clearColor];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
@@ -285,7 +293,7 @@
       //  [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             
-             NSLog(@"日记删除\n%@",responseObject);
+//             NSLog(@"日记删除\n%@",responseObject);
          [WarningBox warningBoxModeText:@"已删除" andView:self.view];
            // [_tableview reloadData];
             [arr removeObjectAtIndex:indexPath.row];
