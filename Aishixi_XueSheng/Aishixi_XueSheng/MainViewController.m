@@ -73,7 +73,7 @@
 }
 
 -(void)navagatio{
-    self.title =@"爱实习";
+    self.title =@"i实习";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
  
